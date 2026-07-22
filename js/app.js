@@ -7,11 +7,12 @@ let skillList = [
   { id: 1, name: "Python 3.13 & SymPy Engine (Currently Working)", percent: 95, icon: "fa-brands fa-python" },
   { id: 2, name: "FastAPI & REST APIs (Currently Working)", percent: 92, icon: "fa-solid fa-bolt" },
   { id: 3, name: "Java & Web Systems (Currently Working)", percent: 88, icon: "fa-brands fa-java" },
-  { id: 4, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 90, icon: "fa-brands fa-js" },
-  { id: 5, name: "React & Vite Frontends (Currently Working)", percent: 85, icon: "fa-brands fa-react" },
-  { id: 6, name: "AI / ML & LLM Engineering (Currently Working)", percent: 92, icon: "fa-solid fa-brain" },
-  { id: 7, name: "Git & GitHub Version Control (Currently Working)", percent: 95, icon: "fa-brands fa-git-alt" },
-  { id: 8, name: "SQL & Relational Databases (Currently Working)", percent: 86, icon: "fa-solid fa-database" }
+  { id: 4, name: "C Programming Language (Currently Working)", percent: 85, icon: "fa-solid fa-code" },
+  { id: 5, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 90, icon: "fa-brands fa-js" },
+  { id: 6, name: "React & Vite Frontends (Currently Working)", percent: 85, icon: "fa-brands fa-react" },
+  { id: 7, name: "AI / ML & LLM Engineering (Currently Working)", percent: 92, icon: "fa-solid fa-brain" },
+  { id: 8, name: "Git & GitHub Version Control (Currently Working)", percent: 95, icon: "fa-brands fa-git-alt" },
+  { id: 9, name: "SQL & Relational Databases (Currently Working)", percent: 86, icon: "fa-solid fa-database" }
 ];
 
 let deployedList = [
