@@ -110,13 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTimeline();
 
   initAddSkillModal();
+  initAddDeployedModal();
   initProjectModal();
   initTimelineModal();
   initAdminKeyToggle();
   initEmailModal();
 });
 
-// Render Deployed Cloud Projects Section
+// Render Deployed Cloud Projects Section with Full Admin-Only CRUD Controls
 function renderDeployedProjects() {
   const container = document.getElementById("deployedProjectsContainer");
   if (!container) return;
@@ -142,9 +143,72 @@ function renderDeployedProjects() {
             <i class="fa-brands fa-github"></i> GitHub Code
           </a>
         </div>
+        <div class="crud-actions admin-only">
+          <button class="btn-edit" onclick="editDeployedProject(${p.id})"><i class="fa-solid fa-pen"></i> Edit App</button>
+          <button class="btn-danger" onclick="deleteDeployedProject(${p.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
       </div>
     </div>
   `).join("");
+}
+
+function deleteDeployedProject(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  deployedList = deployedList.filter(p => p.id !== id);
+  renderDeployedProjects();
+}
+
+function editDeployedProject(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  const p = deployedList.find(item => item.id === id);
+  if (!p) return;
+
+  const newTitle = prompt("Edit Deployed App Title:", p.title);
+  if (newTitle !== null && newTitle.trim() !== "") {
+    p.title = newTitle.trim();
+    const newDesc = prompt("Edit Description:", p.desc);
+    if (newDesc !== null) p.desc = newDesc.trim();
+    const newDemo = prompt("Edit Live Cloud Demo URL:", p.demoUrl);
+    if (newDemo !== null && newDemo.trim() !== "") p.demoUrl = newDemo.trim();
+    renderDeployedProjects();
+  }
+}
+
+function initAddDeployedModal() {
+  const modal = document.getElementById("addDeployedModal");
+  const openBtn = document.getElementById("openAddDeployedBtn");
+  const closeBtn = document.getElementById("closeAddDeployedBtn");
+  const saveBtn = document.getElementById("saveAddDeployedBtn");
+
+  if (!modal || !openBtn) return;
+  openBtn.addEventListener("click", () => modal.classList.add("active"));
+  closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+  saveBtn.addEventListener("click", () => {
+    const title = document.getElementById("depTitle").value.trim();
+    const desc = document.getElementById("depDesc").value.trim();
+    const demoUrl = document.getElementById("depDemoUrl").value.trim();
+    const codeUrl = document.getElementById("depCodeUrl").value.trim();
+    const tagsRaw = document.getElementById("depTags").value.trim();
+
+    if (title && desc && demoUrl) {
+      deployedList.unshift({
+        id: Date.now(),
+        title: title,
+        desc: desc,
+        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Cloud Deployed"],
+        icon: "fa-cloud",
+        demoUrl: demoUrl,
+        codeUrl: codeUrl || "https://github.com/kashvinayak20-debug"
+      });
+      renderDeployedProjects();
+      modal.classList.remove("active");
+      document.getElementById("depTitle").value = "";
+      document.getElementById("depDesc").value = "";
+      document.getElementById("depDemoUrl").value = "";
+      document.getElementById("depCodeUrl").value = "";
+    }
+  });
 }
 
 // Email Contact Modal & Direct Send Handler

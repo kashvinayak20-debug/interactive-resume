@@ -138,6 +138,9 @@
       <div class="section-header">
         <h2 class="section-title">🚀 Cloud Deployed <span class="gradient-text">Live Applications</span></h2>
         <p class="section-desc">Production-grade web services hosted live on cloud servers with instant demo access.</p>
+        <button id="openAddDeployedBtn" class="btn-primary admin-only" style="margin-top: 1rem;">
+          <i class="fa-solid fa-plus"></i> Add Deployed Live App
+        </button>
       </div>
 
       <div id="deployedProjectsContainer" class="projects-grid" style="max-width: 900px; margin: 0 auto;"></div>
@@ -276,7 +279,47 @@
   </div>
 
 
-  <!-- MODAL 2: ADD PROJECT MODAL -->
+  <!-- MODAL 2: ADD DEPLOYED LIVE APP MODAL -->
+  <div id="addDeployedModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-cloud-arrow-up"></i> Add Deployed Live App</h3>
+        <button id="closeAddDeployedBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>App Title:</label>
+        <input type="text" id="depTitle" class="form-input" placeholder="e.g. OmniCalc Pro Suite">
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea id="depDesc" class="form-input" style="height: 80px;" placeholder="Production cloud summary..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Live Cloud Demo URL (Render / Vercel):</label>
+        <input type="text" id="depDemoUrl" class="form-input" placeholder="https://...">
+      </div>
+
+      <div class="form-group">
+        <label>GitHub Code URL:</label>
+        <input type="text" id="depCodeUrl" class="form-input" placeholder="https://github.com/...">
+      </div>
+
+      <div class="form-group">
+        <label>Tags (comma separated):</label>
+        <input type="text" id="depTags" class="form-input" placeholder="Cloud Deployed, FastAPI, SymPy">
+      </div>
+
+      <button id="saveAddDeployedBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Save & Render Deployed App
+      </button>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: ADD PROJECT MODAL -->
   <div id="addProjectModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -325,7 +368,7 @@
   </div>
 
 
-  <!-- MODAL 3: ADD TIMELINE MODAL -->
+  <!-- MODAL 4: ADD TIMELINE MODAL -->
   <div id="addTimelineModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -360,7 +403,7 @@
   </div>
 
 
-  <!-- MODAL 4: LIVE PROFILE EDITOR MODAL -->
+  <!-- MODAL 5: LIVE PROFILE EDITOR MODAL -->
   <div id="editorModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -390,7 +433,7 @@
   </div>
 
 
-  <!-- MODAL 5: SEND DIRECT EMAIL / CONTACT MODAL -->
+  <!-- MODAL 6: SEND DIRECT EMAIL / CONTACT MODAL -->
   <div id="emailModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
