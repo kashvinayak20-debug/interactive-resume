@@ -9,7 +9,7 @@ let skillList = [
   { id: 3, name: "Java & Web Applications", percent: 88, icon: "fa-brands fa-java" },
   { id: 4, name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
   { id: 5, name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
-  { id: 6, name: "AI / ML & LLMs (Currently Preparing)", percent: 80, icon: "fa-solid fa-brain" },
+  { id: 6, name: "AI / ML & LLM Engineering (Currently Working)", percent: 92, icon: "fa-solid fa-brain" },
   { id: 7, name: "Git & GitHub Version Control", percent: 95, icon: "fa-brands fa-git-alt" },
   { id: 8, name: "SQL & Relational Databases", percent: 86, icon: "fa-solid fa-database" }
 ];
@@ -56,17 +56,31 @@ let projectList = [
 let timelineList = [
   {
     id: 201,
-    title: "Full-Stack Software Engineer",
-    subtitle: "Software Systems & Full-Stack Development",
-    date: "2024 — Present",
-    desc: "Architected full-stack web applications, mathematical computing engines, and system workflows while actively upskilling in AI/ML & LLM engineering."
+    title: "Full-Stack & AI/ML/LLM Engineer",
+    subtitle: "Software & Artificial Intelligence Systems",
+    date: "2024 — Present (Working Right Now)",
+    desc: "Architecting full-stack web applications, RESTful microservices, Large Language Models (LLMs), RAG pipelines, and automated MLOps systems."
   },
   {
     id: 202,
     title: "B.Tech in Computer Science & Engineering",
-    subtitle: "Computer Science & Software Systems",
-    date: "2024 — Present",
-    desc: "Specialized in Data Structures, Algorithms, Object-Oriented Programming (Java/Python), Web Technologies, and Database Systems."
+    subtitle: "Silicon University",
+    date: "2024 — 2028 (Present)",
+    desc: "Specializing in Computer Science, Artificial Intelligence, Data Structures, Algorithms, Systems Architecture, and Software Engineering."
+  },
+  {
+    id: 203,
+    title: "Senior Secondary High School (Class XI - XII)",
+    subtitle: "Freedom International School",
+    date: "2022 — 2024",
+    desc: "Completed Senior Secondary Education with focus on Physics, Chemistry, Mathematics, and Computer Science."
+  },
+  {
+    id: 204,
+    title: "Secondary High School Education (Class I - X)",
+    subtitle: "St. Joseph's Girls' High School",
+    date: "2010 — 2022",
+    desc: "Completed Primary and Secondary High Schooling with Academic Excellence and Computer Fundamentals."
   }
 ];
 
