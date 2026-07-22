@@ -4,15 +4,15 @@ let isAdmin = false;
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "Python 3.13 & SymPy Engine (Currently Working)", percent: 95, icon: "fa-brands fa-python" },
-  { id: 2, name: "FastAPI & REST APIs (Currently Working)", percent: 92, icon: "fa-solid fa-bolt" },
-  { id: 3, name: "Java & Web Systems (Currently Working)", percent: 88, icon: "fa-brands fa-java" },
-  { id: 4, name: "C Programming Language (Currently Working)", percent: 85, icon: "fa-solid fa-code" },
-  { id: 5, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 90, icon: "fa-brands fa-js" },
-  { id: 6, name: "React & Vite Frontends (Currently Working)", percent: 85, icon: "fa-brands fa-react" },
-  { id: 7, name: "AI / ML & LLM Engineering (Currently Working)", percent: 92, icon: "fa-solid fa-brain" },
-  { id: 8, name: "Git & GitHub Version Control (Currently Working)", percent: 95, icon: "fa-brands fa-git-alt" },
-  { id: 9, name: "SQL & Relational Databases (Currently Working)", percent: 86, icon: "fa-solid fa-database" }
+  { id: 1, name: "Python 3.13 & SymPy Engine (Currently Working)", percent: 50, icon: "fa-brands fa-python" },
+  { id: 2, name: "FastAPI & REST APIs (Currently Working)", percent: 45, icon: "fa-solid fa-bolt" },
+  { id: 3, name: "Java & Web Systems (Currently Working)", percent: 42, icon: "fa-brands fa-java" },
+  { id: 4, name: "C Programming Language (Currently Working)", percent: 40, icon: "fa-solid fa-code" },
+  { id: 5, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 48, icon: "fa-brands fa-js" },
+  { id: 6, name: "React & Vite Frontends (Currently Working)", percent: 38, icon: "fa-brands fa-react" },
+  { id: 7, name: "AI / ML & LLM Engineering (Currently Working)", percent: 35, icon: "fa-solid fa-brain" },
+  { id: 8, name: "Git & GitHub Version Control (Currently Working)", percent: 50, icon: "fa-brands fa-git-alt" },
+  { id: 9, name: "SQL & Relational Databases (Currently Working)", percent: 38, icon: "fa-solid fa-database" }
 ];
 
 let deployedList = [
@@ -369,7 +369,7 @@ function initAddSkillModal() {
 
   saveBtn.addEventListener("click", () => {
     const nameVal = document.getElementById("newSkillName").value.trim();
-    const percentVal = parseInt(document.getElementById("newSkillPercent").value) || 90;
+    const percentVal = parseInt(document.getElementById("newSkillPercent").value) || 45;
 
     if (nameVal) {
       skillList.unshift({
