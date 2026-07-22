@@ -16,6 +16,16 @@ let skillList = [
 
 let projectList = [
   {
+    id: 100,
+    title: "Kashvi.dev Portfolio Engine",
+    category: "fullstack web",
+    desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, Admin PIN-protected CRUD manager, and embedded CLI terminal.",
+    tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
+    icon: "fa-address-card",
+    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
+    demoUrl: "https://spotty-hornets-grow.loca.lt"
+  },
+  {
     id: 101,
     title: "OmniCalc Pro",
     category: "fullstack python",
