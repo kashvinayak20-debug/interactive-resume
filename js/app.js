@@ -2,74 +2,63 @@
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "LLMs & RAG Architecture", percent: 95, icon: "fa-solid fa-brain" },
-  { id: 2, name: "MLOps & Model Deployment", percent: 92, icon: "fa-solid fa-diagram-project" },
-  { id: 3, name: "PyTorch & Transformers", percent: 94, icon: "fa-solid fa-microchip" },
-  { id: 4, name: "LangChain & Vector Databases", percent: 90, icon: "fa-solid fa-database" },
-  { id: 5, name: "Python 3.13 & SymPy Engine", percent: 96, icon: "fa-brands fa-python" },
-  { id: 6, name: "FastAPI & High-Speed APIs", percent: 93, icon: "fa-solid fa-bolt" },
-  { id: 7, name: "JavaScript ES6+ & Web UI", percent: 90, icon: "fa-brands fa-js" },
-  { id: 8, name: "Docker & Kubernetes DevOps", percent: 88, icon: "fa-brands fa-docker" },
-  { id: 9, name: "Git & GitHub Version Control", percent: 95, icon: "fa-brands fa-git-alt" }
+  { id: 1, name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
+  { id: 2, name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
+  { id: 3, name: "Java & Web Applications", percent: 88, icon: "fa-brands fa-java" },
+  { id: 4, name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
+  { id: 5, name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
+  { id: 6, name: "AI / ML & LLMs (Currently Preparing)", percent: 80, icon: "fa-solid fa-brain" },
+  { id: 7, name: "Git & GitHub Version Control", percent: 95, icon: "fa-brands fa-git-alt" },
+  { id: 8, name: "SQL & Relational Databases", percent: 86, icon: "fa-solid fa-database" }
 ];
 
 let projectList = [
   {
-    id: 100,
-    title: "AetherLLM RAG Suite",
-    category: "python web",
-    desc: "Enterprise Retrieval-Augmented Generation (RAG) pipeline powered by LangChain, Vector Databases (Chroma/Qdrant), and fine-tuned Open-Source LLMs for real-time document intelligence.",
-    tags: ["LLMs", "RAG", "LangChain", "VectorDB", "FastAPI"],
-    icon: "fa-brain",
-    codeUrl: "https://github.com/kashvinayak20-debug",
-    demoUrl: "#"
-  },
-  {
     id: 101,
-    title: "MLOps AutoScale Pipeline",
-    category: "python",
-    desc: "Automated MLOps continuous training & deployment pipeline with MLflow experiment tracking, model drift monitoring, and Dockerized FastAPI microservices.",
-    tags: ["MLOps", "MLflow", "Docker", "PyTorch", "CI/CD"],
-    icon: "fa-diagram-project",
-    codeUrl: "https://github.com/kashvinayak20-debug",
-    demoUrl: "#"
-  },
-  {
-    id: 102,
     title: "OmniCalc Pro",
     category: "fullstack python",
     desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
-    tags: ["FastAPI", "SymPy", "NumPy", "Canvas 2D"],
+    tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
     icon: "fa-calculator",
     codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
     demoUrl: "https://salty-views-teach.loca.lt"
   },
   {
+    id: 102,
+    title: "IWT Pet Adoption System",
+    category: "web fullstack",
+    desc: "Full-Stack Pet Adoption & Welfare Management Web System facilitating pet care shelter listings, adoption applications, and user profile workflows.",
+    tags: ["Java", "Web Application", "HTML/CSS", "JavaScript", "SQL"],
+    icon: "fa-paw",
+    codeUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system",
+    demoUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system"
+  },
+  {
     id: 103,
-    title: "AetherResume",
-    category: "fullstack web",
-    desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, live CRUD manager, and embedded CLI terminal.",
-    tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript"],
-    icon: "fa-address-card",
-    codeUrl: "https://github.com/kashvinayak20-debug",
-    demoUrl: "#hero"
+    title: "DecodeLabs Tasks Suite",
+    category: "python",
+    desc: "Algorithmic software engineering solutions, data structure implementations, and automated Python processing tasks.",
+    tags: ["Python", "Algorithms", "Data Structures", "Problem Solving"],
+    icon: "fa-code-branch",
+    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks",
+    demoUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
   }
 ];
 
 let timelineList = [
   {
     id: 201,
-    title: "AI / ML Engineer & System Architect",
-    subtitle: "LLMs, MLOps & High-Performance AI Systems",
+    title: "Full-Stack Software Engineer",
+    subtitle: "Software Systems & Full-Stack Development",
     date: "2023 — Present",
-    desc: "Designed and deployed generative AI microservices, RAG architectures, and automated MLOps pipelines using PyTorch, LangChain, FastAPI, and Docker."
+    desc: "Architected full-stack web applications, mathematical computing engines, and system workflows while actively upskilling in AI/ML & LLM engineering."
   },
   {
     id: 202,
     title: "B.Tech in Computer Science & Engineering",
-    subtitle: "Machine Learning & Distributed Systems",
+    subtitle: "Computer Science & Software Systems",
     date: "Graduated",
-    desc: "Specialized in Artificial Intelligence, Neural Networks, Machine Learning, Data Structures, Algorithms, Linear Algebra, and System Architecture."
+    desc: "Specialized in Data Structures, Algorithms, Object-Oriented Programming (Java/Python), Web Technologies, and Database Systems."
   }
 ];
 
@@ -189,7 +178,7 @@ function initAddSkillModal() {
         id: Date.now(),
         name: nameVal,
         percent: Math.min(100, Math.max(0, percentVal)),
-        icon: "fa-solid fa-brain"
+        icon: "fa-solid fa-star"
       });
       renderSkillProgressBars();
       modal.classList.remove("active");
@@ -278,8 +267,8 @@ function initProjectModal() {
         title: title,
         category: category,
         desc: desc,
-        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["AI / ML"],
-        icon: "fa-brain",
+        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
+        icon: "fa-code",
         codeUrl: codeUrl || "#",
         demoUrl: demoUrl || "#"
       });
@@ -353,7 +342,7 @@ function initTimelineModal() {
       timelineList.unshift({
         id: Date.now(),
         title: title,
-        subtitle: subtitle || "AI / ML Systems",
+        subtitle: subtitle || "Software Engineering",
         date: date || "Present",
         desc: desc
       });
