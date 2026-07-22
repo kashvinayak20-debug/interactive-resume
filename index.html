@@ -86,8 +86,8 @@
         </div>
       </div>
 
-      <!-- ANIMATED DEVELOPER MASCOT CHARACTER WIDGET -->
-      <div style="perspective: 1000px;">
+      <!-- ANIMATED DEVELOPER MASCOT CHARACTER WIDGET (OUTER STATIC WRAPPER FIX FOR ZERO BORDER VIBRATION) -->
+      <div class="mascot-wrapper" style="perspective: 1000px; width: 100%; height: 420px;">
         <div class="mascot-container">
           <div class="mascot-avatar-wrapper">
             <div class="floating-code-tag tag-pos-1">&lt;FullStack/&gt;</div>
@@ -298,11 +298,6 @@
         <input type="text" id="projCodeUrl" class="form-input" placeholder="https://github.com/...">
       </div>
 
-      <div class="form-group">
-        <label>Live Demo URL:</label>
-        <input type="text" id="projDemoUrl" class="form-input" placeholder="https://...">
-      </div>
-
       <button id="saveAddProjectBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
         <i class="fa-solid fa-check"></i> Save & Render Project Card
       </button>
@@ -330,7 +325,7 @@
 
       <div class="form-group">
         <label>Date Range:</label>
-        <input type="text" id="timeDate" class="form-input" placeholder="e.g. 2023 — Present">
+        <input type="text" id="timeDate" class="form-input" placeholder="e.g. 2023 — Present (Still Working)">
       </div>
 
       <div class="form-group">

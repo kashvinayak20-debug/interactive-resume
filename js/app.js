@@ -58,7 +58,7 @@ let timelineList = [
     id: 201,
     title: "Full-Stack Software Engineer",
     subtitle: "Software Systems & Full-Stack Development",
-    date: "2023 — Present",
+    date: "2023 — Present (Still Working)",
     desc: "Architected full-stack web applications, mathematical computing engines, and system workflows while actively upskilling in AI/ML & LLM engineering."
   },
   {
@@ -122,31 +122,24 @@ function initThemePicker() {
   });
 }
 
-// 3D Tilt Mascot Card Effect (Smooth Jitter-Free Version)
+// 3D Tilt Mascot Card Effect (Outer Static Wrapper tracking to prevent ANY border vibration)
 function init3DTiltCard() {
+  const wrapper = document.querySelector(".mascot-wrapper");
   const card = document.querySelector(".mascot-container");
-  if (!card) return;
+  if (!wrapper || !card) return;
 
-  let ticking = false;
+  wrapper.addEventListener("mousemove", (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
 
-  card.addEventListener("mousemove", (e) => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+    const rotX = (y / (rect.height / 2)) * -6;
+    const rotY = (x / (rect.width / 2)) * 6;
 
-        const rotX = (y / (rect.height / 2)) * -8;
-        const rotY = (x / (rect.width / 2)) * 8;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        ticking = false;
-      });
-      ticking = true;
-    }
+    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
   });
 
-  card.addEventListener("mouseleave", () => {
+  wrapper.addEventListener("mouseleave", () => {
     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
   });
 }
