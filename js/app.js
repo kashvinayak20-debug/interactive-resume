@@ -49,6 +49,16 @@ const INLINE_SVG_BANNERS = {
       <circle cx="520" cy="310" r="12" fill="#7000FF"/>
       <text x="100" y="340" font-family="Outfit, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF">Algorithms & Data Structures</text>
     </svg>
+  </div>`,
+  tts: `<div class="project-banner-box">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="800" height="400" fill="#0D0714"/>
+      <path d="M 80 200 Q 200 60 350 200 T 550 200 T 720 200" fill="none" stroke="#FF007A" stroke-width="6"/>
+      <circle cx="350" cy="200" r="14" fill="#00F0FF"/>
+      <circle cx="550" cy="200" r="14" fill="#00FF85"/>
+      <text x="100" y="110" font-family="Outfit, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">Neural Text-to-Speech LLM</text>
+      <text x="100" y="160" font-family="Outfit, sans-serif" font-size="22" font-weight="600" fill="#FF007A">Speech Synthesis & Audio Generation Model</text>
+    </svg>
   </div>`
 };
 
@@ -91,6 +101,16 @@ let deployedList = [
 let projectList = [
   {
     id: 100,
+    title: "Text-to-Speech LLM Model",
+    category: "python",
+    bannerSvg: INLINE_SVG_BANNERS.tts,
+    desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, natural speech synthesis, and audio signal processing.",
+    tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech", "Deep Learning"],
+    icon: "fa-robot",
+    codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
+  },
+  {
+    id: 101,
     title: "Kashvi.dev Portfolio Engine",
     category: "fullstack web",
     bannerSvg: INLINE_SVG_BANNERS.portfolio,
@@ -101,7 +121,7 @@ let projectList = [
     demoUrl: "https://spotty-hornets-grow.loca.lt"
   },
   {
-    id: 101,
+    id: 102,
     title: "OmniCalc Pro",
     category: "fullstack python",
     bannerSvg: INLINE_SVG_BANNERS.math,
@@ -112,7 +132,7 @@ let projectList = [
     demoUrl: "https://omnicalc-pro.onrender.com/"
   },
   {
-    id: 102,
+    id: 103,
     title: "IWT Pet Adoption System",
     category: "web fullstack",
     bannerSvg: INLINE_SVG_BANNERS.java,
@@ -122,7 +142,7 @@ let projectList = [
     codeUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system"
   },
   {
-    id: 103,
+    id: 104,
     title: "DecodeLabs Tasks Suite",
     category: "python",
     bannerSvg: INLINE_SVG_BANNERS.algo,
