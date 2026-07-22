@@ -31,6 +31,7 @@
 
     <ul class="nav-links">
       <li><a href="#hero" class="nav-link active">Home</a></li>
+      <li><a href="#deployed" class="nav-link">Cloud Deployed</a></li>
       <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
       <li><a href="#skills" class="nav-link">Playground</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -81,8 +82,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> GitHub Projects</a>
-          <a href="#skills-section" class="btn-secondary"><i class="fa-solid fa-chart-line"></i> View Skill %</a>
+          <a href="#deployed" class="btn-primary"><i class="fa-solid fa-cloud"></i> View Live Cloud Apps</a>
+          <a href="#projects" class="btn-secondary"><i class="fa-solid fa-rocket"></i> GitHub Projects</a>
         </div>
       </div>
 
@@ -129,6 +130,17 @@
           </div>
         </div>
       </div>
+    </section>
+
+
+    <!-- DEDICATED CLOUD DEPLOYED APPLICATIONS SECTION -->
+    <section id="deployed" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">🚀 Cloud Deployed <span class="gradient-text">Live Applications</span></h2>
+        <p class="section-desc">Production-grade web services hosted live on cloud servers with instant demo access.</p>
+      </div>
+
+      <div id="deployedProjectsContainer" class="projects-grid" style="max-width: 900px; margin: 0 auto;"></div>
     </section>
 
 
@@ -299,6 +311,11 @@
       <div class="form-group">
         <label>GitHub Code URL:</label>
         <input type="text" id="projCodeUrl" class="form-input" placeholder="https://github.com/...">
+      </div>
+
+      <div class="form-group">
+        <label>Live Cloud Demo URL:</label>
+        <input type="text" id="projDemoUrl" class="form-input" placeholder="https://...">
       </div>
 
       <button id="saveAddProjectBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">

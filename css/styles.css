@@ -122,8 +122,28 @@ body {
 .nav-link:hover, .nav-link.active { color: var(--accent-cyan); }
 
 .nav-controls { display: flex; align-items: center; gap: 1rem; }
-.theme-picker { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-glow); color: var(--text-main); padding: 0.5rem 1rem; border-radius: 12px; font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; cursor: pointer; outline: none; }
-.theme-picker option { background: #0B0F1D; color: #FFFFFF; }
+
+/* FIX: PERFECT VERTICAL & HORIZONTAL CENTERED THEME PICKER */
+.theme-picker {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-glow);
+  color: var(--text-main);
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-align-last: center;
+  height: 42px;
+  line-height: 1;
+}
+.theme-picker option { background: #0B0F1D; color: #FFFFFF; text-align: center; }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));

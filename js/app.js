@@ -14,6 +14,18 @@ let skillList = [
   { id: 8, name: "SQL & Relational Databases", percent: 86, icon: "fa-solid fa-database" }
 ];
 
+let deployedList = [
+  {
+    id: 301,
+    title: "OmniCalc Pro Suite",
+    desc: "Production Cloud-Deployed Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
+    tags: ["Cloud Deployed (Render)", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
+    icon: "fa-calculator",
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
+    demoUrl: "https://omnicalc-pro.onrender.com/"
+  }
+];
+
 let projectList = [
   {
     id: 100,
@@ -22,7 +34,8 @@ let projectList = [
     desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, Admin PIN-protected CRUD manager, and embedded CLI terminal.",
     tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
     icon: "fa-address-card",
-    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume"
+    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
+    demoUrl: "https://spotty-hornets-grow.loca.lt"
   },
   {
     id: 101,
@@ -31,7 +44,8 @@ let projectList = [
     desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
     tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
     icon: "fa-calculator",
-    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro"
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
+    demoUrl: "https://omnicalc-pro.onrender.com/"
   },
   {
     id: 102,
@@ -91,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLiveEditorModal();
 
   renderSkillProgressBars();
+  renderDeployedProjects();
   renderProjects();
   renderTimeline();
 
@@ -100,6 +115,37 @@ document.addEventListener("DOMContentLoaded", () => {
   initAdminKeyToggle();
   initEmailModal();
 });
+
+// Render Deployed Cloud Projects Section
+function renderDeployedProjects() {
+  const container = document.getElementById("deployedProjectsContainer");
+  if (!container) return;
+
+  container.innerHTML = deployedList.map((p) => `
+    <div class="project-card" style="border-color: var(--accent-cyan);">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
+          <i class="fa-solid ${p.icon || 'fa-cloud'}" style="font-size: 1.5rem; color: var(--accent-emerald);"></i>
+        </div>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">${p.desc}</p>
+        <div class="project-tags">
+          ${p.tags.map(t => `<span class="tag-badge" style="color: var(--accent-emerald); border-color: rgba(0, 255, 133, 0.4);">${t}</span>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+          <a href="${p.demoUrl}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center; background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan)); color: #000; font-weight: 800;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Cloud Demo
+          </a>
+          <a href="${p.codeUrl}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+            <i class="fa-brands fa-github"></i> GitHub Code
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
 
 // Email Contact Modal & Direct Send Handler
 function initEmailModal() {
@@ -276,7 +322,7 @@ function initAddSkillModal() {
 
 
 // ==========================================================
-// 2. PROJECTS CRUD OPERATIONS (Direct GitHub Code Links, No Demo)
+// 2. PROJECTS CRUD OPERATIONS (Direct GitHub Code Links, Render Demo)
 // ==========================================================
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
@@ -296,8 +342,13 @@ function renderProjects() {
       </div>
       <div>
         <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
-          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
-            <i class="fa-brands fa-github"></i> View GitHub Code
+          ${p.demoUrl ? `
+            <a href="${p.demoUrl}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center; background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan)); color: #000; font-weight: 800;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+            </a>
+          ` : ''}
+          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+            <i class="fa-brands fa-github"></i> GitHub Code
           </a>
         </div>
         <div class="crud-actions admin-only">
@@ -345,6 +396,7 @@ function initProjectModal() {
     const category = document.getElementById("projCategory").value;
     const tagsRaw = document.getElementById("projTags").value.trim();
     const codeUrl = document.getElementById("projCodeUrl").value.trim();
+    const demoUrl = document.getElementById("projDemoUrl").value.trim();
 
     if (title && desc) {
       projectList.unshift({
@@ -354,7 +406,8 @@ function initProjectModal() {
         desc: desc,
         tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
         icon: "fa-code",
-        codeUrl: codeUrl || "https://github.com/kashvinayak20-debug"
+        codeUrl: codeUrl || "https://github.com/kashvinayak20-debug",
+        demoUrl: demoUrl || ""
       });
       renderProjects();
       modal.classList.remove("active");
