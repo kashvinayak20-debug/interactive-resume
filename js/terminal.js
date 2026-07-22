@@ -1,21 +1,21 @@
-// Interactive Developer Command-Line Terminal
+// Terminal CLI Logic for AetherResume / Kashvi.dev
 
 document.addEventListener("DOMContentLoaded", () => {
   const termInput = document.getElementById("termInput");
   const termOutput = document.getElementById("termOutput");
 
-  if (!termInput) return;
+  if (!termInput || !termOutput) return;
 
   termInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      const command = termInput.value.trim();
+      const cmd = termInput.value.trim();
       termInput.value = "";
-      processCommand(command);
+      if (cmd) processCommand(cmd);
     }
   });
 
   function processCommand(cmd) {
-    const cleanCmd = cmd.toLowerCase();
+    const cleanCmd = cmd.toLowerCase().trim();
     let response = "";
 
     // Echo user input
@@ -23,33 +23,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     switch (cleanCmd) {
       case "help":
-        response = `Available Commands:
-  • <b style="color: var(--accent-cyan)">skills</b>     : List technical stack and proficiencies
-  • <b style="color: var(--accent-cyan)">projects</b>   : View key full-stack software projects
-  • <b style="color: var(--accent-cyan)">contact</b>    : Get direct contact & social links
-  • <b style="color: var(--accent-cyan)">theme</b>      : Switch theme (usage: theme synthwave | emerald | obsidian | default)
-  • <b style="color: var(--accent-cyan)">clear</b>      : Clear terminal screen`;
+        response = `Available Terminal Commands:<br>
+  - <b style="color: var(--accent-cyan)">skills</b>   : View core technical skills & proficiency<br>
+  - <b style="color: var(--accent-cyan)">projects</b> : View featured software & engineering projects<br>
+  - <b style="color: var(--accent-cyan)">contact</b>  : Get email, GitHub, and LinkedIn links<br>
+  - <b style="color: var(--accent-cyan)">theme</b>    : Switch theme (e.g. 'theme synthwave')<br>
+  - <b style="color: var(--accent-cyan)">clear</b>    : Clear terminal screen`;
         break;
 
       case "skills":
-        response = `⚡ Technical Skill Matrix:
-  - Languages  : Python, JavaScript (ES6+), HTML5, CSS3, C/C++, SQL
-  - Frameworks : FastAPI, Node.js, Express, React, Vite, SymPy, NumPy
-  - DevOps/Tools: Git, GitHub, Docker, Uvicorn, Render, Linux CLI`;
+        response = `Core Technical Skills & Upskilling:<br>
+  - Python 3.13 / FastAPI / SymPy / NumPy (95%)<br>
+  - Java / Web Systems / SQL (88%)<br>
+  - JavaScript ES6+ / HTML5 / Glassmorphism CSS (90%)<br>
+  - AI / ML & Large Language Models (Actively Upskilling)`;
         break;
 
       case "projects":
-        response = `🚀 Featured Projects:
-  1. <b>OmniCalc Pro</b> — Full-stack mathematical & calculus suite with FastAPI & SymPy.
-  2. <b>AetherResume</b> — Dynamic glassmorphic developer portfolio with particle canvas.
-  3. <b>DataPulse AI</b> — Real-time analytics dashboard & regression visualizer.`;
+        response = `Featured Software Projects:<br>
+  1. <b>Kashvi.dev Portfolio</b> [HTML5 / CSS / JS / Admin Security]<br>
+  2. <b>OmniCalc Pro</b> [FastAPI / SymPy / NumPy / Canvas 2D]<br>
+  3. <b>IWT Pet Adoption System</b> [Java / Web / SQL]<br>
+  4. <b>DecodeLabs Tasks</b> [Python / Algorithms]`;
         break;
 
       case "contact":
-        response = `📬 Contact Info:
-  - Email    : vinayak.kashyap@example.com
-  - GitHub   : https://github.com/kashvinayak20-debug
-  - LinkedIn : https://linkedin.com/in/vinayak-kashyap`;
+        response = `Contact Links:<br>
+  - Email    : <a href="mailto:kashvinayak20@gmail.com" target="_blank" style="color: var(--accent-cyan);">kashvinayak20@gmail.com</a><br>
+  - GitHub   : <a href="https://github.com/kashvinayak20-debug" target="_blank" style="color: var(--accent-cyan);">https://github.com/kashvinayak20-debug</a><br>
+  - LinkedIn : <a href="https://linkedin.com/in/kashvi-nayak?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" style="color: var(--accent-cyan);">Kashvi Nayak LinkedIn Profile</a>`;
+        break;
+
+      case "theme synthwave":
+        document.body.className = "theme-synthwave";
+        response = "Theme switched to Synthwave 🌆";
+        break;
+
+      case "theme emerald":
+        document.body.className = "theme-emerald";
+        response = "Theme switched to Emerald Glass 🌿";
+        break;
+
+      case "theme obsidian":
+        document.body.className = "theme-obsidian";
+        response = "Theme switched to Obsidian Dark 🖤";
         break;
 
       case "clear":
@@ -57,19 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
 
       default:
-        if (cleanCmd.startsWith("theme ")) {
-          const themeName = cleanCmd.split(" ")[1];
-          if (["synthwave", "emerald", "obsidian", "default"].includes(themeName)) {
-            document.body.className = themeName === "default" ? "" : `theme-${themeName}`;
-            response = `Theme changed to: ${themeName}`;
-          } else {
-            response = `Invalid theme name. Options: synthwave, emerald, obsidian, default`;
-          }
-        } else if (cleanCmd === "") {
-          return;
-        } else {
-          response = `Command not found: '${cmd}'. Type '<b style="color: var(--accent-cyan)">help</b>' for available commands.`;
-        }
+        response = `Command not recognized: '${cmd}'. Type '<b style="color: var(--accent-cyan)">help</b>' for available commands.`;
     }
 
     appendTerminalLine(response);
@@ -77,8 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function appendTerminalLine(text) {
     const div = document.createElement("div");
-    div.style.marginBottom = "0.6rem";
-    div.innerHTML = text.replace(/\n/g, "<br>");
+    div.style.marginBottom = "0.5rem";
+    div.style.lineHeight = "1.5";
+    div.innerHTML = text;
     termOutput.appendChild(div);
     termOutput.scrollTop = termOutput.scrollHeight;
   }
