@@ -1,4 +1,4 @@
-# Vinayak Kashyap — Interactive Full-Stack Developer Portfolio
+# Kashvi Nayak — Interactive Full-Stack Developer Portfolio
 
 A dynamic, glassmorphic developer portfolio featuring:
 - **Interactive Particle Canvas Background**: Mouse-reactive particle web system.
