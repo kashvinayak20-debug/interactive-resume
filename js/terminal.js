@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let response = "";
 
     // Echo user input
-    appendTerminalLine(`<span style="color: var(--accent-cyan)">visitor@aether-resume:~$</span> ${cmd}`);
+    appendTerminalLine(`<span style="color: var(--accent-cyan)">visitor@kashvi-dev:~$</span> ${cmd}`);
 
     switch (cleanCmd) {
       case "help":
