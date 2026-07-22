@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kashvi Nayak — Interactive Full-Stack Developer Portfolio</title>
+  <title>Kashvi Nayak — AI / ML Engineer & Full-Stack Architect</title>
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -31,7 +31,7 @@
 
     <ul class="nav-links">
       <li><a href="#hero" class="nav-link active">Home</a></li>
-      <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
+      <li><a href="#skills-section" class="nav-link">AI/ML & Skill %</a></li>
       <li><a href="#skills" class="nav-link">Movable Playground</a></li>
       <li><a href="#projects" class="nav-link">Projects CRUD</a></li>
       <li><a href="#timeline" class="nav-link">Timeline CRUD</a></li>
@@ -63,21 +63,21 @@
     <section id="hero" class="hero-section">
       <div>
         <div class="hero-tag">
-          <i class="fa-solid fa-circle-check"></i> Available for Full-Stack & Engineering Roles
+          <i class="fa-solid fa-circle-check"></i> Available for AI / ML & Full-Stack Roles
         </div>
         <h1 class="hero-title">
           Hi, I'm <span id="dispName" class="gradient-text">Kashvi Nayak</span>
         </h1>
         <h2 id="dispTitle" style="font-size: 1.8rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 1.25rem;">
-          Full-Stack Software Engineer & System Architect
+          AI / ML Engineer, LLMs & MLOps Architect
         </h2>
         <p id="dispBio" class="hero-subtitle">
-          Building high-performance full-stack web applications, mathematical computing engines, and dynamic user interfaces with clean architecture and cutting-edge aesthetics.
+          Specializing in Large Language Models (LLMs), RAG Architectures, automated MLOps pipelines, PyTorch deep learning models, and high-speed full-stack web microservices.
         </p>
 
         <div class="hero-actions">
           <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> Explore Work</a>
-          <a href="#skills-section" class="btn-secondary"><i class="fa-solid fa-chart-line"></i> View Skill %</a>
+          <a href="#skills-section" class="btn-secondary"><i class="fa-solid fa-brain"></i> AI/ML Skills</a>
         </div>
       </div>
 
@@ -85,8 +85,8 @@
       <div style="perspective: 1000px;">
         <div class="mascot-container">
           <div class="mascot-avatar-wrapper">
-            <div class="floating-code-tag tag-pos-1">&lt;code/&gt;</div>
-            <div class="floating-code-tag tag-pos-2">{Async: True}</div>
+            <div class="floating-code-tag tag-pos-1">RAG: Enabled</div>
+            <div class="floating-code-tag tag-pos-2">LLM: FineTuned</div>
             
             <div class="mascot-svg-glow">
               <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -101,13 +101,13 @@
           </div>
 
           <h3 id="mascotName" class="mascot-name">Kashvi Nayak</h3>
-          <p id="mascotRole" class="mascot-role">Full-Stack Software Engineer</p>
+          <p id="mascotRole" class="mascot-role">AI / ML Engineer & System Architect</p>
 
           <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
-            <span class="tag-badge">⚡ Python 3.13</span>
+            <span class="tag-badge">🧠 LLMs & RAG</span>
+            <span class="tag-badge">⚙️ MLOps</span>
+            <span class="tag-badge">🔥 PyTorch</span>
             <span class="tag-badge">⚡ FastAPI</span>
-            <span class="tag-badge">⚡ ES6+ JS</span>
-            <span class="tag-badge">⚡ Docker</span>
           </div>
 
           <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; width: 100%;">
@@ -126,7 +126,7 @@
     <!-- DYNAMIC SKILL PERCENTAGE BARS SECTION (SKILLS CRUD) -->
     <section id="skills-section" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">Technical <span class="gradient-text">Skill Proficiency</span></h2>
+        <h2 class="section-title">AI / ML & <span class="gradient-text">Skill Proficiency</span></h2>
         <p class="section-desc">Dynamic percentage completion rates. Add, Edit, or Delete skills live!</p>
         <button id="openAddSkillBtn" class="btn-primary" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add Custom Skill & %
@@ -149,13 +149,14 @@
           <i class="fa-solid fa-hand-pointer"></i> Click & Drag any skill badge to reposition
         </div>
 
+        <div class="skill-chip-movable"><i class="fa-solid fa-brain"></i> LLMs & RAG</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-diagram-project"></i> MLOps & MLflow</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-microchip"></i> PyTorch & Transformers</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-database"></i> LangChain & VectorDB</div>
         <div class="skill-chip-movable"><i class="fa-brands fa-python"></i> Python 3.13</div>
-        <div class="skill-chip-movable"><i class="fa-solid fa-bolt"></i> FastAPI</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-bolt"></i> FastAPI APIs</div>
         <div class="skill-chip-movable"><i class="fa-brands fa-js"></i> JavaScript ES6+</div>
-        <div class="skill-chip-movable"><i class="fa-brands fa-react"></i> React / Vite</div>
-        <div class="skill-chip-movable"><i class="fa-brands fa-node-js"></i> Node.js</div>
-        <div class="skill-chip-movable"><i class="fa-solid fa-square-root-variable"></i> SymPy & NumPy</div>
-        <div class="skill-chip-movable"><i class="fa-brands fa-docker"></i> Docker</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-docker"></i> Docker & K8s</div>
         <div class="skill-chip-movable"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
       </div>
     </section>
@@ -164,8 +165,8 @@
     <!-- FEATURED PROJECTS SECTION (PROJECTS CRUD) -->
     <section id="projects" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">Featured <span class="gradient-text">Software Projects</span></h2>
-        <p class="section-desc">Production-grade web applications. Add, Edit, or Delete project cards live!</p>
+        <h2 class="section-title">Featured <span class="gradient-text">AI / ML Projects</span></h2>
+        <p class="section-desc">Production-grade web applications and high-performance computing engines. Add, Edit, or Delete project cards live!</p>
         <button id="openAddProjectBtn" class="btn-primary" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add New Project
         </button>
@@ -174,8 +175,8 @@
       <!-- Project Category Filters -->
       <div style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2.5rem;">
         <button class="subtab-btn filter-btn active" data-filter="all">All Projects</button>
+        <button class="subtab-btn filter-btn" data-filter="python">AI & Python</button>
         <button class="subtab-btn filter-btn" data-filter="fullstack">Full-Stack</button>
-        <button class="subtab-btn filter-btn" data-filter="python">Python & Math</button>
         <button class="subtab-btn filter-btn" data-filter="web">Web Apps</button>
       </div>
 
@@ -209,7 +210,7 @@
           <div class="term-dot term-red"></div>
           <div class="term-dot term-yellow"></div>
           <div class="term-dot term-green"></div>
-          <div class="terminal-title">bash — vinayak@aether-resume:~</div>
+          <div class="terminal-title">bash — kashvi@aether-resume:~</div>
         </div>
 
         <div id="termOutput" class="terminal-body">
@@ -240,13 +241,13 @@
       </div>
 
       <div class="form-group">
-        <label>Skill Name (e.g. Machine Learning, GraphQL):</label>
+        <label>Skill Name (e.g. LLMs, PyTorch, MLOps):</label>
         <input type="text" id="newSkillName" class="form-input" placeholder="Enter skill name...">
       </div>
 
       <div class="form-group">
         <label>Proficiency Percentage (0% - 100%):</label>
-        <input type="number" id="newSkillPercent" class="form-input" value="90" min="0" max="100">
+        <input type="number" id="newSkillPercent" class="form-input" value="95" min="0" max="100">
       </div>
 
       <button id="saveAddSkillBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
@@ -266,15 +267,15 @@
 
       <div class="form-group">
         <label>Project Title:</label>
-        <input type="text" id="projTitle" class="form-input" placeholder="e.g. AI Vision Dashboard">
+        <input type="text" id="projTitle" class="form-input" placeholder="e.g. LLM RAG Pipeline">
       </div>
 
       <div class="form-group">
         <label>Category Tag:</label>
         <select id="projCategory" class="form-input">
-          <option value="fullstack python">Full-Stack & Python</option>
+          <option value="python">AI & Python</option>
+          <option value="fullstack python">Full-Stack & AI</option>
           <option value="web">Web Application</option>
-          <option value="python">Python Engine</option>
         </select>
       </div>
 
@@ -285,7 +286,7 @@
 
       <div class="form-group">
         <label>Tech Stack Tags (comma separated):</label>
-        <input type="text" id="projTags" class="form-input" placeholder="Python, FastAPI, React, Docker">
+        <input type="text" id="projTags" class="form-input" placeholder="LLMs, RAG, PyTorch, MLOps, FastAPI">
       </div>
 
       <div class="form-group">
@@ -315,12 +316,12 @@
 
       <div class="form-group">
         <label>Position / Degree Title:</label>
-        <input type="text" id="timeTitle" class="form-input" placeholder="e.g. Senior Software Engineer">
+        <input type="text" id="timeTitle" class="form-input" placeholder="e.g. AI / ML Engineer">
       </div>
 
       <div class="form-group">
         <label>Subtitle / Subfield:</label>
-        <input type="text" id="timeSubtitle" class="form-input" placeholder="e.g. Full-Stack Systems">
+        <input type="text" id="timeSubtitle" class="form-input" placeholder="e.g. LLMs & MLOps Systems">
       </div>
 
       <div class="form-group">
@@ -355,12 +356,12 @@
 
       <div class="form-group">
         <label>Professional Title:</label>
-        <input type="text" id="editTitle" class="form-input" value="Full-Stack Software Engineer & System Architect">
+        <input type="text" id="editTitle" class="form-input" value="AI / ML Engineer, LLMs & MLOps Architect">
       </div>
 
       <div class="form-group">
         <label>Bio Summary:</label>
-        <textarea id="editBio" class="form-input" style="height: 90px;">Building high-performance full-stack web applications, mathematical computing engines, and dynamic user interfaces with clean architecture and cutting-edge aesthetics.</textarea>
+        <textarea id="editBio" class="form-input" style="height: 90px;">Specializing in Large Language Models (LLMs), RAG Architectures, automated MLOps pipelines, PyTorch deep learning models, and high-speed full-stack web microservices.</textarea>
       </div>
 
       <button id="saveEditorBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">

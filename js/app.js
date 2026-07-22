@@ -2,19 +2,40 @@
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
-  { id: 2, name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
-  { id: 3, name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
-  { id: 4, name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
-  { id: 5, name: "Node.js & Express Systems", percent: 88, icon: "fa-brands fa-node-js" },
-  { id: 6, name: "NumPy & SciPy Analytics", percent: 92, icon: "fa-solid fa-chart-line" },
-  { id: 7, name: "Docker & Linux DevOps", percent: 84, icon: "fa-brands fa-docker" },
-  { id: 8, name: "Git & GitHub Version Control", percent: 94, icon: "fa-brands fa-git-alt" }
+  { id: 1, name: "LLMs & RAG Architecture", percent: 95, icon: "fa-solid fa-brain" },
+  { id: 2, name: "MLOps & Model Deployment", percent: 92, icon: "fa-solid fa-diagram-project" },
+  { id: 3, name: "PyTorch & Transformers", percent: 94, icon: "fa-solid fa-microchip" },
+  { id: 4, name: "LangChain & Vector Databases", percent: 90, icon: "fa-solid fa-database" },
+  { id: 5, name: "Python 3.13 & SymPy Engine", percent: 96, icon: "fa-brands fa-python" },
+  { id: 6, name: "FastAPI & High-Speed APIs", percent: 93, icon: "fa-solid fa-bolt" },
+  { id: 7, name: "JavaScript ES6+ & Web UI", percent: 90, icon: "fa-brands fa-js" },
+  { id: 8, name: "Docker & Kubernetes DevOps", percent: 88, icon: "fa-brands fa-docker" },
+  { id: 9, name: "Git & GitHub Version Control", percent: 95, icon: "fa-brands fa-git-alt" }
 ];
 
 let projectList = [
   {
+    id: 100,
+    title: "AetherLLM RAG Suite",
+    category: "python web",
+    desc: "Enterprise Retrieval-Augmented Generation (RAG) pipeline powered by LangChain, Vector Databases (Chroma/Qdrant), and fine-tuned Open-Source LLMs for real-time document intelligence.",
+    tags: ["LLMs", "RAG", "LangChain", "VectorDB", "FastAPI"],
+    icon: "fa-brain",
+    codeUrl: "https://github.com/kashvinayak20-debug",
+    demoUrl: "#"
+  },
+  {
     id: 101,
+    title: "MLOps AutoScale Pipeline",
+    category: "python",
+    desc: "Automated MLOps continuous training & deployment pipeline with MLflow experiment tracking, model drift monitoring, and Dockerized FastAPI microservices.",
+    tags: ["MLOps", "MLflow", "Docker", "PyTorch", "CI/CD"],
+    icon: "fa-diagram-project",
+    codeUrl: "https://github.com/kashvinayak20-debug",
+    demoUrl: "#"
+  },
+  {
+    id: 102,
     title: "OmniCalc Pro",
     category: "fullstack python",
     desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
@@ -24,7 +45,7 @@ let projectList = [
     demoUrl: "https://salty-views-teach.loca.lt"
   },
   {
-    id: 102,
+    id: 103,
     title: "AetherResume",
     category: "fullstack web",
     desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, live CRUD manager, and embedded CLI terminal.",
@@ -32,33 +53,23 @@ let projectList = [
     icon: "fa-address-card",
     codeUrl: "https://github.com/kashvinayak20-debug",
     demoUrl: "#hero"
-  },
-  {
-    id: 103,
-    title: "DataPulse AI Engine",
-    category: "python",
-    desc: "Real-time analytics engine and regression curve fitter processing streaming datasets with automated statistical metrics and probability density distributions.",
-    tags: ["Python 3.13", "SciPy", "Pydantic", "Uvicorn"],
-    icon: "fa-chart-gantt",
-    codeUrl: "https://github.com/kashvinayak20-debug",
-    demoUrl: "#"
   }
 ];
 
 let timelineList = [
   {
     id: 201,
-    title: "Full-Stack Software Engineer",
-    subtitle: "Software Systems & Full-Stack Development",
+    title: "AI / ML Engineer & System Architect",
+    subtitle: "LLMs, MLOps & High-Performance AI Systems",
     date: "2023 — Present",
-    desc: "Architected and launched full-stack applications, mathematical engines, and RESTful APIs using Python FastAPI, SymPy, NumPy, and modern JavaScript frontends."
+    desc: "Designed and deployed generative AI microservices, RAG architectures, and automated MLOps pipelines using PyTorch, LangChain, FastAPI, and Docker."
   },
   {
     id: 202,
     title: "B.Tech in Computer Science & Engineering",
-    subtitle: "Computer Science & Systems Architecture",
+    subtitle: "Machine Learning & Distributed Systems",
     date: "Graduated",
-    desc: "Specialized in Data Structures, Algorithms, Linear Algebra, Database Management Systems, Operating Systems, and Distributed Computing."
+    desc: "Specialized in Artificial Intelligence, Neural Networks, Machine Learning, Data Structures, Algorithms, Linear Algebra, and System Architecture."
   }
 ];
 
@@ -178,7 +189,7 @@ function initAddSkillModal() {
         id: Date.now(),
         name: nameVal,
         percent: Math.min(100, Math.max(0, percentVal)),
-        icon: "fa-solid fa-star"
+        icon: "fa-solid fa-brain"
       });
       renderSkillProgressBars();
       modal.classList.remove("active");
@@ -267,8 +278,8 @@ function initProjectModal() {
         title: title,
         category: category,
         desc: desc,
-        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
-        icon: "fa-code",
+        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["AI / ML"],
+        icon: "fa-brain",
         codeUrl: codeUrl || "#",
         demoUrl: demoUrl || "#"
       });
@@ -342,7 +353,7 @@ function initTimelineModal() {
       timelineList.unshift({
         id: Date.now(),
         title: title,
-        subtitle: subtitle || "Software Engineering",
+        subtitle: subtitle || "AI / ML Systems",
         date: date || "Present",
         desc: desc
       });
