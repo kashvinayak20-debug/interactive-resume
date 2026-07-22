@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinayak Kashyap — Interactive Full-Stack Developer Portfolio</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Interactive Particle Background Canvas -->
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- Ambient Glowing Cursor Follower -->
+  <div class="cursor-glow"></div>
+
+  <!-- Ambient Light Blobs -->
+  <div class="ambient-blob blob-1"></div>
+  <div class="ambient-blob blob-2"></div>
+
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="nav-brand">
+      <div class="brand-dot"></div>
+      <span>Aether<span style="color: var(--accent-cyan)">Resume</span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link active">Home</a></li>
+      <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
+      <li><a href="#skills" class="nav-link">Movable Playground</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#terminal" class="nav-link">CLI Terminal</a></li>
+    </ul>
+
+    <div class="nav-controls">
+      <select id="themeSelect" class="theme-picker">
+        <option value="default">✨ Cyberpunk Dark</option>
+        <option value="synthwave">🌆 Synthwave</option>
+        <option value="emerald">🌿 Emerald Glass</option>
+        <option value="obsidian">🖤 Obsidian Dark</option>
+      </select>
+
+      <button id="openEditorBtn" class="btn-secondary">
+        <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+      </button>
+
+      <button onclick="downloadPDF()" class="btn-primary">
+        <i class="fa-solid fa-download"></i> PDF Resume
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main>
+
+    <!-- HERO SECTION WITH ANIMATED DEVELOPER MASCOT -->
+    <section id="hero" class="hero-section">
+      <div>
+        <div class="hero-tag">
+          <i class="fa-solid fa-circle-check"></i> Available for Full-Stack & Engineering Roles
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span id="dispName" class="gradient-text">Vinayak Kashyap</span>
+        </h1>
+        <h2 id="dispTitle" style="font-size: 1.8rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 1.25rem;">
+          Full-Stack Software Engineer & System Architect
+        </h2>
+        <p id="dispBio" class="hero-subtitle">
+          Building high-performance full-stack web applications, mathematical computing engines, and dynamic user interfaces with clean architecture and cutting-edge aesthetics.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> Explore Work</a>
+          <a href="#skills-section" class="btn-secondary"><i class="fa-solid fa-chart-line"></i> View Skill %</a>
+        </div>
+      </div>
+
+      <!-- ANIMATED DEVELOPER MASCOT CHARACTER WIDGET -->
+      <div style="perspective: 1000px;">
+        <div class="mascot-container">
+          <div class="mascot-avatar-wrapper">
+            <div class="floating-code-tag tag-pos-1">&lt;code/&gt;</div>
+            <div class="floating-code-tag tag-pos-2">{Async: True}</div>
+            
+            <div class="mascot-svg-glow">
+              <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0, 240, 255, 0.3)" stroke-width="2"/>
+                <!-- Animated Developer Avatar Icon -->
+                <circle cx="50" cy="38" r="18" fill="#00F0FF"/>
+                <path d="M 22 80 C 22 60, 78 60, 78 80 Z" fill="#7000FF"/>
+                <!-- Glasses -->
+                <rect x="38" y="32" width="10" height="7" rx="2" fill="#000"/>
+                <rect x="52" y="32" width="10" height="7" rx="2" fill="#000"/>
+                <line x1="48" y1="35.5" x2="52" y2="35.5" stroke="#000" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+
+          <h3 id="mascotName" class="mascot-name">Vinayak Kashyap</h3>
+          <p id="mascotRole" class="mascot-role">Full-Stack Software Engineer</p>
+
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+            <span class="tag-badge">⚡ Python 3.13</span>
+            <span class="tag-badge">⚡ FastAPI</span>
+            <span class="tag-badge">⚡ ES6+ JS</span>
+            <span class="tag-badge">⚡ Docker</span>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; width: 100%;">
+            <a href="https://github.com/kashvinayak20-debug" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href="mailto:kashvinayak20@gmail.com" class="btn-primary" style="flex: 1; justify-content: center;">
+              <i class="fa-solid fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- DYNAMIC SKILL PERCENTAGE BARS SECTION -->
+    <section id="skills-section" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Technical <span class="gradient-text">Skill Proficiency</span></h2>
+        <p class="section-desc">Dynamic percentage completion rates with live custom skill adder.</p>
+        <button id="openAddSkillBtn" class="btn-primary" style="margin-top: 1rem;">
+          <i class="fa-solid fa-plus"></i> Add Custom Skill & %
+        </button>
+      </div>
+
+      <div id="skillsBarsContainer" class="skills-progress-container"></div>
+    </section>
+
+
+    <!-- MOVABLE SKILLS PLAYGROUND SECTION -->
+    <section id="skills" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Movable <span class="gradient-text">Skill Playground</span></h2>
+        <p class="section-desc">Drag and move skill badges freely anywhere across the canvas!</p>
+      </div>
+
+      <div class="draggable-playground">
+        <div class="playground-hint">
+          <i class="fa-solid fa-hand-pointer"></i> Click & Drag any skill badge to reposition
+        </div>
+
+        <div class="skill-chip-movable"><i class="fa-brands fa-python"></i> Python 3.13</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-bolt"></i> FastAPI</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-js"></i> JavaScript ES6+</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-react"></i> React / Vite</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-node-js"></i> Node.js</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-square-root-variable"></i> SymPy & NumPy</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-docker"></i> Docker</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+        <div class="skill-chip-movable"><i class="fa-solid fa-database"></i> SQL / PostgreSQL</div>
+        <div class="skill-chip-movable"><i class="fa-brands fa-css3-alt"></i> Glassmorphism CSS3</div>
+      </div>
+    </section>
+
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Featured <span class="gradient-text">Software Projects</span></h2>
+        <p class="section-desc">Production-grade web applications and high-performance computing engines.</p>
+      </div>
+
+      <div class="projects-grid">
+        
+        <div class="project-card" data-category="fullstack python">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">OmniCalc Pro</h3>
+              <i class="fa-solid fa-calculator" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
+            </div>
+            <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">
+              Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.
+            </p>
+            <div class="project-tags">
+              <span class="tag-badge">FastAPI</span>
+              <span class="tag-badge">SymPy</span>
+              <span class="tag-badge">NumPy</span>
+              <span class="tag-badge">Canvas 2D</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <a href="https://github.com/kashvinayak20-debug/omnicalc-pro" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+              <i class="fa-brands fa-github"></i> Code
+            </a>
+            <a href="https://salty-views-teach.loca.lt" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="fullstack web">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">AetherResume</h3>
+              <i class="fa-solid fa-address-card" style="font-size: 1.5rem; color: var(--accent-emerald);"></i>
+            </div>
+            <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">
+              Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, live customizer, and embedded CLI terminal.
+            </p>
+            <div class="project-tags">
+              <span class="tag-badge">HTML5</span>
+              <span class="tag-badge">Glassmorphism CSS</span>
+              <span class="tag-badge">ES6+ JavaScript</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <a href="#hero" class="btn-primary" style="flex: 1; justify-content: center;">
+              <i class="fa-solid fa-eye"></i> View Live
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- INTERACTIVE DEVELOPER TERMINAL SECTION -->
+    <section id="terminal" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Interactive <span class="gradient-text">Developer CLI Terminal</span></h2>
+        <p class="section-desc">Type commands directly into the terminal below (try typing 'help', 'skills', 'projects', 'contact').</p>
+      </div>
+
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="term-dot term-red"></div>
+          <div class="term-dot term-yellow"></div>
+          <div class="term-dot term-green"></div>
+          <div class="terminal-title">bash — vinayak@aether-resume:~</div>
+        </div>
+
+        <div id="termOutput" class="terminal-body">
+          <div style="color: var(--text-sub);">
+            Welcome to AetherResume Interactive CLI Terminal v2.0<br>
+            Type '<b style="color: var(--accent-cyan)">help</b>' for a list of available commands.
+          </div>
+        </div>
+
+        <div style="padding: 0.75rem 1.5rem; background: #070B18; border-top: 1px solid var(--border-glass);">
+          <div class="term-input-line">
+            <span>visitor@aether-resume:~$</span>
+            <input type="text" id="termInput" class="term-input" placeholder="Type a command (e.g. help)..." autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ADD CUSTOM SKILL MODAL -->
+  <div id="addSkillModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-plus-circle"></i> Add Custom Skill & Percentage</h3>
+        <button id="closeAddSkillBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Skill Name (e.g. Machine Learning, GraphQL):</label>
+        <input type="text" id="newSkillName" class="form-input" placeholder="Enter skill name...">
+      </div>
+
+      <div class="form-group">
+        <label>Proficiency Percentage (0% - 100%):</label>
+        <input type="number" id="newSkillPercent" class="form-input" value="90" min="0" max="100">
+      </div>
+
+      <button id="saveAddSkillBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Add Skill to Live Page
+      </button>
+    </div>
+  </div>
+
+
+  <!-- LIVE RESUME CUSTOMIZER MODAL -->
+  <div id="editorModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-pen-to-square"></i> Live Profile Editor</h3>
+        <button id="closeEditorBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Your Name:</label>
+        <input type="text" id="editName" class="form-input" value="Vinayak Kashyap">
+      </div>
+
+      <div class="form-group">
+        <label>Professional Title:</label>
+        <input type="text" id="editTitle" class="form-input" value="Full-Stack Software Engineer & System Architect">
+      </div>
+
+      <div class="form-group">
+        <label>Bio Summary:</label>
+        <textarea id="editBio" class="form-input" style="height: 90px;">Building high-performance full-stack web applications, mathematical computing engines, and dynamic user interfaces with clean architecture and cutting-edge aesthetics.</textarea>
+      </div>
+
+      <button id="saveEditorBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Apply Live Changes
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Controllers -->
+  <script src="js/particles.js"></script>
+  <script src="js/draggable.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
