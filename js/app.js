@@ -58,7 +58,7 @@ let timelineList = [
     id: 201,
     title: "Full-Stack Software Engineer",
     subtitle: "Software Systems & Full-Stack Development",
-    date: "2023 — Present (Still Working)",
+    date: "2024 — Present",
     desc: "Architected full-stack web applications, mathematical computing engines, and system workflows while actively upskilling in AI/ML & LLM engineering."
   },
   {
