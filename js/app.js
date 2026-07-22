@@ -72,7 +72,7 @@ let timelineList = [
     id: 201,
     title: "Full-Stack & AI/ML/LLM Engineer",
     subtitle: "Software & Artificial Intelligence Systems",
-    date: "2024 — Present (Working Right Now)",
+    date: "2024 — Present (Currently Working)",
     desc: "Architecting full-stack web applications, RESTful microservices, Large Language Models (LLMs), RAG pipelines, and automated MLOps systems."
   },
   {
