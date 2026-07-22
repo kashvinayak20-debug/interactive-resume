@@ -32,10 +32,10 @@
     <ul class="nav-links">
       <li><a href="#hero" class="nav-link active">Home</a></li>
       <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
-      <li><a href="#skills" class="nav-link">Movable Playground</a></li>
-      <li><a href="#projects" class="nav-link">GitHub Projects CRUD</a></li>
-      <li><a href="#timeline" class="nav-link">Timeline CRUD</a></li>
-      <li><a href="#terminal" class="nav-link">CLI Terminal</a></li>
+      <li><a href="#skills" class="nav-link">Playground</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#timeline" class="nav-link">Timeline</a></li>
+      <li><a href="#terminal" class="nav-link">Terminal</a></li>
     </ul>
 
     <div class="nav-controls">
@@ -46,7 +46,12 @@
         <option value="obsidian">🖤 Obsidian Dark</option>
       </select>
 
-      <button id="openEditorBtn" class="btn-secondary">
+      <!-- Admin Passcode Lock Toggle -->
+      <button id="adminToggleBtn" class="btn-secondary" title="Project Head CRUD Lock">
+        <i class="fa-solid fa-lock"></i> Admin Mode
+      </button>
+
+      <button id="openEditorBtn" class="btn-secondary admin-only">
         <i class="fa-solid fa-pen-to-square"></i> Edit Profile
       </button>
 
@@ -128,8 +133,8 @@
     <section id="skills-section" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Technical <span class="gradient-text">Skill Proficiency</span></h2>
-        <p class="section-desc">Dynamic percentage completion rates. Add, Edit, or Delete skills live!</p>
-        <button id="openAddSkillBtn" class="btn-primary" style="margin-top: 1rem;">
+        <p class="section-desc">Dynamic percentage completion rates.</p>
+        <button id="openAddSkillBtn" class="btn-primary admin-only" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add Custom Skill & %
         </button>
       </div>
@@ -165,8 +170,8 @@
     <section id="projects" class="section-container">
       <div class="section-header">
         <h2 class="section-title">GitHub <span class="gradient-text">Repositories & Projects</span></h2>
-        <p class="section-desc">Live project showcase synced from GitHub. Add, Edit, or Delete project cards live!</p>
-        <button id="openAddProjectBtn" class="btn-primary" style="margin-top: 1rem;">
+        <p class="section-desc">Live project showcase synced from GitHub.</p>
+        <button id="openAddProjectBtn" class="btn-primary admin-only" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add New Project
         </button>
       </div>
@@ -187,8 +192,8 @@
     <section id="timeline" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Career & <span class="gradient-text">Experience Timeline</span></h2>
-        <p class="section-desc">Track record of achievements. Add, Edit, or Delete experience cards live!</p>
-        <button id="openAddTimelineBtn" class="btn-primary" style="margin-top: 1rem;">
+        <p class="section-desc">Track record of achievements.</p>
+        <button id="openAddTimelineBtn" class="btn-primary admin-only" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add Experience / Education
         </button>
       </div>

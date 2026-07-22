@@ -1,4 +1,6 @@
-// Main Application Controller — Full CRUD Operations
+// Main Application Controller — Full CRUD & Admin Access Control
+
+let isAdmin = false;
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
@@ -75,7 +77,33 @@ document.addEventListener("DOMContentLoaded", () => {
   initAddSkillModal();
   initProjectModal();
   initTimelineModal();
+  initAdminKeyToggle();
 });
+
+// Admin Passcode & Mode Toggle (PIN: 1234)
+function initAdminKeyToggle() {
+  const btn = document.getElementById("adminToggleBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    if (isAdmin) {
+      isAdmin = false;
+      document.body.classList.remove("admin-mode");
+      btn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Mode`;
+      alert("Admin Mode Locked. You are now in Visitor View.");
+    } else {
+      const pin = prompt("Project Head Passcode (Default PIN: 1234):");
+      if (pin === "1234") {
+        isAdmin = true;
+        document.body.classList.add("admin-mode");
+        btn.innerHTML = `<i class="fa-solid fa-lock-open" style="color: var(--accent-emerald);"></i> Admin Active`;
+        alert("Admin Mode Unlocked! Full CRUD controls are now enabled.");
+      } else if (pin !== null) {
+        alert("Incorrect PIN. Access Denied.");
+      }
+    }
+  });
+}
 
 
 // Theme Switcher
@@ -84,7 +112,7 @@ function initThemePicker() {
   if (!select) return;
   select.addEventListener("change", (e) => {
     const val = e.target.value;
-    document.body.className = val === "default" ? "" : `theme-${val}`;
+    document.body.className = val === "default" ? (isAdmin ? "admin-mode" : "") : `theme-${val} ${isAdmin ? "admin-mode" : ""}`;
   });
 }
 
@@ -107,7 +135,7 @@ function init3DTiltCard() {
 
 
 // ==========================================================
-// 1. SKILLS CRUD OPERATIONS
+// 1. SKILLS CRUD OPERATIONS (Admin-Only Edit & Delete)
 // ==========================================================
 function renderSkillProgressBars() {
   const container = document.getElementById("skillsBarsContainer");
@@ -125,7 +153,7 @@ function renderSkillProgressBars() {
       <div class="progress-track">
         <div class="progress-fill" id="skillFill_${s.id}" style="width: 0%;"></div>
       </div>
-      <div class="crud-actions">
+      <div class="crud-actions admin-only">
         <button class="btn-edit" onclick="editSkill(${s.id})"><i class="fa-solid fa-pen"></i> Edit %</button>
         <button class="btn-danger" onclick="deleteSkill(${s.id})"><i class="fa-solid fa-trash"></i> Delete</button>
       </div>
@@ -141,11 +169,13 @@ function renderSkillProgressBars() {
 }
 
 function deleteSkill(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   skillList = skillList.filter(s => s.id !== id);
   renderSkillProgressBars();
 }
 
 function editSkill(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   const item = skillList.find(s => s.id === id);
   if (!item) return;
 
@@ -189,7 +219,7 @@ function initAddSkillModal() {
 
 
 // ==========================================================
-// 2. PROJECTS CRUD OPERATIONS
+// 2. PROJECTS CRUD OPERATIONS (Admin-Only Edit & Delete)
 // ==========================================================
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
@@ -216,7 +246,7 @@ function renderProjects() {
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
           </a>
         </div>
-        <div class="crud-actions">
+        <div class="crud-actions admin-only">
           <button class="btn-edit" onclick="editProject(${p.id})"><i class="fa-solid fa-pen"></i> Edit Project</button>
           <button class="btn-danger" onclick="deleteProject(${p.id})"><i class="fa-solid fa-trash"></i> Delete</button>
         </div>
@@ -226,11 +256,13 @@ function renderProjects() {
 }
 
 function deleteProject(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   projectList = projectList.filter(p => p.id !== id);
   renderProjects();
 }
 
 function editProject(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   const p = projectList.find(item => item.id === id);
   if (!p) return;
 
@@ -282,7 +314,7 @@ function initProjectModal() {
 
 
 // ==========================================================
-// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS
+// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS (Admin-Only Edit & Delete)
 // ==========================================================
 function renderTimeline() {
   const container = document.getElementById("timelineContainer");
@@ -296,7 +328,7 @@ function renderTimeline() {
       </div>
       <p style="color: var(--accent-purple); font-weight: 600; font-size: 0.9rem; margin-top: 0.3rem;">${t.subtitle}</p>
       <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">${t.desc}</p>
-      <div class="crud-actions">
+      <div class="crud-actions admin-only">
         <button class="btn-edit" onclick="editTimeline(${t.id})"><i class="fa-solid fa-pen"></i> Edit Entry</button>
         <button class="btn-danger" onclick="deleteTimeline(${t.id})"><i class="fa-solid fa-trash"></i> Delete</button>
       </div>
@@ -305,11 +337,13 @@ function renderTimeline() {
 }
 
 function deleteTimeline(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   timelineList = timelineList.filter(t => t.id !== id);
   renderTimeline();
 }
 
 function editTimeline(id) {
+  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
   const item = timelineList.find(t => t.id === id);
   if (!item) return;
 
