@@ -67,6 +67,16 @@ let skillList = [
 
 let deployedList = [
   {
+    id: 300,
+    title: "Kashvi.dev Interactive Portfolio Engine",
+    bannerSvg: INLINE_SVG_BANNERS.portfolio,
+    desc: "Production Cloud-Deployed interactive developer portfolio featuring 3D tilt mascot cards, multi-directional infinite scroll reveal animations, Admin PIN-protected CRUD controls, and an embedded CLI terminal.",
+    tags: ["Cloud Deployed (Vercel)", "HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
+    icon: "fa-address-card",
+    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
+    demoUrl: "https://spotty-hornets-grow.loca.lt"
+  },
+  {
     id: 301,
     title: "OmniCalc Pro Suite",
     bannerSvg: INLINE_SVG_BANNERS.math,
