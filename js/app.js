@@ -65,7 +65,7 @@ let timelineList = [
     id: 202,
     title: "B.Tech in Computer Science & Engineering",
     subtitle: "Computer Science & Software Systems",
-    date: "Graduated",
+    date: "2024 — Present",
     desc: "Specialized in Data Structures, Algorithms, Object-Oriented Programming (Java/Python), Web Technologies, and Database Systems."
   }
 ];
