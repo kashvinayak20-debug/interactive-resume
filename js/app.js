@@ -1,6 +1,14 @@
-// Main Application Controller — Full CRUD & Admin Access Control
+// Main Application Controller — Full CRUD, Admin Access Control & Scroll Reveal Engine
 
 let isAdmin = false;
+
+// High-Resolution SVG Banners for Technical Subjects & Projects
+const SUBJECT_BANNERS = {
+  math: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><defs><linearGradient id='g1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%2300F0FF'/><stop offset='100%' stop-color='%237000FF'/></linearGradient></defs><rect width='800' height='400' fill='%230B0F1D'/><path d='M 50 350 Q 200 50 400 200 T 750 50' fill='none' stroke='url(%23g1)' stroke-width='6'/><circle cx='400' cy='200' r='12' fill='%2300FF85'/><text x='100' y='120' font-family='sans-serif' font-size='32' font-weight='bold' fill='%23FFFFFF'>f(x) = ∫ (sin x + log x) dx</text><text x='100' y='170' font-family='sans-serif' font-size='22' fill='%2300F0FF'>Matrix Linear Algebra & SymPy Engine</text></svg>",
+  portfolio: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><defs><linearGradient id='g2' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%237000FF'/><stop offset='100%' stop-color='%23FF007A'/></linearGradient></defs><rect width='800' height='400' fill='%23070B18'/><rect x='100' y='80' width='600' height='240' rx='20' fill='%2310172A' stroke='url(%23g2)' stroke-width='4'/><text x='150' y='160' font-family='sans-serif' font-size='34' font-weight='bold' fill='%2300F0FF'>Kashvi.dev Engine</text><text x='150' y='210' font-family='sans-serif' font-size='20' fill='%23CBD5E1'>Interactive Glassmorphic Systems Architecture</text></svg>",
+  java: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><rect width='800' height='400' fill='%230D1322'/><circle cx='400' cy='200' r='120' fill='none' stroke='%2300FF85' stroke-width='4' stroke-dasharray='10,10'/><text x='250' y='190' font-family='sans-serif' font-size='36' font-weight='bold' fill='%23FFB800'>Java Web & SQL</text><text x='230' y='230' font-family='sans-serif' font-size='20' fill='%23FFFFFF'>Pet Adoption & Welfare System</text></svg>",
+  algo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23050814'/><path d='M 100 200 L 300 100 L 500 300 L 700 150' fill='none' stroke='%2300F0FF' stroke-width='5'/><circle cx='300' cy='100' r='10' fill='%23FF007A'/><circle cx='500' cy='300' r='10' fill='%237000FF'/><text x='120' y='340' font-family='sans-serif' font-size='26' font-weight='bold' fill='%23FFFFFF'>Algorithms & Data Structures</text></svg>"
+};
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
@@ -19,6 +27,7 @@ let deployedList = [
   {
     id: 301,
     title: "OmniCalc Pro Suite",
+    banner: SUBJECT_BANNERS.math,
     desc: "Production Cloud-Deployed Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
     tags: ["Cloud Deployed (Render)", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
     icon: "fa-calculator",
@@ -32,6 +41,7 @@ let projectList = [
     id: 100,
     title: "Kashvi.dev Portfolio Engine",
     category: "fullstack web",
+    banner: SUBJECT_BANNERS.portfolio,
     desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, Admin PIN-protected CRUD manager, and embedded CLI terminal.",
     tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
     icon: "fa-address-card",
@@ -42,6 +52,7 @@ let projectList = [
     id: 101,
     title: "OmniCalc Pro",
     category: "fullstack python",
+    banner: SUBJECT_BANNERS.math,
     desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
     tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
     icon: "fa-calculator",
@@ -52,6 +63,7 @@ let projectList = [
     id: 102,
     title: "IWT Pet Adoption System",
     category: "web fullstack",
+    banner: SUBJECT_BANNERS.java,
     desc: "Full-Stack Pet Adoption & Welfare Management Web System facilitating pet care shelter listings, adoption applications, and user profile workflows.",
     tags: ["Java", "Web Application", "HTML/CSS", "JavaScript", "SQL"],
     icon: "fa-paw",
@@ -61,6 +73,7 @@ let projectList = [
     id: 103,
     title: "DecodeLabs Tasks Suite",
     category: "python",
+    banner: SUBJECT_BANNERS.algo,
     desc: "Algorithmic software engineering solutions, data structure implementations, and automated Python processing tasks.",
     tags: ["Python", "Algorithms", "Data Structures", "Problem Solving"],
     icon: "fa-code-branch",
@@ -116,15 +129,36 @@ document.addEventListener("DOMContentLoaded", () => {
   initTimelineModal();
   initAdminKeyToggle();
   initEmailModal();
+
+  // Initialize Dynamic Pop-up Scroll Reveal Engine
+  initScrollReveal();
 });
 
-// Render Deployed Cloud Projects Section with Full Admin-Only CRUD Controls
+// High-Attractive IntersectionObserver Pop-Up Scroll Reveal Engine
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+      }
+    });
+  }, { threshold: 0.12 });
+
+  const targets = document.querySelectorAll(".section-container, .project-card, .skill-bar-card, .terminal-card, .draggable-playground");
+  targets.forEach(el => {
+    el.classList.add("reveal-on-scroll");
+    observer.observe(el);
+  });
+}
+
+// Render Deployed Cloud Projects Section with Subject Image Banners & Admin Controls
 function renderDeployedProjects() {
   const container = document.getElementById("deployedProjectsContainer");
   if (!container) return;
 
   container.innerHTML = deployedList.map((p) => `
-    <div class="project-card" style="border-color: var(--accent-cyan);">
+    <div class="project-card reveal-on-scroll" style="border-color: var(--accent-cyan);">
+      ${p.banner ? `<img src="${p.banner}" alt="${p.title}" class="project-banner-img">` : ''}
       <div>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
@@ -151,6 +185,8 @@ function renderDeployedProjects() {
       </div>
     </div>
   `).join("");
+
+  setTimeout(initScrollReveal, 100);
 }
 
 function deleteDeployedProject(id) {
@@ -196,6 +232,7 @@ function initAddDeployedModal() {
       deployedList.unshift({
         id: Date.now(),
         title: title,
+        banner: SUBJECT_BANNERS.math,
         desc: desc,
         tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Cloud Deployed"],
         icon: "fa-cloud",
@@ -279,7 +316,7 @@ function initThemePicker() {
   });
 }
 
-// 3D Tilt Mascot Card Effect (Outer Static Wrapper tracking to prevent ANY border vibration)
+// 3D Tilt Mascot Card Effect
 function init3DTiltCard() {
   const wrapper = document.querySelector(".mascot-wrapper");
   const card = document.querySelector(".mascot-container");
@@ -303,14 +340,14 @@ function init3DTiltCard() {
 
 
 // ==========================================================
-// 1. SKILLS CRUD OPERATIONS (Admin-Only Edit & Delete)
+// 1. SKILLS CRUD OPERATIONS
 // ==========================================================
 function renderSkillProgressBars() {
   const container = document.getElementById("skillsBarsContainer");
   if (!container) return;
 
   container.innerHTML = skillList.map((s) => `
-    <div class="skill-bar-card">
+    <div class="skill-bar-card reveal-on-scroll">
       <div class="skill-bar-info">
         <div class="skill-bar-name">
           <i class="${s.icon || 'fa-solid fa-code'}" style="color: var(--accent-cyan);"></i>
@@ -333,6 +370,7 @@ function renderSkillProgressBars() {
       const fill = document.getElementById(`skillFill_${s.id}`);
       if (fill) fill.style.width = `${s.percent}%`;
     });
+    initScrollReveal();
   }, 150);
 }
 
@@ -387,14 +425,15 @@ function initAddSkillModal() {
 
 
 // ==========================================================
-// 2. PROJECTS CRUD OPERATIONS (Renders both GitHub Code & Live Demo buttons with full glassmorphism styling)
+// 2. PROJECTS CRUD OPERATIONS
 // ==========================================================
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
   if (!container) return;
 
   container.innerHTML = projectList.map((p) => `
-    <div class="project-card" data-category="${p.category}">
+    <div class="project-card reveal-on-scroll" data-category="${p.category}">
+      ${p.banner ? `<img src="${p.banner}" alt="${p.title}" class="project-banner-img">` : ''}
       <div>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
@@ -423,6 +462,8 @@ function renderProjects() {
       </div>
     </div>
   `).join("");
+
+  setTimeout(initScrollReveal, 100);
 }
 
 function deleteProject(id) {
@@ -468,6 +509,7 @@ function initProjectModal() {
         id: Date.now(),
         title: title,
         category: category,
+        banner: SUBJECT_BANNERS.portfolio,
         desc: desc,
         tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
         icon: "fa-code",
@@ -486,14 +528,14 @@ function initProjectModal() {
 
 
 // ==========================================================
-// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS (Admin-Only Edit & Delete)
+// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS
 // ==========================================================
 function renderTimeline() {
   const container = document.getElementById("timelineContainer");
   if (!container) return;
 
   container.innerHTML = timelineList.map((t) => `
-    <div class="project-card">
+    <div class="project-card reveal-on-scroll">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan);">${t.title}</h3>
         <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-sub);">${t.date}</span>
@@ -506,6 +548,8 @@ function renderTimeline() {
       </div>
     </div>
   `).join("");
+
+  setTimeout(initScrollReveal, 100);
 }
 
 function deleteTimeline(id) {
