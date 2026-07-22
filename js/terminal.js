@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         response = `Contact Links:<br>
   - Email    : <a href="mailto:kashvinayak20@gmail.com" target="_blank" style="color: var(--accent-cyan);">kashvinayak20@gmail.com</a><br>
   - GitHub   : <a href="https://github.com/kashvinayak20-debug" target="_blank" style="color: var(--accent-cyan);">https://github.com/kashvinayak20-debug</a><br>
-  - LinkedIn : <a href="https://linkedin.com/in/kashvi-nayak?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" style="color: var(--accent-cyan);">Kashvi Nayak LinkedIn Profile</a>`;
+  - LinkedIn : <a href="https://www.linkedin.com/in/kashvi-nayak-409a70257" target="_blank" style="color: var(--accent-cyan);">https://www.linkedin.com/in/kashvi-nayak-409a70257</a>`;
         break;
 
       case "theme synthwave":
