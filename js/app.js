@@ -84,7 +84,40 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectModal();
   initTimelineModal();
   initAdminKeyToggle();
+  initEmailModal();
 });
+
+// Email Contact Modal & Direct Send Handler
+function initEmailModal() {
+  const modal = document.getElementById("emailModal");
+  const openBtns = document.querySelectorAll(".open-email-btn");
+  const closeBtn = document.getElementById("closeEmailBtn");
+  const sendGmailBtn = document.getElementById("sendGmailBtn");
+
+  if (!modal) return;
+
+  openBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.classList.add("active");
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+  if (sendGmailBtn) {
+    sendGmailBtn.addEventListener("click", () => {
+      const name = document.getElementById("senderName").value.trim() || "Visitor";
+      const subject = encodeURIComponent(document.getElementById("emailSubject").value.trim() || "Portfolio Contact Inquiry");
+      const message = encodeURIComponent(document.getElementById("emailMsg").value.trim() || `Hi Kashvi,\n\nI visited your portfolio website and would like to connect!`);
+      
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=kashvinayak20@gmail.com&su=${subject}&body=From:%20${encodeURIComponent(name)}%0A%0A${message}`;
+      
+      window.open(gmailUrl, "_blank");
+      modal.classList.remove("active");
+    });
+  }
+}
 
 // Admin Passcode & Mode Toggle (Secret PIN: 1234)
 function initAdminKeyToggle() {
@@ -110,7 +143,6 @@ function initAdminKeyToggle() {
     }
   });
 }
-
 
 // Theme Switcher
 function initThemePicker() {

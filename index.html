@@ -123,9 +123,9 @@
             <a href="https://www.linkedin.com/in/kashvi-nayak-409a70257" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center; padding: 0.5rem 0.6rem; font-size: 0.8rem;">
               <i class="fa-brands fa-linkedin"></i> LinkedIn
             </a>
-            <a href="mailto:kashvinayak20@gmail.com" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.5rem 0.6rem; font-size: 0.8rem;">
+            <button class="btn-primary open-email-btn" style="flex: 1; justify-content: center; padding: 0.5rem 0.6rem; font-size: 0.8rem;">
               <i class="fa-solid fa-envelope"></i> Email
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -369,6 +369,45 @@
       <button id="saveEditorBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
         <i class="fa-solid fa-check"></i> Apply Live Changes
       </button>
+    </div>
+  </div>
+
+
+  <!-- MODAL 5: SEND DIRECT EMAIL / CONTACT MODAL -->
+  <div id="emailModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-envelope-open-text"></i> Send Email Message to Kashvi</h3>
+        <button id="closeEmailBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Recipient: <b style="color: var(--accent-cyan);">kashvinayak20@gmail.com</b>
+      </p>
+
+      <div class="form-group">
+        <label>Your Name:</label>
+        <input type="text" id="senderName" class="form-input" placeholder="e.g. Recruiter / Collaborator">
+      </div>
+
+      <div class="form-group">
+        <label>Subject:</label>
+        <input type="text" id="emailSubject" class="form-input" value="Job Inquiry / Collaboration Opportunity">
+      </div>
+
+      <div class="form-group">
+        <label>Message Content:</label>
+        <textarea id="emailMsg" class="form-input" style="height: 110px;" placeholder="Type your message here..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+        <button id="sendGmailBtn" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-paper-plane"></i> Send via Web Gmail
+        </button>
+        <a href="mailto:kashvinayak20@gmail.com" class="btn-secondary" style="flex: 1; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-envelope"></i> Default Mail Client
+        </a>
+      </div>
     </div>
   </div>
 
