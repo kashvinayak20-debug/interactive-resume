@@ -4,14 +4,14 @@ let isAdmin = false;
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
-  { id: 2, name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
-  { id: 3, name: "Java & Web Applications", percent: 88, icon: "fa-brands fa-java" },
-  { id: 4, name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
-  { id: 5, name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
+  { id: 1, name: "Python 3.13 & SymPy Engine (Currently Working)", percent: 95, icon: "fa-brands fa-python" },
+  { id: 2, name: "FastAPI & REST APIs (Currently Working)", percent: 92, icon: "fa-solid fa-bolt" },
+  { id: 3, name: "Java & Web Systems (Currently Working)", percent: 88, icon: "fa-brands fa-java" },
+  { id: 4, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 90, icon: "fa-brands fa-js" },
+  { id: 5, name: "React & Vite Frontends (Currently Working)", percent: 85, icon: "fa-brands fa-react" },
   { id: 6, name: "AI / ML & LLM Engineering (Currently Working)", percent: 92, icon: "fa-solid fa-brain" },
-  { id: 7, name: "Git & GitHub Version Control", percent: 95, icon: "fa-brands fa-git-alt" },
-  { id: 8, name: "SQL & Relational Databases", percent: 86, icon: "fa-solid fa-database" }
+  { id: 7, name: "Git & GitHub Version Control (Currently Working)", percent: 95, icon: "fa-brands fa-git-alt" },
+  { id: 8, name: "SQL & Relational Databases (Currently Working)", percent: 86, icon: "fa-solid fa-database" }
 ];
 
 let deployedList = [
@@ -309,7 +309,7 @@ function initAddSkillModal() {
     if (nameVal) {
       skillList.unshift({
         id: Date.now(),
-        name: nameVal,
+        name: nameVal.includes("Currently Working") ? nameVal : `${nameVal} (Currently Working)`,
         percent: Math.min(100, Math.max(0, percentVal)),
         icon: "fa-solid fa-star"
       });
@@ -322,7 +322,7 @@ function initAddSkillModal() {
 
 
 // ==========================================================
-// 2. PROJECTS CRUD OPERATIONS (Direct GitHub Code Links, Render Demo)
+// 2. PROJECTS CRUD OPERATIONS (Renders both GitHub Code & Live Demo buttons with full glassmorphism styling)
 // ==========================================================
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
@@ -413,6 +413,8 @@ function initProjectModal() {
       modal.classList.remove("active");
       document.getElementById("projTitle").value = "";
       document.getElementById("projDesc").value = "";
+      document.getElementById("projCodeUrl").value = "";
+      document.getElementById("projDemoUrl").value = "";
     }
   });
 }
