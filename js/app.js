@@ -1,4 +1,4 @@
-// Main Application Controller — Full CRUD, Admin Access Control & Multi-Directional Scroll Reveal Engine
+// Main Application Controller — Full CRUD, Admin Access Control, 3D Tilt on All Cards & Infinite Scroll Reveal Engine
 
 let isAdmin = false;
 
@@ -172,11 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initAdminKeyToggle();
   initEmailModal();
 
-  // Initialize Multi-Directional Pop-Up Scroll Reveal Engine
+  // Initialize Infinite Re-Triggering Scroll Reveal Engine & 3D Tilt on All Cards
   initScrollReveal();
+  initAllCards3DTilt();
 });
 
-// Multi-Directional Pop-Up Scroll Reveal Engine (Left, Right, Top, Bottom)
+// Re-Triggering Scroll Reveal Engine (Pops up EVERY time user scrolls to a card!)
 function initScrollReveal() {
   const directions = ["reveal-from-left", "reveal-from-right", "reveal-from-bottom", "reveal-from-top"];
   
@@ -184,6 +185,9 @@ function initScrollReveal() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("revealed");
+      } else {
+        // Re-triggers pop-up animation every time user scrolls away and back!
+        entry.target.classList.remove("revealed");
       }
     });
   }, { threshold: 0.12 });
@@ -196,6 +200,27 @@ function initScrollReveal() {
       el.classList.add(dir);
     }
     observer.observe(el);
+  });
+}
+
+// 3D Mouse Tilt Motion Engine on ALL Cards & Containers
+function initAllCards3DTilt() {
+  const cards = document.querySelectorAll(".project-card, .skill-bar-card, .terminal-card");
+  cards.forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotX = (y / (rect.height / 2)) * -7;
+      const rotY = (x / (rect.width / 2)) * 7;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+    });
   });
 }
 
@@ -234,7 +259,10 @@ function renderDeployedProjects() {
     </div>
   `).join("");
 
-  setTimeout(initScrollReveal, 100);
+  setTimeout(() => {
+    initScrollReveal();
+    initAllCards3DTilt();
+  }, 100);
 }
 
 function deleteDeployedProject(id) {
@@ -419,6 +447,7 @@ function renderSkillProgressBars() {
       if (fill) fill.style.width = `${s.percent}%`;
     });
     initScrollReveal();
+    initAllCards3DTilt();
   }, 150);
 }
 
@@ -513,7 +542,10 @@ function renderProjects() {
     </div>
   `).join("");
 
-  setTimeout(initScrollReveal, 100);
+  setTimeout(() => {
+    initScrollReveal();
+    initAllCards3DTilt();
+  }, 100);
 }
 
 function deleteProject(id) {
@@ -599,7 +631,10 @@ function renderTimeline() {
     </div>
   `).join("");
 
-  setTimeout(initScrollReveal, 100);
+  setTimeout(() => {
+    initScrollReveal();
+    initAllCards3DTilt();
+  }, 100);
 }
 
 function deleteTimeline(id) {
