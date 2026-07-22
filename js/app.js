@@ -22,8 +22,7 @@ let projectList = [
     desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, Admin PIN-protected CRUD manager, and embedded CLI terminal.",
     tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
     icon: "fa-address-card",
-    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
-    demoUrl: "https://spotty-hornets-grow.loca.lt"
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro"
   },
   {
     id: 101,
@@ -32,8 +31,7 @@ let projectList = [
     desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
     tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
     icon: "fa-calculator",
-    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
-    demoUrl: "https://salty-views-teach.loca.lt"
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro"
   },
   {
     id: 102,
@@ -42,8 +40,7 @@ let projectList = [
     desc: "Full-Stack Pet Adoption & Welfare Management Web System facilitating pet care shelter listings, adoption applications, and user profile workflows.",
     tags: ["Java", "Web Application", "HTML/CSS", "JavaScript", "SQL"],
     icon: "fa-paw",
-    codeUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system",
-    demoUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system"
+    codeUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system"
   },
   {
     id: 103,
@@ -52,8 +49,7 @@ let projectList = [
     desc: "Algorithmic software engineering solutions, data structure implementations, and automated Python processing tasks.",
     tags: ["Python", "Algorithms", "Data Structures", "Problem Solving"],
     icon: "fa-code-branch",
-    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks",
-    demoUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
+    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
   }
 ];
 
@@ -241,7 +237,7 @@ function initAddSkillModal() {
 
 
 // ==========================================================
-// 2. PROJECTS CRUD OPERATIONS (Admin-Only Edit & Delete)
+// 2. PROJECTS CRUD OPERATIONS (Direct GitHub Code Links, No Demo)
 // ==========================================================
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
@@ -261,11 +257,8 @@ function renderProjects() {
       </div>
       <div>
         <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
-          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
-            <i class="fa-brands fa-github"></i> Code
-          </a>
-          <a href="${p.demoUrl || '#'}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
+            <i class="fa-brands fa-github"></i> View GitHub Code
           </a>
         </div>
         <div class="crud-actions admin-only">
@@ -313,7 +306,6 @@ function initProjectModal() {
     const category = document.getElementById("projCategory").value;
     const tagsRaw = document.getElementById("projTags").value.trim();
     const codeUrl = document.getElementById("projCodeUrl").value.trim();
-    const demoUrl = document.getElementById("projDemoUrl").value.trim();
 
     if (title && desc) {
       projectList.unshift({
@@ -323,8 +315,7 @@ function initProjectModal() {
         desc: desc,
         tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
         icon: "fa-code",
-        codeUrl: codeUrl || "#",
-        demoUrl: demoUrl || "#"
+        codeUrl: codeUrl || "https://github.com/kashvinayak20-debug"
       });
       renderProjects();
       modal.classList.remove("active");
