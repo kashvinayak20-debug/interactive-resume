@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAdminKeyToggle();
 });
 
-// Admin Passcode & Mode Toggle (PIN: 1234)
+// Admin Passcode & Mode Toggle (Secret PIN: 1234)
 function initAdminKeyToggle() {
   const btn = document.getElementById("adminToggleBtn");
   if (!btn) return;
@@ -102,14 +102,14 @@ function initAdminKeyToggle() {
       btn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Mode`;
       alert("Admin Mode Locked. You are now in Visitor View.");
     } else {
-      const pin = prompt("Project Head Passcode (Default PIN: 1234):");
+      const pin = prompt("Enter Project Head Passcode:");
       if (pin === "1234") {
         isAdmin = true;
         document.body.classList.add("admin-mode");
         btn.innerHTML = `<i class="fa-solid fa-lock-open" style="color: var(--accent-emerald);"></i> Admin Active`;
         alert("Admin Mode Unlocked! Full CRUD controls are now enabled.");
       } else if (pin !== null) {
-        alert("Incorrect PIN. Access Denied.");
+        alert("Incorrect Passcode. Access Denied.");
       }
     }
   });
@@ -126,20 +126,32 @@ function initThemePicker() {
   });
 }
 
-// 3D Tilt Mascot Card Effect
+// 3D Tilt Mascot Card Effect (Smooth Jitter-Free Version)
 function init3DTiltCard() {
   const card = document.querySelector(".mascot-container");
   if (!card) return;
+
+  let ticking = false;
+
   card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const rotX = (y / (rect.height / 2)) * -10;
-    const rotY = (x / (rect.width / 2)) * 10;
-    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        const rotX = (y / (rect.height / 2)) * -8;
+        const rotY = (x / (rect.width / 2)) * 8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
+
   card.addEventListener("mouseleave", () => {
-    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
   });
 }
 
