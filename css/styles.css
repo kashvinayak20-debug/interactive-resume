@@ -195,6 +195,38 @@ body {
   box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
 }
 
+/* HIGH-ATTRACTIVE GLASSMORPHISM PROJECT CATEGORY FILTER BUTTONS */
+.filter-btn {
+  background: rgba(16, 23, 42, 0.85);
+  border: 1px solid var(--border-glow);
+  color: var(--text-sub);
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-cyan);
+  color: #FFFFFF;
+  background: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+  transform: translateY(-1px);
+}
+
 .hero-section {
   position: relative; z-index: 2; min-height: 90vh;
   display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center;
