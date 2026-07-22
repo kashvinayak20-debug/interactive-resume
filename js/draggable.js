@@ -1,42 +1,46 @@
-// Movable / Draggable Widgets Module
+// Movable Skill Badges Playground with Touchscreen Mobile & Mouse Drag Support
+
+document.addEventListener("DOMContentLoaded", () => {
+  initDraggablePlayground();
+});
 
 function initDraggablePlayground() {
-  const chips = document.querySelectorAll(".skill-chip-movable");
   const playground = document.querySelector(".draggable-playground");
+  const chips = document.querySelectorAll(".skill-chip-movable");
 
-  if (!playground) return;
+  if (!playground || !chips.length) return;
 
+  // Spread chips around randomly on initial load
+  const pRect = playground.getBoundingClientRect();
   chips.forEach((chip, idx) => {
-    // Initial random positions inside playground
-    const maxX = playground.clientWidth - 160;
-    const maxY = playground.clientHeight - 60;
-    const randX = Math.max(20, Math.floor(Math.random() * maxX));
-    const randY = Math.max(50, Math.floor(Math.random() * maxY));
-
-    chip.style.left = `${randX}px`;
-    chip.style.top = `${randY}px`;
+    const randomX = Math.min(pRect.width - 160, Math.max(20, (idx % 3) * 160 + Math.random() * 40 + 20));
+    const randomY = Math.min(pRect.height - 70, Math.max(60, Math.floor(idx / 3) * 70 + Math.random() * 20 + 60));
+    
+    chip.style.left = `${randomX}px`;
+    chip.style.top = `${randomY}px`;
 
     let isDragging = false;
     let offsetX = 0;
     let offsetY = 0;
 
+    // Mouse Drag Events
     chip.addEventListener("mousedown", (e) => {
       isDragging = true;
-      chip.style.zIndex = 100;
-      offsetX = e.clientX - chip.getBoundingClientRect().left;
-      offsetY = e.clientY - chip.getBoundingClientRect().top;
+      const rect = chip.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      chip.style.zIndex = "10";
     });
 
     window.addEventListener("mousemove", (e) => {
       if (!isDragging) return;
+      const playgroundRect = playground.getBoundingClientRect();
+      let newX = e.clientX - playgroundRect.left - offsetX;
+      let newY = e.clientY - playgroundRect.top - offsetY;
 
-      const pRect = playground.getBoundingClientRect();
-      let newX = e.clientX - pRect.left - offsetX;
-      let newY = e.clientY - pRect.top - offsetY;
-
-      // Clamp within boundaries
-      newX = Math.max(10, Math.min(newX, playground.clientWidth - chip.clientWidth - 10));
-      newY = Math.max(10, Math.min(newY, playground.clientHeight - chip.clientHeight - 10));
+      // Constrain within playground bounds
+      newX = Math.max(10, Math.min(playgroundRect.width - chip.offsetWidth - 10, newX));
+      newY = Math.max(10, Math.min(playgroundRect.height - chip.offsetHeight - 10, newY));
 
       chip.style.left = `${newX}px`;
       chip.style.top = `${newY}px`;
@@ -45,10 +49,40 @@ function initDraggablePlayground() {
     window.addEventListener("mouseup", () => {
       if (isDragging) {
         isDragging = false;
-        chip.style.zIndex = 10;
+        chip.style.zIndex = "1";
+      }
+    });
+
+    // Touchscreen Mobile Drag Events (iPhone / Android)
+    chip.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      const touch = e.touches[0];
+      const rect = chip.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+      chip.style.zIndex = "10";
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      const playgroundRect = playground.getBoundingClientRect();
+      let newX = touch.clientX - playgroundRect.left - offsetX;
+      let newY = touch.clientY - playgroundRect.top - offsetY;
+
+      // Constrain within playground bounds
+      newX = Math.max(10, Math.min(playgroundRect.width - chip.offsetWidth - 10, newX));
+      newY = Math.max(10, Math.min(playgroundRect.height - chip.offsetHeight - 10, newY));
+
+      chip.style.left = `${newX}px`;
+      chip.style.top = `${newY}px`;
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      if (isDragging) {
+        isDragging = false;
+        chip.style.zIndex = "1";
       }
     });
   });
 }
-
-document.addEventListener("DOMContentLoaded", initDraggablePlayground);
