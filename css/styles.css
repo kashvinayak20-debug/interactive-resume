@@ -133,6 +133,34 @@ body {
 
 .btn-secondary:hover { border-color: var(--accent-cyan); background: rgba(0, 240, 255, 0.08); }
 
+.btn-danger {
+  background: rgba(255, 0, 122, 0.15);
+  border: 1px solid rgba(255, 0, 122, 0.4);
+  color: var(--accent-magenta);
+  padding: 0.4rem 0.8rem; border-radius: 8px;
+  font-weight: 600; font-size: 0.8rem; cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 0, 122, 0.3);
+  box-shadow: 0 0 12px rgba(255, 0, 122, 0.4);
+}
+
+.btn-edit {
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--accent-cyan);
+  padding: 0.4rem 0.8rem; border-radius: 8px;
+  font-weight: 600; font-size: 0.8rem; cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-edit:hover {
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
 .hero-section {
   position: relative; z-index: 2; min-height: 90vh;
   display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center;
@@ -151,39 +179,20 @@ body {
 .hero-subtitle { font-size: 1.25rem; color: var(--text-sub); line-height: 1.6; margin-bottom: 2rem; max-width: 600px; }
 .hero-actions { display: flex; gap: 1.25rem; align-items: center; }
 
-/* Animated Developer Mascot Widget */
 .mascot-container {
-  position: relative;
-  width: 100%;
-  height: 420px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-glow);
-  border-radius: 28px;
-  padding: 2rem;
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-neon);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+  position: relative; width: 100%; height: 420px;
+  background: var(--bg-secondary); border: 1px solid var(--border-glow);
+  border-radius: 28px; padding: 2rem; backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-neon); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; overflow: hidden;
 }
 
-.mascot-avatar-wrapper {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  margin-bottom: 1rem;
-}
+.mascot-avatar-wrapper { position: relative; width: 140px; height: 140px; margin-bottom: 1rem; }
 
 .mascot-svg-glow {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  width: 100%; height: 100%; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-  padding: 5px;
-  box-shadow: 0 0 35px rgba(0, 240, 255, 0.5);
+  padding: 5px; box-shadow: 0 0 35px rgba(0, 240, 255, 0.5);
   animation: mascotPulse 3s ease-in-out infinite alternate;
 }
 
@@ -193,15 +202,10 @@ body {
 }
 
 .floating-code-tag {
-  position: absolute;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid var(--border-glow);
-  color: var(--accent-cyan);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  position: absolute; background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-glow); color: var(--accent-cyan);
+  font-family: var(--font-mono); font-size: 0.75rem; padding: 0.3rem 0.7rem;
+  border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   animation: floatTag 4s ease-in-out infinite alternate;
 }
 
@@ -216,75 +220,40 @@ body {
 .mascot-name { font-size: 1.6rem; font-weight: 900; margin-top: 0.5rem; }
 .mascot-role { color: var(--accent-cyan); font-weight: 700; font-size: 0.95rem; margin-top: 0.2rem; }
 
-/* Dynamic Skill Percentage Progress Bars */
 .skills-progress-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
 }
 
 .skill-bar-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 1.25rem 1.5rem;
-  backdrop-filter: blur(16px);
-  transition: var(--transition-smooth);
+  background: var(--bg-secondary); border: 1px solid var(--border-glass);
+  border-radius: 18px; padding: 1.25rem 1.5rem; backdrop-filter: blur(16px);
+  transition: var(--transition-smooth); position: relative;
 }
 
-.skill-bar-card:hover {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-}
+.skill-bar-card:hover { border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
 
-.skill-bar-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.6rem;
-  font-weight: 700;
-}
-
+.skill-bar-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; font-weight: 700; }
 .skill-bar-name { font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; }
 .skill-bar-percent { color: var(--accent-cyan); font-family: var(--font-mono); font-size: 1.1rem; }
 
-.progress-track {
-  width: 100%;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
+.progress-track { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; position: relative; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan)); border-radius: 10px; width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 12px var(--accent-cyan); }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
-  border-radius: 10px;
-  width: 0%;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 12px var(--accent-cyan);
-}
+.crud-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; justify-content: flex-end; }
 
-/* Sections Styling */
 .section-container { position: relative; z-index: 2; padding: 6rem; max-width: 1500px; margin: 0 auto; }
 .section-header { margin-bottom: 3rem; text-align: center; }
 .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; }
 .section-desc { color: var(--text-sub); margin-top: 0.5rem; font-size: 1.05rem; }
 
-/* Movable Skills Playground */
 .draggable-playground {
   position: relative; width: 100%; height: 380px;
   background: var(--bg-secondary); border: 1px dashed var(--border-glow);
   border-radius: 24px; overflow: hidden; margin-top: 2rem; padding: 2rem;
 }
 
-.playground-hint {
-  position: absolute; top: 1rem; left: 1.5rem;
-  font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono);
-  display: flex; align-items: center; gap: 0.5rem;
-}
+.playground-hint { position: absolute; top: 1rem; left: 1.5rem; font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; }
 
 .skill-chip-movable {
   position: absolute; background: rgba(16, 23, 42, 0.9);
@@ -297,14 +266,12 @@ body {
 
 .skill-chip-movable:active { cursor: grabbing; box-shadow: 0 0 25px var(--accent-cyan); transform: scale(1.08); }
 
-/* Projects Grid */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
 .project-card { background: var(--bg-secondary); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem; backdrop-filter: blur(16px); transition: var(--transition-smooth); display: flex; flex-direction: column; justify-content: space-between; }
 .project-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); box-shadow: 0 12px 40px rgba(0, 240, 255, 0.2); }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0; }
 .tag-badge { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); color: var(--accent-cyan); padding: 0.25rem 0.75rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.75rem; }
 
-/* Terminal */
 .terminal-card { background: #04060E; border: 1px solid var(--border-glow); border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); max-width: 900px; margin: 0 auto; }
 .terminal-header { background: #0B0F1D; padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border-glass); }
 .term-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -314,7 +281,6 @@ body {
 .term-input-line { display: flex; align-items: center; gap: 0.5rem; color: var(--accent-cyan); }
 .term-input { background: transparent; border: none; outline: none; color: #FFFFFF; font-family: var(--font-mono); font-size: 0.9rem; width: 100%; }
 
-/* Modal */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 1000; }
 .modal-overlay.active { display: flex; }
 .modal-card { background: var(--bg-primary); border: 1px solid var(--border-glow); border-radius: 24px; padding: 2.5rem; width: 90%; max-width: 650px; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0, 240, 255, 0.3); }

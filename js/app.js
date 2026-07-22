@@ -1,14 +1,65 @@
-// Main Application Controller
+// Main Application Controller — Full CRUD Operations
 
+// --- State Arrays for Full CRUD ---
 let skillList = [
-  { name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
-  { name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
-  { name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
-  { name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
-  { name: "Node.js & Express Systems", percent: 88, icon: "fa-brands fa-node-js" },
-  { name: "NumPy & SciPy Analytics", percent: 92, icon: "fa-solid fa-chart-line" },
-  { name: "Docker & Linux DevOps", percent: 84, icon: "fa-brands fa-docker" },
-  { name: "Git & GitHub Version Control", percent: 94, icon: "fa-brands fa-git-alt" }
+  { id: 1, name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
+  { id: 2, name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
+  { id: 3, name: "JavaScript ES6+ & HTML5/CSS3", percent: 90, icon: "fa-brands fa-js" },
+  { id: 4, name: "React & Vite Frontends", percent: 85, icon: "fa-brands fa-react" },
+  { id: 5, name: "Node.js & Express Systems", percent: 88, icon: "fa-brands fa-node-js" },
+  { id: 6, name: "NumPy & SciPy Analytics", percent: 92, icon: "fa-solid fa-chart-line" },
+  { id: 7, name: "Docker & Linux DevOps", percent: 84, icon: "fa-brands fa-docker" },
+  { id: 8, name: "Git & GitHub Version Control", percent: 94, icon: "fa-brands fa-git-alt" }
+];
+
+let projectList = [
+  {
+    id: 101,
+    title: "OmniCalc Pro",
+    category: "fullstack python",
+    desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
+    tags: ["FastAPI", "SymPy", "NumPy", "Canvas 2D"],
+    icon: "fa-calculator",
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
+    demoUrl: "https://salty-views-teach.loca.lt"
+  },
+  {
+    id: 102,
+    title: "AetherResume",
+    category: "fullstack web",
+    desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, live CRUD manager, and embedded CLI terminal.",
+    tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript"],
+    icon: "fa-address-card",
+    codeUrl: "https://github.com/kashvinayak20-debug",
+    demoUrl: "#hero"
+  },
+  {
+    id: 103,
+    title: "DataPulse AI Engine",
+    category: "python",
+    desc: "Real-time analytics engine and regression curve fitter processing streaming datasets with automated statistical metrics and probability density distributions.",
+    tags: ["Python 3.13", "SciPy", "Pydantic", "Uvicorn"],
+    icon: "fa-chart-gantt",
+    codeUrl: "https://github.com/kashvinayak20-debug",
+    demoUrl: "#"
+  }
+];
+
+let timelineList = [
+  {
+    id: 201,
+    title: "Full-Stack Software Engineer",
+    subtitle: "Software Systems & Full-Stack Development",
+    date: "2023 — Present",
+    desc: "Architected and launched full-stack applications, mathematical engines, and RESTful APIs using Python FastAPI, SymPy, NumPy, and modern JavaScript frontends."
+  },
+  {
+    id: 202,
+    title: "B.Tech in Computer Science & Engineering",
+    subtitle: "Computer Science & Systems Architecture",
+    date: "Graduated",
+    desc: "Specialized in Data Structures, Algorithms, Linear Algebra, Database Management Systems, Operating Systems, and Distributed Computing."
+  }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,15 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
   init3DTiltCard();
   initProjectFilters();
   initLiveEditorModal();
+
   renderSkillProgressBars();
+  renderProjects();
+  renderTimeline();
+
   initAddSkillModal();
+  initProjectModal();
+  initTimelineModal();
 });
+
 
 // Theme Switcher
 function initThemePicker() {
   const select = document.getElementById("themeSelect");
   if (!select) return;
-
   select.addEventListener("change", (e) => {
     const val = e.target.value;
     document.body.className = val === "default" ? "" : `theme-${val}`;
@@ -35,53 +92,73 @@ function initThemePicker() {
 function init3DTiltCard() {
   const card = document.querySelector(".mascot-container");
   if (!card) return;
-
   card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-
     const rotX = (y / (rect.height / 2)) * -10;
     const rotY = (x / (rect.width / 2)) * 10;
-
     card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
   });
-
   card.addEventListener("mouseleave", () => {
     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
   });
 }
 
-// Render Skill Percentage Progress Bars
+
+// ==========================================================
+// 1. SKILLS CRUD OPERATIONS
+// ==========================================================
 function renderSkillProgressBars() {
   const container = document.getElementById("skillsBarsContainer");
   if (!container) return;
 
-  container.innerHTML = skillList.map((s, idx) => `
+  container.innerHTML = skillList.map((s) => `
     <div class="skill-bar-card">
       <div class="skill-bar-info">
         <div class="skill-bar-name">
           <i class="${s.icon || 'fa-solid fa-code'}" style="color: var(--accent-cyan);"></i>
           <span>${s.name}</span>
         </div>
-        <div class="skill-bar-percent" id="skillPerc_${idx}">${s.percent}%</div>
+        <div class="skill-bar-percent" id="skillPerc_${s.id}">${s.percent}%</div>
       </div>
       <div class="progress-track">
-        <div class="progress-fill" id="skillFill_${idx}" style="width: 0%;"></div>
+        <div class="progress-fill" id="skillFill_${s.id}" style="width: 0%;"></div>
+      </div>
+      <div class="crud-actions">
+        <button class="btn-edit" onclick="editSkill(${s.id})"><i class="fa-solid fa-pen"></i> Edit %</button>
+        <button class="btn-danger" onclick="deleteSkill(${s.id})"><i class="fa-solid fa-trash"></i> Delete</button>
       </div>
     </div>
   `).join("");
 
-  // Animate progress bars after short delay
   setTimeout(() => {
-    skillList.forEach((s, idx) => {
-      const fill = document.getElementById(`skillFill_${idx}`);
+    skillList.forEach((s) => {
+      const fill = document.getElementById(`skillFill_${s.id}`);
       if (fill) fill.style.width = `${s.percent}%`;
     });
   }, 150);
 }
 
-// Add New Skill Modal
+function deleteSkill(id) {
+  skillList = skillList.filter(s => s.id !== id);
+  renderSkillProgressBars();
+}
+
+function editSkill(id) {
+  const item = skillList.find(s => s.id === id);
+  if (!item) return;
+
+  const newPerc = prompt(`Edit percentage for "${item.name}" (0 - 100):`, item.percent);
+  if (newPerc !== null) {
+    const val = parseInt(newPerc);
+    if (!isNaN(val)) {
+      item.percent = Math.min(100, Math.max(0, val));
+      renderSkillProgressBars();
+    }
+  }
+}
+
 function initAddSkillModal() {
   const modal = document.getElementById("addSkillModal");
   const openBtn = document.getElementById("openAddSkillBtn");
@@ -89,7 +166,6 @@ function initAddSkillModal() {
   const saveBtn = document.getElementById("saveAddSkillBtn");
 
   if (!modal || !openBtn) return;
-
   openBtn.addEventListener("click", () => modal.classList.add("active"));
   closeBtn.addEventListener("click", () => modal.classList.remove("active"));
 
@@ -99,6 +175,7 @@ function initAddSkillModal() {
 
     if (nameVal) {
       skillList.unshift({
+        id: Date.now(),
         name: nameVal,
         percent: Math.min(100, Math.max(0, percentVal)),
         icon: "fa-solid fa-star"
@@ -110,17 +187,183 @@ function initAddSkillModal() {
   });
 }
 
-// Project Category Filters
+
+// ==========================================================
+// 2. PROJECTS CRUD OPERATIONS
+// ==========================================================
+function renderProjects() {
+  const container = document.getElementById("projectsContainer");
+  if (!container) return;
+
+  container.innerHTML = projectList.map((p) => `
+    <div class="project-card" data-category="${p.category}">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
+          <i class="fa-solid ${p.icon || 'fa-rocket'}" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
+        </div>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">${p.desc}</p>
+        <div class="project-tags">
+          ${p.tags.map(t => `<span class="tag-badge">${t}</span>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+          <a href="${p.demoUrl || '#'}" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+          </a>
+        </div>
+        <div class="crud-actions">
+          <button class="btn-edit" onclick="editProject(${p.id})"><i class="fa-solid fa-pen"></i> Edit Project</button>
+          <button class="btn-danger" onclick="deleteProject(${p.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function deleteProject(id) {
+  projectList = projectList.filter(p => p.id !== id);
+  renderProjects();
+}
+
+function editProject(id) {
+  const p = projectList.find(item => item.id === id);
+  if (!p) return;
+
+  const newTitle = prompt("Edit Project Title:", p.title);
+  if (newTitle !== null && newTitle.trim() !== "") {
+    p.title = newTitle.trim();
+    const newDesc = prompt("Edit Project Description:", p.desc);
+    if (newDesc !== null) p.desc = newDesc.trim();
+    renderProjects();
+  }
+}
+
+function initProjectModal() {
+  const modal = document.getElementById("addProjectModal");
+  const openBtn = document.getElementById("openAddProjectBtn");
+  const closeBtn = document.getElementById("closeAddProjectBtn");
+  const saveBtn = document.getElementById("saveAddProjectBtn");
+
+  if (!modal || !openBtn) return;
+  openBtn.addEventListener("click", () => modal.classList.add("active"));
+  closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+  saveBtn.addEventListener("click", () => {
+    const title = document.getElementById("projTitle").value.trim();
+    const desc = document.getElementById("projDesc").value.trim();
+    const category = document.getElementById("projCategory").value;
+    const tagsRaw = document.getElementById("projTags").value.trim();
+    const codeUrl = document.getElementById("projCodeUrl").value.trim();
+    const demoUrl = document.getElementById("projDemoUrl").value.trim();
+
+    if (title && desc) {
+      projectList.unshift({
+        id: Date.now(),
+        title: title,
+        category: category,
+        desc: desc,
+        tags: tagsRaw ? tagsRaw.split(",").map(t => t.trim()) : ["Full-Stack"],
+        icon: "fa-code",
+        codeUrl: codeUrl || "#",
+        demoUrl: demoUrl || "#"
+      });
+      renderProjects();
+      modal.classList.remove("active");
+      document.getElementById("projTitle").value = "";
+      document.getElementById("projDesc").value = "";
+    }
+  });
+}
+
+
+// ==========================================================
+// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS
+// ==========================================================
+function renderTimeline() {
+  const container = document.getElementById("timelineContainer");
+  if (!container) return;
+
+  container.innerHTML = timelineList.map((t) => `
+    <div class="project-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan);">${t.title}</h3>
+        <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-sub);">${t.date}</span>
+      </div>
+      <p style="color: var(--accent-purple); font-weight: 600; font-size: 0.9rem; margin-top: 0.3rem;">${t.subtitle}</p>
+      <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">${t.desc}</p>
+      <div class="crud-actions">
+        <button class="btn-edit" onclick="editTimeline(${t.id})"><i class="fa-solid fa-pen"></i> Edit Entry</button>
+        <button class="btn-danger" onclick="deleteTimeline(${t.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function deleteTimeline(id) {
+  timelineList = timelineList.filter(t => t.id !== id);
+  renderTimeline();
+}
+
+function editTimeline(id) {
+  const item = timelineList.find(t => t.id === id);
+  if (!item) return;
+
+  const newTitle = prompt("Edit Title / Position:", item.title);
+  if (newTitle !== null && newTitle.trim() !== "") {
+    item.title = newTitle.trim();
+    const newDesc = prompt("Edit Description:", item.desc);
+    if (newDesc !== null) item.desc = newDesc.trim();
+    renderTimeline();
+  }
+}
+
+function initTimelineModal() {
+  const modal = document.getElementById("addTimelineModal");
+  const openBtn = document.getElementById("openAddTimelineBtn");
+  const closeBtn = document.getElementById("closeAddTimelineBtn");
+  const saveBtn = document.getElementById("saveAddTimelineBtn");
+
+  if (!modal || !openBtn) return;
+  openBtn.addEventListener("click", () => modal.classList.add("active"));
+  closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+  saveBtn.addEventListener("click", () => {
+    const title = document.getElementById("timeTitle").value.trim();
+    const subtitle = document.getElementById("timeSubtitle").value.trim();
+    const date = document.getElementById("timeDate").value.trim();
+    const desc = document.getElementById("timeDesc").value.trim();
+
+    if (title && desc) {
+      timelineList.unshift({
+        id: Date.now(),
+        title: title,
+        subtitle: subtitle || "Software Engineering",
+        date: date || "Present",
+        desc: desc
+      });
+      renderTimeline();
+      modal.classList.remove("active");
+      document.getElementById("timeTitle").value = "";
+      document.getElementById("timeDesc").value = "";
+    }
+  });
+}
+
+
+// Filter projects by category
 function initProjectFilters() {
   const btns = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".project-card");
-
   btns.forEach(btn => {
     btn.addEventListener("click", () => {
       btns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-
       const cat = btn.getAttribute("data-filter");
+      const cards = document.querySelectorAll(".project-card");
       cards.forEach(card => {
         const tags = card.getAttribute("data-category") || "";
         if (cat === "all" || tags.includes(cat)) {
@@ -133,7 +376,7 @@ function initProjectFilters() {
   });
 }
 
-// Live Resume Customizer Modal
+// Live Profile Editor Modal
 function initLiveEditorModal() {
   const modal = document.getElementById("editorModal");
   const openBtn = document.getElementById("openEditorBtn");
@@ -141,7 +384,6 @@ function initLiveEditorModal() {
   const saveBtn = document.getElementById("saveEditorBtn");
 
   if (!modal || !openBtn) return;
-
   openBtn.addEventListener("click", () => modal.classList.add("active"));
   closeBtn.addEventListener("click", () => modal.classList.remove("active"));
 

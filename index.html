@@ -33,7 +33,8 @@
       <li><a href="#hero" class="nav-link active">Home</a></li>
       <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
       <li><a href="#skills" class="nav-link">Movable Playground</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#projects" class="nav-link">Projects CRUD</a></li>
+      <li><a href="#timeline" class="nav-link">Timeline CRUD</a></li>
       <li><a href="#terminal" class="nav-link">CLI Terminal</a></li>
     </ul>
 
@@ -90,10 +91,8 @@
             <div class="mascot-svg-glow">
               <svg viewBox="0 0 100 100" width="100%" height="100%">
                 <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0, 240, 255, 0.3)" stroke-width="2"/>
-                <!-- Animated Developer Avatar Icon -->
                 <circle cx="50" cy="38" r="18" fill="#00F0FF"/>
                 <path d="M 22 80 C 22 60, 78 60, 78 80 Z" fill="#7000FF"/>
-                <!-- Glasses -->
                 <rect x="38" y="32" width="10" height="7" rx="2" fill="#000"/>
                 <rect x="52" y="32" width="10" height="7" rx="2" fill="#000"/>
                 <line x1="48" y1="35.5" x2="52" y2="35.5" stroke="#000" stroke-width="2"/>
@@ -124,11 +123,11 @@
     </section>
 
 
-    <!-- DYNAMIC SKILL PERCENTAGE BARS SECTION -->
+    <!-- DYNAMIC SKILL PERCENTAGE BARS SECTION (SKILLS CRUD) -->
     <section id="skills-section" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Technical <span class="gradient-text">Skill Proficiency</span></h2>
-        <p class="section-desc">Dynamic percentage completion rates with live custom skill adder.</p>
+        <p class="section-desc">Dynamic percentage completion rates. Add, Edit, or Delete skills live!</p>
         <button id="openAddSkillBtn" class="btn-primary" style="margin-top: 1rem;">
           <i class="fa-solid fa-plus"></i> Add Custom Skill & %
         </button>
@@ -158,70 +157,43 @@
         <div class="skill-chip-movable"><i class="fa-solid fa-square-root-variable"></i> SymPy & NumPy</div>
         <div class="skill-chip-movable"><i class="fa-brands fa-docker"></i> Docker</div>
         <div class="skill-chip-movable"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
-        <div class="skill-chip-movable"><i class="fa-solid fa-database"></i> SQL / PostgreSQL</div>
-        <div class="skill-chip-movable"><i class="fa-brands fa-css3-alt"></i> Glassmorphism CSS3</div>
       </div>
     </section>
 
 
-    <!-- FEATURED PROJECTS SECTION -->
+    <!-- FEATURED PROJECTS SECTION (PROJECTS CRUD) -->
     <section id="projects" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Featured <span class="gradient-text">Software Projects</span></h2>
-        <p class="section-desc">Production-grade web applications and high-performance computing engines.</p>
+        <p class="section-desc">Production-grade web applications. Add, Edit, or Delete project cards live!</p>
+        <button id="openAddProjectBtn" class="btn-primary" style="margin-top: 1rem;">
+          <i class="fa-solid fa-plus"></i> Add New Project
+        </button>
       </div>
 
-      <div class="projects-grid">
-        
-        <div class="project-card" data-category="fullstack python">
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">OmniCalc Pro</h3>
-              <i class="fa-solid fa-calculator" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
-            </div>
-            <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">
-              Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.
-            </p>
-            <div class="project-tags">
-              <span class="tag-badge">FastAPI</span>
-              <span class="tag-badge">SymPy</span>
-              <span class="tag-badge">NumPy</span>
-              <span class="tag-badge">Canvas 2D</span>
-            </div>
-          </div>
-          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-            <a href="https://github.com/kashvinayak20-debug/omnicalc-pro" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
-              <i class="fa-brands fa-github"></i> Code
-            </a>
-            <a href="https://salty-views-teach.loca.lt" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
-            </a>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="fullstack web">
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">AetherResume</h3>
-              <i class="fa-solid fa-address-card" style="font-size: 1.5rem; color: var(--accent-emerald);"></i>
-            </div>
-            <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">
-              Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, live customizer, and embedded CLI terminal.
-            </p>
-            <div class="project-tags">
-              <span class="tag-badge">HTML5</span>
-              <span class="tag-badge">Glassmorphism CSS</span>
-              <span class="tag-badge">ES6+ JavaScript</span>
-            </div>
-          </div>
-          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-            <a href="#hero" class="btn-primary" style="flex: 1; justify-content: center;">
-              <i class="fa-solid fa-eye"></i> View Live
-            </a>
-          </div>
-        </div>
-
+      <!-- Project Category Filters -->
+      <div style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2.5rem;">
+        <button class="subtab-btn filter-btn active" data-filter="all">All Projects</button>
+        <button class="subtab-btn filter-btn" data-filter="fullstack">Full-Stack</button>
+        <button class="subtab-btn filter-btn" data-filter="python">Python & Math</button>
+        <button class="subtab-btn filter-btn" data-filter="web">Web Apps</button>
       </div>
+
+      <div id="projectsContainer" class="projects-grid"></div>
+    </section>
+
+
+    <!-- TIMELINE SECTION (TIMELINE CRUD) -->
+    <section id="timeline" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Career & <span class="gradient-text">Experience Timeline</span></h2>
+        <p class="section-desc">Track record of achievements. Add, Edit, or Delete experience cards live!</p>
+        <button id="openAddTimelineBtn" class="btn-primary" style="margin-top: 1rem;">
+          <i class="fa-solid fa-plus"></i> Add Experience / Education
+        </button>
+      </div>
+
+      <div id="timelineContainer" style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;"></div>
     </section>
 
 
@@ -259,7 +231,7 @@
   </main>
 
 
-  <!-- ADD CUSTOM SKILL MODAL -->
+  <!-- MODAL 1: ADD SKILL MODAL -->
   <div id="addSkillModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -284,7 +256,91 @@
   </div>
 
 
-  <!-- LIVE RESUME CUSTOMIZER MODAL -->
+  <!-- MODAL 2: ADD PROJECT MODAL -->
+  <div id="addProjectModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-folder-plus"></i> Add New Project</h3>
+        <button id="closeAddProjectBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Project Title:</label>
+        <input type="text" id="projTitle" class="form-input" placeholder="e.g. AI Vision Dashboard">
+      </div>
+
+      <div class="form-group">
+        <label>Category Tag:</label>
+        <select id="projCategory" class="form-input">
+          <option value="fullstack python">Full-Stack & Python</option>
+          <option value="web">Web Application</option>
+          <option value="python">Python Engine</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea id="projDesc" class="form-input" style="height: 80px;" placeholder="Enter project summary..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Tech Stack Tags (comma separated):</label>
+        <input type="text" id="projTags" class="form-input" placeholder="Python, FastAPI, React, Docker">
+      </div>
+
+      <div class="form-group">
+        <label>GitHub Code URL:</label>
+        <input type="text" id="projCodeUrl" class="form-input" placeholder="https://github.com/...">
+      </div>
+
+      <div class="form-group">
+        <label>Live Demo URL:</label>
+        <input type="text" id="projDemoUrl" class="form-input" placeholder="https://...">
+      </div>
+
+      <button id="saveAddProjectBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Save & Render Project Card
+      </button>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: ADD TIMELINE MODAL -->
+  <div id="addTimelineModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800;"><i class="fa-solid fa-briefcase"></i> Add Experience / Education</h3>
+        <button id="closeAddTimelineBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Position / Degree Title:</label>
+        <input type="text" id="timeTitle" class="form-input" placeholder="e.g. Senior Software Engineer">
+      </div>
+
+      <div class="form-group">
+        <label>Subtitle / Subfield:</label>
+        <input type="text" id="timeSubtitle" class="form-input" placeholder="e.g. Full-Stack Systems">
+      </div>
+
+      <div class="form-group">
+        <label>Date Range:</label>
+        <input type="text" id="timeDate" class="form-input" placeholder="e.g. 2023 — Present">
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea id="timeDesc" class="form-input" style="height: 80px;" placeholder="Key responsibilities and achievements..."></textarea>
+      </div>
+
+      <button id="saveAddTimelineBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Add Timeline Entry
+      </button>
+    </div>
+  </div>
+
+
+  <!-- MODAL 4: LIVE PROFILE EDITOR MODAL -->
   <div id="editorModal" class="modal-overlay">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
