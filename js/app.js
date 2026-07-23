@@ -106,7 +106,7 @@ let projectList = [
     desc: "Silicon University Internship — Developed complex optimized algorithms using stacks for valid parentheses checking, next/previous greater element, and trapping rainwater problem in Python.",
     tags: ["Python", "DSA", "Stacks", "Algorithm Optimization", "Silicon University"],
     icon: "fa-code-branch",
-    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
+    codeUrl: ""
   },
   {
     id: 101,
@@ -116,7 +116,7 @@ let projectList = [
     desc: "Sparkup Summit (2024) — Proposed an innovative med-tech prototype to develop a smart wearable that monitors vital signals.",
     tags: ["Med-Tech", "Hardware Prototype", "Sensors", "Sparkup Summit"],
     icon: "fa-heart-pulse",
-    codeUrl: "https://github.com/kashvinayak20-debug"
+    codeUrl: ""
   },
   {
     id: 102,
@@ -126,7 +126,7 @@ let projectList = [
     desc: "Robo Race (2024, 2025) — Built an autonomous robot car that can maneuver in all directions and withstand extreme environmental conditions.",
     tags: ["Robotics", "Robo Race", "Hardware", "Automation"],
     icon: "fa-car",
-    codeUrl: "https://github.com/kashvinayak20-debug"
+    codeUrl: ""
   },
   {
     id: 103,
@@ -875,9 +875,11 @@ function renderProjects() {
               <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
             </a>
           ` : ''}
-          <a href="${p.codeUrl || '#'}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
-            <i class="fa-brands fa-github"></i> GitHub Code
-          </a>
+          ${p.codeUrl ? `
+            <a href="${p.codeUrl}" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+              <i class="fa-brands fa-github"></i> GitHub Code
+            </a>
+          ` : ''}
         </div>
         <div class="crud-actions admin-only">
           <button class="btn-edit" onclick="editProject(${p.id})"><i class="fa-solid fa-pen"></i> Edit Project</button>
