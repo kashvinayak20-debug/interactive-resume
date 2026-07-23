@@ -232,6 +232,36 @@ let certificateList = [
     desc: "Hands-on certification for building custom Generative AI applications and Large Language Model architectures.",
     icon: "fa-robot",
     color: "var(--accent-amber)"
+  },
+  {
+    id: 405,
+    title: "NIRMAN 5.0 Engineering Excellence Certificate",
+    issuer: "NIRMAN 5.0 National Innovation Summit",
+    date: "2025",
+    badge: "Engineering & Tech",
+    desc: "Awarded official certification for engineering solution design and technical presentation at NIRMAN 5.0 Summit.",
+    icon: "fa-trophy",
+    color: "var(--accent-amber)"
+  },
+  {
+    id: 406,
+    title: "NIRMAN 4.0 Innovation Certificate",
+    issuer: "NIRMAN 4.0 National Innovation Summit",
+    date: "2024",
+    badge: "Innovation & Tech",
+    desc: "Awarded official certification for technical innovation and project presentation at NIRMAN 4.0 Summit.",
+    icon: "fa-award",
+    color: "var(--accent-purple)"
+  },
+  {
+    id: 407,
+    title: "SparkUp Summit Med-Tech Certificate",
+    issuer: "SparkUp Summit Innovation Competition",
+    date: "2024",
+    badge: "Healthcare Solution",
+    desc: "Certified for proposing an innovative Med-Tech smart wearable vital monitoring solution at SparkUp Summit.",
+    icon: "fa-lightbulb",
+    color: "var(--accent-emerald)"
   }
 ];
 
@@ -894,7 +924,7 @@ function renderProjects() {
       ${p.bannerSvg || ''}
       <div>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title} ${p.demoUrl ? '<span style="color: var(--accent-emerald); font-weight: 800; font-size: 0.85rem; margin-left: 0.4rem;">[DEPLOYED]</span>' : ''}</h3>
           <i class="fa-solid ${p.icon || 'fa-rocket'}" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
         </div>
         <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">${p.desc}</p>
@@ -1330,6 +1360,43 @@ function loadStateFromLocalStorage() {
         color: "var(--accent-cyan)"
       });
     }
+
+    if (!certificateList.some(c => c.title && c.title.includes("NIRMAN 5.0"))) {
+      certificateList.push({
+        id: 405,
+        title: "NIRMAN 5.0 Engineering Excellence Certificate",
+        issuer: "NIRMAN 5.0 National Innovation Summit",
+        date: "2025",
+        badge: "Engineering & Tech",
+        desc: "Awarded official certification for engineering solution design and technical presentation at NIRMAN 5.0 Summit.",
+        icon: "fa-trophy",
+        color: "var(--accent-amber)"
+      });
+    }
+    if (!certificateList.some(c => c.title && c.title.includes("NIRMAN 4.0"))) {
+      certificateList.push({
+        id: 406,
+        title: "NIRMAN 4.0 Innovation Certificate",
+        issuer: "NIRMAN 4.0 National Innovation Summit",
+        date: "2024",
+        badge: "Innovation & Tech",
+        desc: "Awarded official certification for technical innovation and project presentation at NIRMAN 4.0 Summit.",
+        icon: "fa-award",
+        color: "var(--accent-purple)"
+      });
+    }
+    if (!certificateList.some(c => c.title && c.title.includes("SparkUp Summit"))) {
+      certificateList.push({
+        id: 407,
+        title: "SparkUp Summit Med-Tech Certificate",
+        issuer: "SparkUp Summit Innovation Competition",
+        date: "2024",
+        badge: "Healthcare Solution",
+        desc: "Certified for proposing an innovative Med-Tech smart wearable vital monitoring solution at SparkUp Summit.",
+        icon: "fa-lightbulb",
+        color: "var(--accent-emerald)"
+      });
+    }
   }
   if (timeline) {
     timelineList = JSON.parse(timeline);
@@ -1396,7 +1463,7 @@ function generatePrintableResumeHTML() {
 
     <div class="print-section-title">Technical Skills & Expertise</div>
     <div class="print-skills-list">
-      ${skillList.map(s => `<div><b>• ${s.name}</b> (${s.percent}%)</div>`).join("")}
+      ${skillList.map(s => `<div><b>• ${s.name}</b></div>`).join("")}
     </div>
 
     <div class="print-section-title">Career & Technical Experience</div>
@@ -1427,7 +1494,7 @@ function generatePrintableResumeHTML() {
     ${projectList.map(p => `
       <div class="print-item">
         <div class="print-item-header">
-          <span class="print-item-title">${p.title}</span>
+          <span class="print-item-title">${p.title} ${p.demoUrl ? '<b style="color: #0284c7;">[DEPLOYED]</b>' : ''}</span>
           <span class="print-item-date">${p.tags.join(" | ")}</span>
         </div>
         <div class="print-item-desc">${p.desc}</div>
