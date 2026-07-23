@@ -121,11 +121,11 @@ let projectList = [
   },
   {
     id: 102,
-    title: "Med-Tech Vital Signals Monitor",
+    title: "Med-Tech Vital Signals Solution",
     category: "python",
     bannerSvg: INLINE_SVG_BANNERS.tts,
-    desc: "Sparkup Summit (2024) — Proposed an innovative med-tech prototype to develop a smart wearable that monitors vital signals.",
-    tags: ["Med-Tech", "Hardware Prototype", "Sensors", "Sparkup Summit"],
+    desc: "Sparkup Summit (2024) — Proposed an innovative med-tech solution for a smart wearable that monitors vital signals.",
+    tags: ["Med-Tech", "Healthcare Solution", "Sensors", "Sparkup Summit"],
     icon: "fa-heart-pulse",
     codeUrl: ""
   },
@@ -273,7 +273,7 @@ let timelineList = [
     title: "Sparkup Summit & Robo Race Hackathons",
     subtitle: "Innovation & Robotics Competitions",
     date: "2024 — 2025",
-    desc: "Sparkup Summit (2024): Proposed Med-Tech smart wearable vital monitoring prototype. Robo Race (2024, 2025): Built multi-directional robot car."
+    desc: "Sparkup Summit (2024): Proposed Med-Tech smart wearable vital monitoring solution. Robo Race (2024, 2025): Built multi-directional robot car."
   },
   {
     id: 206,
