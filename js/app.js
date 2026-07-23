@@ -166,7 +166,7 @@ let certificateList = [
     id: 401,
     title: "DRDO LLM Model & Research Internship Certificate",
     issuer: "Defense Research & Development Organization (DRDO)",
-    date: "2025 — Present (Currently Working)",
+    date: "2026",
     badge: "LLM Model & Research",
     desc: "Official engineering internship certificate awarded by DRDO for Large Language Model (LLM) research, AI model architecture, technical documentation, and systems publishing.",
     icon: "fa-shield-halved",
@@ -223,8 +223,8 @@ let timelineList = [
     id: 201,
     title: "DRDO LLM Model & Systems Research Intern",
     subtitle: "Defense Research & Development Organization (DRDO)",
-    date: "2025 — Present (Currently Working)",
-    desc: "Large Language Model (LLM) research, AI model architecture, technical documentation, and research book publishing at DRDO."
+    date: "2026",
+    desc: "Completed research internship at Defense Research & Development Organization (DRDO) focusing on Large Language Models (LLMs), AI model architecture, technical documentation, and research publishing."
   },
   {
     id: 202,
