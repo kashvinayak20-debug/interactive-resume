@@ -164,11 +164,11 @@ let projectList = [
 let certificateList = [
   {
     id: 401,
-    title: "DRDO Internship Certificate",
+    title: "DRDO LLM Model & Research Internship Certificate",
     issuer: "Defense Research & Development Organization (DRDO)",
-    date: "2025 — 2026",
-    badge: "Government Research",
-    desc: "Official engineering internship certificate awarded by DRDO for research, technical documentation, and systems publishing.",
+    date: "2025 — Present (Currently Working)",
+    badge: "LLM Model & Research",
+    desc: "Official engineering internship certificate awarded by DRDO for Large Language Model (LLM) research, AI model architecture, technical documentation, and systems publishing.",
     icon: "fa-shield-halved",
     color: "var(--accent-cyan)"
   },
@@ -206,25 +206,32 @@ let certificateList = [
 
 let timelineList = [
   {
+    id: 199,
+    title: "Full-Stack, AI / ML & LLM Engineering",
+    subtitle: "AI / ML Systems & Large Language Model Architecture",
+    date: "2024 — Present (Currently Working)",
+    desc: "Designing and architecting full-stack web applications, RESTful microservices, AI/ML pipelines, Neural Speech Synthesis models, and LLM systems."
+  },
+  {
     id: 200,
-    title: "DRDO Research & Engineering Intern",
-    subtitle: "Defense Research & Development Organization (DRDO)",
-    date: "2025 — 2026",
-    desc: "Engineered technical documentation, research book publishing, and systems development at DRDO."
+    title: "DSA & Algorithm Engineering Intern",
+    subtitle: "Silicon University",
+    date: "2024 — Present (Currently Working)",
+    desc: "Solid foundation in DSA using Python. Developed complex optimized algorithms using stacks (Valid Parentheses, Next/Previous Greater Element, Trapping Rainwater)."
   },
   {
     id: 201,
-    title: "Bachelor of Technology in Computer Science & Engineering",
-    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.55",
-    date: "September, 2024 — Present",
-    desc: "Achieved academic excellence with CGPA 9.55. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
+    title: "DRDO LLM Model & Systems Research Intern",
+    subtitle: "Defense Research & Development Organization (DRDO)",
+    date: "2025 — Present (Currently Working)",
+    desc: "Large Language Model (LLM) research, AI model architecture, technical documentation, and research book publishing at DRDO."
   },
   {
     id: 202,
-    title: "DSA & Algorithm Engineering Intern",
-    subtitle: "Silicon University",
-    date: "2024 — Present",
-    desc: "Solid foundation in DSA using Python. Developed complex optimized algorithms using stacks (Valid Parentheses, Next/Previous Greater Element, Trapping Rainwater)."
+    title: "Bachelor of Technology in Computer Science & Engineering",
+    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.55",
+    date: "September, 2024 — Present (Currently Working)",
+    desc: "Achieved academic excellence with CGPA 9.55. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
   },
   {
     id: 203,
