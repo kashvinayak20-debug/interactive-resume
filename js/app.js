@@ -304,11 +304,18 @@ let certificateList = [
 
 let timelineList = [
   {
+    id: 197,
+    title: "Full-Stack Web Developer",
+    subtitle: "Web Applications & Full-Stack Systems Architecture",
+    date: "2024 — Present (Currently Working)",
+    desc: "Designing and developing production full-stack web applications, interactive UI components, RESTful microservices, and database solutions."
+  },
+  {
     id: 199,
-    title: "Full-Stack, AI / ML & LLM Engineering",
+    title: "AI / ML / LLM Engineering",
     subtitle: "AI / ML Systems & Large Language Model Architecture",
     date: "2024 — Present (Currently Working)",
-    desc: "Designing and architecting full-stack web applications, RESTful microservices, AI/ML pipelines, Neural Speech Synthesis models, and LLM systems."
+    desc: "Designing and architecting AI/ML pipelines, PyTorch Self-Attention Transformers, Neural Speech Synthesis models, and LLM systems."
   },
   {
     id: 200,
@@ -1503,8 +1510,19 @@ function loadStateFromLocalStorage() {
   if (timeline) {
     timelineList = JSON.parse(timeline);
     
-    // Ensure top role is AI / ML / LLM Engineering (Currently Working)
-    let topRole = timelineList.find(t => t.id === 199 || (t.date && t.date.includes("Currently Working") && !t.title.includes("DSA")));
+    // Ensure Full-Stack Web Developer (2024 — Present Currently Working) exists
+    if (!timelineList.some(t => t.id === 197 || (t.title && t.title.toLowerCase().includes("full-stack web developer")))) {
+      timelineList.unshift({
+        id: 197,
+        title: "Full-Stack Web Developer",
+        subtitle: "Web Applications & Full-Stack Systems Architecture",
+        date: "2024 — Present (Currently Working)",
+        desc: "Designing and developing production full-stack web applications, interactive UI components, RESTful microservices, and database solutions."
+      });
+    }
+
+    // Ensure AI / ML / LLM Engineering (2024 — Present Currently Working) exists
+    let topRole = timelineList.find(t => t.id === 199 || (t.date && t.date.includes("Currently Working") && t.title.includes("LLM")));
     if (topRole) {
       topRole.title = "AI / ML / LLM Engineering";
       topRole.subtitle = "AI / ML Systems & Large Language Model Architecture";
@@ -1515,7 +1533,7 @@ function loadStateFromLocalStorage() {
         title: "AI / ML / LLM Engineering",
         subtitle: "AI / ML Systems & Large Language Model Architecture",
         date: "2024 — Present (Currently Working)",
-        desc: "Designing and architecting full-stack web applications, RESTful microservices, AI/ML pipelines, Neural Speech Synthesis models, and LLM systems."
+        desc: "Designing and architecting AI/ML pipelines, PyTorch Self-Attention Transformers, Neural Speech Synthesis models, and LLM systems."
       });
     }
   }
