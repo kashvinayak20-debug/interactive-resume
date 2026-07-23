@@ -1398,6 +1398,7 @@ function loadStateFromLocalStorage() {
       });
     }
   }
+  localStorage.setItem("resume_certificates", JSON.stringify(certificateList));
   if (timeline) {
     timelineList = JSON.parse(timeline);
     const item = timelineList.find(t => t.id === 198 || (t.title && t.title.includes("LLM")));
