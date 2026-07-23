@@ -161,7 +161,57 @@ let projectList = [
   }
 ];
 
+let certificateList = [
+  {
+    id: 401,
+    title: "DRDO Internship Certificate",
+    issuer: "Defense Research & Development Organization (DRDO)",
+    date: "2025 — 2026",
+    badge: "Government Research",
+    desc: "Official engineering internship certificate awarded by DRDO for research, technical documentation, and systems publishing.",
+    icon: "fa-shield-halved",
+    color: "var(--accent-cyan)"
+  },
+  {
+    id: 402,
+    title: "DecodeLabs Tasks Suite Certificate",
+    issuer: "DecodeLabs AI Engineering",
+    date: "2024 — 2025",
+    badge: "AI & Algorithms",
+    desc: "Official certification for algorithmic problem solving, automated Python task pipelines, and software engineering execution.",
+    icon: "fa-certificate",
+    color: "var(--accent-purple)"
+  },
+  {
+    id: 403,
+    title: "Python for Data Science Internship Certificate",
+    issuer: "IIT Madras — Funded by MoE, Govt. of India",
+    date: "2024",
+    badge: "NPTEL / MoE Certified",
+    desc: "Online internship course certificate on Python for Data Science conducted by Indian Institute of Technology (IIT) Madras.",
+    icon: "fa-graduation-cap",
+    color: "var(--accent-emerald)"
+  },
+  {
+    id: 404,
+    title: "Generative AI Systems Certificate",
+    issuer: "Build Your Own Generative AI (Abhinav Devaguptapu)",
+    date: "2024",
+    badge: "Generative AI",
+    desc: "Hands-on certification for building custom Generative AI applications and Large Language Model architectures.",
+    icon: "fa-robot",
+    color: "var(--accent-amber)"
+  }
+];
+
 let timelineList = [
+  {
+    id: 200,
+    title: "DRDO Research & Engineering Intern",
+    subtitle: "Defense Research & Development Organization (DRDO)",
+    date: "2025 — 2026",
+    desc: "Engineered technical documentation, research book publishing, and systems development at DRDO."
+  },
   {
     id: 201,
     title: "Bachelor of Technology in Computer Science & Engineering",
@@ -178,34 +228,41 @@ let timelineList = [
   },
   {
     id: 203,
+    title: "DecodeLabs Tasks Suite & AI Certification",
+    subtitle: "DecodeLabs AI Software Engineering",
+    date: "2024 — 2025",
+    desc: "Certified in algorithmic problem solving, automated Python task pipelines, and software engineering execution."
+  },
+  {
+    id: 204,
     title: "Python for Data Science Internship & Certification",
     subtitle: "NPTEL — IIT Madras (Funded by MoE, Govt. of India)",
     date: "2024",
     desc: "Completed online internship course on Python for Data Science conducted by Indian Institute of Technology (IIT) Madras."
   },
   {
-    id: 204,
+    id: 205,
     title: "Sparkup Summit & Robo Race Hackathons",
     subtitle: "Innovation & Robotics Competitions",
     date: "2024 — 2025",
     desc: "Sparkup Summit (2024): Proposed Med-Tech smart wearable vital monitoring prototype. Robo Race (2024, 2025): Built multi-directional robot car."
   },
   {
-    id: 205,
+    id: 206,
     title: "Generative AI Workshop",
     subtitle: "AI for Students by Abhinav Devaguptapu",
     date: "2024",
     desc: "Hands-on workshop on building Generative AI applications, custom models, and LLM application pipelines."
   },
   {
-    id: 206,
+    id: 207,
     title: "Higher Secondary Certification (Class XII)",
     subtitle: "Freedom International School, Cuttack, Odisha — Score: 70.2%",
     date: "April, 2022 — March, 2024",
     desc: "Completed Senior Secondary High School Education with 70.2% score."
   },
   {
-    id: 207,
+    id: 208,
     title: "Senior Secondary Certification (Class X)",
     subtitle: "St. Josephs Girls High School, Cuttack, Odisha — Score: 85.16%",
     date: "April, 2012 — March, 2022",
@@ -224,11 +281,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSkillProgressBars();
   renderDeployedProjects();
   renderProjects();
+  renderCertificates();
   renderTimeline();
 
   initAddSkillModal();
   initAddDeployedModal();
   initProjectModal();
+  initAddCertModal();
   initTimelineModal();
   initAdminAuthSystem();
   initEmailModal();
@@ -904,8 +963,106 @@ function initProjectModal() {
 
 
 // ==========================================================
-// 3. TIMELINE & EXPERIENCE CRUD OPERATIONS
+// 3. CERTIFICATES & LICENSES CRUD OPERATIONS
 // ==========================================================
+function renderCertificates() {
+  const container = document.getElementById("certificatesContainer");
+  if (!container) return;
+
+  container.innerHTML = certificateList.map((c, idx) => `
+    <div class="project-card reveal-item ${idx % 2 === 0 ? 'reveal-from-left' : 'reveal-from-right'}" style="border-color: var(--accent-purple);">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan);">${c.title}</h3>
+          <i class="fa-solid ${c.icon || 'fa-certificate'}" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
+        </div>
+        <p style="color: var(--accent-emerald); font-weight: 700; font-size: 0.88rem; margin-top: 0.4rem;">
+          <i class="fa-solid fa-building-columns"></i> ${c.issuer}
+        </p>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">${c.desc}</p>
+        <div class="project-tags">
+          <span class="tag-badge" style="color: var(--accent-amber); border-color: rgba(255, 184, 0, 0.4);">${c.badge || 'Verified Credential'}</span>
+          <span class="tag-badge" style="color: var(--text-sub);">${c.date}</span>
+        </div>
+      </div>
+      <div class="crud-actions admin-only" style="margin-top: 1rem;">
+        <button class="btn-edit" onclick="editCertificate(${c.id})"><i class="fa-solid fa-pen"></i> Edit Certificate</button>
+        <button class="btn-danger" onclick="deleteCertificate(${c.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+      </div>
+    </div>
+  `).join("");
+
+  setTimeout(() => {
+    initScrollReveal();
+    initAllCards3DTilt();
+  }, 100);
+}
+
+function deleteCertificate(id) {
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
+  certificateList = certificateList.filter(c => c.id !== id);
+  renderCertificates();
+  saveStateToLocalStorage();
+}
+
+function editCertificate(id) {
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
+  const item = certificateList.find(c => c.id === id);
+  if (!item) return;
+
+  const newTitle = prompt("Edit Certificate Title:", item.title);
+  if (newTitle !== null && newTitle.trim() !== "") {
+    item.title = newTitle.trim();
+    const newIssuer = prompt("Edit Issuer / Organization:", item.issuer);
+    if (newIssuer !== null) item.issuer = newIssuer.trim();
+    const newDate = prompt("Edit Date / Year:", item.date);
+    if (newDate !== null) item.date = newDate.trim();
+    const newDesc = prompt("Edit Description:", item.desc);
+    if (newDesc !== null) item.desc = newDesc.trim();
+
+    renderCertificates();
+    saveStateToLocalStorage();
+  }
+}
+
+function initAddCertModal() {
+  const modal = document.getElementById("addCertModal");
+  const openBtn = document.getElementById("openAddCertBtn");
+  const closeBtn = document.getElementById("closeAddCertBtn");
+  const saveBtn = document.getElementById("saveAddCertBtn");
+
+  if (!modal || !openBtn) return;
+  openBtn.addEventListener("click", () => modal.classList.add("active"));
+  closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+  saveBtn.addEventListener("click", () => {
+    const title = document.getElementById("certTitle").value.trim();
+    const issuer = document.getElementById("certIssuer").value.trim();
+    const date = document.getElementById("certDate").value.trim();
+    const badge = document.getElementById("certBadge").value.trim();
+    const desc = document.getElementById("certDesc").value.trim();
+
+    if (title && desc) {
+      certificateList.unshift({
+        id: Date.now(),
+        title: title,
+        issuer: issuer || "Verified Credential",
+        date: date || "Present",
+        badge: badge || "Certification",
+        desc: desc,
+        icon: "fa-certificate"
+      });
+      renderCertificates();
+      saveStateToLocalStorage();
+      modal.classList.remove("active");
+      document.getElementById("certTitle").value = "";
+      document.getElementById("certIssuer").value = "";
+      document.getElementById("certDate").value = "";
+      document.getElementById("certBadge").value = "";
+      document.getElementById("certDesc").value = "";
+    }
+  });
+}
 function renderTimeline() {
   const container = document.getElementById("timelineContainer");
   if (!container) return;
@@ -1048,6 +1205,7 @@ function saveStateToLocalStorage() {
   localStorage.setItem("resume_skills", JSON.stringify(skillList));
   localStorage.setItem("resume_projects", JSON.stringify(projectList));
   localStorage.setItem("resume_deployed", JSON.stringify(deployedList));
+  localStorage.setItem("resume_certificates", JSON.stringify(certificateList));
   localStorage.setItem("resume_timeline", JSON.stringify(timelineList));
   const profile = {
     name: document.getElementById("dispName") ? document.getElementById("dispName").textContent : "",
@@ -1061,12 +1219,14 @@ function loadStateFromLocalStorage() {
   const skills = localStorage.getItem("resume_skills");
   const projects = localStorage.getItem("resume_projects");
   const deployed = localStorage.getItem("resume_deployed");
+  const certs = localStorage.getItem("resume_certificates");
   const timeline = localStorage.getItem("resume_timeline");
   const profile = localStorage.getItem("resume_profile");
 
   if (skills) skillList = JSON.parse(skills);
   if (projects) projectList = JSON.parse(projects);
   if (deployed) deployedList = JSON.parse(deployed);
+  if (certs) certificateList = JSON.parse(certs);
   if (timeline) timelineList = JSON.parse(timeline);
 
   if (profile) {

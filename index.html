@@ -64,8 +64,8 @@
       <li><a href="#hero" class="nav-link active">Home</a></li>
       <li><a href="#deployed" class="nav-link">Cloud Deployed</a></li>
       <li><a href="#skills-section" class="nav-link">Skill % Bars</a></li>
-      <li><a href="#skills" class="nav-link">Playground</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#certificates" class="nav-link">Certificates</a></li>
       <li><a href="#timeline" class="nav-link">Timeline</a></li>
       <li><a href="#terminal" class="nav-link">Terminal</a></li>
     </ul>
@@ -255,6 +255,20 @@
       </div>
 
       <div id="projectsContainer" class="projects-grid"></div>
+    </section>
+
+
+    <!-- DEDICATED CERTIFICATIONS & VERIFIED CREDENTIALS SECTION -->
+    <section id="certificates" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">📜 Verified <span class="gradient-text">Certifications & Licenses</span></h2>
+        <p class="section-desc">Official engineering certifications, government-funded internships, and technical credentials.</p>
+        <button id="openAddCertBtn" class="btn-primary admin-only" style="margin-top: 1rem;">
+          <i class="fa-solid fa-plus"></i> Add Verified Certificate
+        </button>
+      </div>
+
+      <div id="certificatesContainer" class="projects-grid"></div>
     </section>
 
 
@@ -686,6 +700,47 @@
           Stay Logged In
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL 10: ADD CERTIFICATE MODAL -->
+  <div id="addCertModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">
+          <i class="fa-solid fa-certificate"></i> Add Verified Certificate
+        </h3>
+        <button id="closeAddCertBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Certificate Title:</label>
+        <input type="text" id="certTitle" class="form-input" placeholder="e.g. DRDO Internship Certificate">
+      </div>
+
+      <div class="form-group">
+        <label>Issuing Organization / Institution:</label>
+        <input type="text" id="certIssuer" class="form-input" placeholder="e.g. Defense Research & Development Organization">
+      </div>
+
+      <div class="form-group">
+        <label>Year / Date:</label>
+        <input type="text" id="certDate" class="form-input" placeholder="e.g. 2025 — 2026">
+      </div>
+
+      <div class="form-group">
+        <label>Badge Tag (e.g. Government Research, AI & Algorithms):</label>
+        <input type="text" id="certBadge" class="form-input" placeholder="e.g. Certified / Government Internship">
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea id="certDesc" class="form-input" style="height: 80px;" placeholder="Brief description of the certificate..."></textarea>
+      </div>
+
+      <button id="saveAddCertBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem; margin-top: 1rem;">
+        <i class="fa-solid fa-check"></i> Add Certificate
+      </button>
     </div>
   </div>
 
