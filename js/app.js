@@ -677,16 +677,7 @@ function initAdminAuthSystem() {
 
       resetStep1.style.display = "none";
       resetStep2.style.display = "block";
-      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Verification code generated & sent to ${email}!`);
-    });
-  }
-
-  if (openGmailResetBtn) {
-    openGmailResetBtn.addEventListener("click", () => {
-      const email = resetGmailInput.value.trim();
-      const subject = encodeURIComponent("Admin Password Reset Code");
-      const body = encodeURIComponent(`Your Admin Password Reset Code for Kashvi.dev is: ${activeResetCode}`);
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`, "_blank");
+      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Verification code has been sent to your Gmail (${email})!`);
     });
   }
 
