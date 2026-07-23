@@ -184,6 +184,16 @@ let projectList = [
 
 let certificateList = [
   {
+    id: 400,
+    title: "LLM Architecture & Engineering using Python Certificate",
+    issuer: "Silicon University, Bhubaneswar",
+    date: "2026",
+    badge: "LLM & Python Certification",
+    desc: "Official certification awarded by Silicon University for designing, fine-tuning, and deploying Large Language Model (LLM) architectures and neural systems using Python.",
+    icon: "fa-brain",
+    color: "var(--accent-cyan)"
+  },
+  {
     id: 401,
     title: "DRDO LLM Model & Research Internship Certificate",
     issuer: "Defense Research & Development Organization (DRDO)",
@@ -226,6 +236,13 @@ let certificateList = [
 ];
 
 let timelineList = [
+  {
+    id: 198,
+    title: "LLM Systems & Python Engineering Certification",
+    subtitle: "Silicon University, Bhubaneswar",
+    date: "2026",
+    desc: "Certified in Large Language Models (LLMs), neural networks, and generative AI architecture using Python 3 at Silicon University."
+  },
   {
     id: 199,
     title: "Full-Stack, AI / ML & LLM Engineering",
@@ -1292,8 +1309,33 @@ function loadStateFromLocalStorage() {
     }
   }
   if (deployed) deployedList = JSON.parse(deployed);
-  if (certs) certificateList = JSON.parse(certs);
-  if (timeline) timelineList = JSON.parse(timeline);
+  if (certs) {
+    certificateList = JSON.parse(certs);
+    if (!certificateList.some(c => c.title && c.title.includes("LLM Architecture & Engineering using Python"))) {
+      certificateList.unshift({
+        id: 400,
+        title: "LLM Architecture & Engineering using Python Certificate",
+        issuer: "Silicon University, Bhubaneswar",
+        date: "2026",
+        badge: "LLM & Python Certification",
+        desc: "Official certification awarded by Silicon University for designing, fine-tuning, and deploying Large Language Model (LLM) architectures and neural systems using Python.",
+        icon: "fa-brain",
+        color: "var(--accent-cyan)"
+      });
+    }
+  }
+  if (timeline) {
+    timelineList = JSON.parse(timeline);
+    if (!timelineList.some(t => t.title && t.title.includes("LLM Systems & Python"))) {
+      timelineList.unshift({
+        id: 198,
+        title: "LLM Systems & Python Engineering Certification",
+        subtitle: "Silicon University, Bhubaneswar",
+        date: "2026",
+        desc: "Certified in Large Language Models (LLMs), neural networks, and generative AI architecture using Python 3 at Silicon University."
+      });
+    }
+  }
 
   if (profile) {
     const p = JSON.parse(profile);
