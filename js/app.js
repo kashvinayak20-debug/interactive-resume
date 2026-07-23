@@ -83,7 +83,7 @@ let deployedList = [
     tags: ["Cloud Deployed (Vercel)", "HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
     icon: "fa-address-card",
     codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
-    demoUrl: "https://spotty-hornets-grow.loca.lt"
+    demoUrl: "https://interactive-resume-theta-seven.vercel.app/"
   },
   {
     id: 301,
@@ -168,7 +168,7 @@ let projectList = [
     tags: ["HTML5", "CSS3", "JavaScript", "Admin Security"],
     icon: "fa-address-card",
     codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
-    demoUrl: "https://spotty-hornets-grow.loca.lt"
+    demoUrl: "https://interactive-resume-theta-seven.vercel.app/"
   },
   {
     id: 106,
@@ -1341,7 +1341,15 @@ function loadStateFromLocalStorage() {
       });
     }
   }
-  if (deployed) deployedList = JSON.parse(deployed);
+  if (deployed) {
+    deployedList = JSON.parse(deployed);
+    const p = deployedList.find(item => item.id === 300 || (item.title && item.title.includes("Portfolio")));
+    if (p) p.demoUrl = "https://interactive-resume-theta-seven.vercel.app/";
+  }
+  if (projects) {
+    projectList = JSON.parse(projects);
+    const p = projectList.find(item => item.id === 105 || (item.title && item.title.includes("Portfolio")));
+    if (p) p.demoUrl = "https://interactive-resume-theta-seven.vercel.app/";
   if (certs) {
     certificateList = JSON.parse(certs);
     const item = certificateList.find(c => c.id === 400 || (c.title && c.title.includes("LLM")));
