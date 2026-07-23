@@ -147,7 +147,7 @@ let projectList = [
     desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, speech synthesis, and audio signal processing.",
     tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech"],
     icon: "fa-robot",
-    codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
+    codeUrl: "https://github.com/kashvinayak20-debug/tts"
   },
   {
     id: 104,
@@ -1271,7 +1271,7 @@ function loadStateFromLocalStorage() {
     }
     const tts = projectList.find(p => p.title && p.title.toLowerCase().includes("text-to-speech"));
     if (tts) {
-      tts.codeUrl = "https://github.com/kashvinayak20-debug/text-to-speech-llm";
+      tts.codeUrl = "https://github.com/kashvinayak20-debug/tts";
     } else {
       projectList.push({
         id: 103,
@@ -1281,7 +1281,7 @@ function loadStateFromLocalStorage() {
         desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, speech synthesis, and audio signal processing.",
         tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech"],
         icon: "fa-robot",
-        codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
+        codeUrl: "https://github.com/kashvinayak20-debug/tts"
       });
     }
     const decode = projectList.find(p => p.title && p.title.toLowerCase().includes("decodelab"));
