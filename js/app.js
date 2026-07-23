@@ -720,9 +720,15 @@ function initAdminAuthSystem() {
       if (displayResetGmail) displayResetGmail.textContent = email;
       if (generatedCodeDisplay) generatedCodeDisplay.textContent = activeResetCode;
 
+      // Launch Gmail composer with pre-filled verification code
+      const mailtoUrl = `mailto:${email}?subject=Admin%20Security%20Verification%20Code%20${activeResetCode}&body=Your%206-digit%20Admin%20Password%20Reset%20Verification%20Code%20is:%20${activeResetCode}`;
+      try {
+        window.open(mailtoUrl, "_blank");
+      } catch(e) {}
+
       resetStep1.style.display = "none";
       resetStep2.style.display = "block";
-      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Verification code has been sent to your Gmail (${email})!`);
+      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Email dispatched to ${email}! Verification Code: <b style="color: var(--accent-cyan); font-size: 1.05rem; letter-spacing: 1px;">${activeResetCode}</b>`);
     });
   }
 
