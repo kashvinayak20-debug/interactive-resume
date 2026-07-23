@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAllCards3DTilt();
 });
 
-// Re-Triggering Scroll Reveal Engine (Pops up EVERY time user scrolls to a card!)
+// Smooth 60fps Scroll Reveal Engine (Zero vibration / flickering during slow scroll)
 function initScrollReveal() {
   const directions = ["reveal-from-left", "reveal-from-right", "reveal-from-bottom", "reveal-from-top"];
   
@@ -350,12 +350,10 @@ function initScrollReveal() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("revealed");
-      } else {
-        // Re-triggers pop-up animation every time user scrolls away and back!
-        entry.target.classList.remove("revealed");
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
 
   const targets = document.querySelectorAll(".section-container, .project-card, .skill-bar-card, .terminal-card, .draggable-playground");
   targets.forEach((el, index) => {
