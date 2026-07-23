@@ -78,9 +78,9 @@
         <option value="obsidian">🖤 Obsidian Dark</option>
       </select>
 
-      <!-- Admin Passcode Lock Toggle -->
-      <button id="adminToggleBtn" class="btn-secondary" title="Project Head CRUD Lock">
-        <i class="fa-solid fa-lock"></i> Admin Mode
+      <!-- Admin Portal Login Toggle -->
+      <button id="adminToggleBtn" class="btn-secondary" title="Admin Portal Login">
+        <i class="fa-solid fa-lock"></i> Admin Portal
       </button>
 
       <button id="openEditorBtn" class="btn-secondary admin-only">
@@ -505,6 +505,142 @@
           <i class="fa-solid fa-envelope"></i> Default Mail Client
         </a>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL 7: ADMIN PORTAL LOGIN MODAL -->
+  <div id="adminLoginModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">
+          <i class="fa-solid fa-user-shield"></i> Admin Portal Login
+        </h3>
+        <button id="closeAdminLoginBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Enter your authorized Gmail and password to unlock Admin CRUD capabilities.
+      </p>
+
+      <div id="adminLoginAlert" class="auth-alert-box" style="display: none;"></div>
+
+      <form id="adminLoginForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="adminEmailInput"><i class="fa-solid fa-envelope" style="color: var(--accent-cyan)"></i> Gmail Address:</label>
+          <input type="email" id="adminEmailInput" class="form-input" placeholder="e.g. kashvinayak20@gmail.com" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <label for="adminPasswordInput" style="margin-bottom: 0;"><i class="fa-solid fa-lock" style="color: var(--accent-cyan)"></i> Password:</label>
+            <button type="button" id="openForgotPasswordBtn" class="link-btn" style="font-size: 0.82rem; color: var(--accent-cyan); text-decoration: none; background: none; border: none; cursor: pointer;">
+              Forgot Password?
+            </button>
+          </div>
+          <div class="password-input-wrapper">
+            <input type="password" id="adminPasswordInput" class="form-input" placeholder="Enter admin password" required autocomplete="current-password">
+            <button type="button" id="toggleAdminPassBtn" class="pass-toggle-btn" title="Toggle password visibility">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="submit" id="submitAdminLoginBtn" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.95rem;">
+            <i class="fa-solid fa-right-to-bracket"></i> Login to Admin
+          </button>
+          <button type="button" id="cancelAdminLoginBtn" class="btn-secondary" style="padding: 0.8rem 1.2rem;">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass); font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+        <span>Default Admin Gmail: <strong style="color: var(--text-sub);">kashvinayak20@gmail.com</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 8: FORGOT PASSWORD & RESET MODAL -->
+  <div id="forgotPasswordModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-magenta);">
+          <i class="fa-solid fa-key"></i> Reset Admin Password
+        </h3>
+        <button id="closeForgotPasswordBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="resetStatusAlert" class="auth-alert-box" style="display: none;"></div>
+
+      <!-- Step 1: Verification Request -->
+      <div id="resetStep1">
+        <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 1.25rem; line-height: 1.5;">
+          Enter your registered Gmail address. We will generate and send a password reset verification code to your Gmail inbox.
+        </p>
+
+        <div class="form-group">
+          <label for="resetGmailInput"><i class="fa-solid fa-envelope" style="color: var(--accent-cyan)"></i> Registered Gmail Address:</label>
+          <input type="email" id="resetGmailInput" class="form-input" placeholder="e.g. kashvinayak20@gmail.com" required>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" id="sendResetCodeBtn" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.8rem;">
+            <i class="fa-solid fa-paper-plane"></i> Send Verification Code
+          </button>
+          <button type="button" id="backToLoginBtn" class="btn-secondary" style="padding: 0.8rem 1.2rem;">
+            Back to Login
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Code Verification & Password Reset (Hidden by default) -->
+      <div id="resetStep2" style="display: none;">
+        <div style="background: rgba(0, 240, 255, 0.08); border: 1px dashed var(--accent-cyan); border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+          <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-circle-info" style="color: var(--accent-cyan);"></i> Verification code sent to: <b id="displayResetGmail" style="color: #fff;"></b>
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Your Reset Verification Code is:</span>
+            <span id="generatedCodeDisplay" class="reset-code-badge">849201</span>
+          </div>
+          <div style="margin-top: 0.75rem; text-align: right;">
+            <button type="button" id="openGmailResetBtn" class="btn-secondary" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; height: auto;">
+              <i class="fa-brands fa-google" style="color: #EA4335;"></i> Open Web Gmail
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="resetCodeInput"><i class="fa-solid fa-shield-halved" style="color: var(--accent-amber)"></i> 6-Digit Verification Code:</label>
+          <input type="text" id="resetCodeInput" class="form-input" placeholder="Enter 6-digit code" maxlength="6" style="letter-spacing: 2px; font-weight: 700;">
+        </div>
+
+        <div class="form-group">
+          <label for="newPasswordInput"><i class="fa-solid fa-lock" style="color: var(--accent-emerald)"></i> New Password:</label>
+          <div class="password-input-wrapper">
+            <input type="password" id="newPasswordInput" class="form-input" placeholder="At least 4 characters">
+            <button type="button" id="toggleNewPassBtn" class="pass-toggle-btn">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPasswordInput"><i class="fa-solid fa-check-double" style="color: var(--accent-emerald)"></i> Confirm New Password:</label>
+          <input type="password" id="confirmPasswordInput" class="form-input" placeholder="Re-enter new password">
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" id="saveNewPasswordBtn" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.8rem;">
+            <i class="fa-solid fa-floppy-disk"></i> Update Password & Login
+          </button>
+          <button type="button" id="cancelResetBtn" class="btn-secondary" style="padding: 0.8rem 1rem;">
+            Cancel
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 

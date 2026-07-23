@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAddDeployedModal();
   initProjectModal();
   initTimelineModal();
-  initAdminKeyToggle();
+  initAdminAuthSystem();
   initEmailModal();
 
   // Initialize Infinite Re-Triggering Scroll Reveal Engine & 3D Tilt on All Cards
@@ -387,29 +387,222 @@ function initEmailModal() {
   }
 }
 
-// Admin Passcode & Mode Toggle (Secret PIN: 1234)
-function initAdminKeyToggle() {
-  const btn = document.getElementById("adminToggleBtn");
-  if (!btn) return;
+// Admin Authentication Credentials & Password Reset Manager
+const DEFAULT_ADMIN_GMAIL = "kashvinayak20@gmail.com";
+const DEFAULT_ADMIN_PASS = "admin123";
 
-  btn.addEventListener("click", () => {
+function getAdminCredentials() {
+  let email = localStorage.getItem("admin_gmail");
+  let pass = localStorage.getItem("admin_pass");
+  if (!email) {
+    email = DEFAULT_ADMIN_GMAIL;
+    localStorage.setItem("admin_gmail", email);
+  }
+  if (!pass) {
+    pass = DEFAULT_ADMIN_PASS;
+    localStorage.setItem("admin_pass", pass);
+  }
+  return { email, pass };
+}
+
+let activeResetCode = "";
+
+function initAdminAuthSystem() {
+  const adminBtn = document.getElementById("adminToggleBtn");
+  const loginModal = document.getElementById("adminLoginModal");
+  const closeLoginBtn = document.getElementById("closeAdminLoginBtn");
+  const cancelLoginBtn = document.getElementById("cancelAdminLoginBtn");
+  const loginForm = document.getElementById("adminLoginForm");
+  const loginAlert = document.getElementById("adminLoginAlert");
+  const emailInput = document.getElementById("adminEmailInput");
+  const passInput = document.getElementById("adminPasswordInput");
+  const togglePassBtn = document.getElementById("toggleAdminPassBtn");
+  const openForgotBtn = document.getElementById("openForgotPasswordBtn");
+
+  const forgotModal = document.getElementById("forgotPasswordModal");
+  const closeForgotBtn = document.getElementById("closeForgotPasswordBtn");
+  const cancelResetBtn = document.getElementById("cancelResetBtn");
+  const backToLoginBtn = document.getElementById("backToLoginBtn");
+  const sendResetCodeBtn = document.getElementById("sendResetCodeBtn");
+  const resetGmailInput = document.getElementById("resetGmailInput");
+  const resetStatusAlert = document.getElementById("resetStatusAlert");
+  const resetStep1 = document.getElementById("resetStep1");
+  const resetStep2 = document.getElementById("resetStep2");
+  const displayResetGmail = document.getElementById("displayResetGmail");
+  const generatedCodeDisplay = document.getElementById("generatedCodeDisplay");
+  const openGmailResetBtn = document.getElementById("openGmailResetBtn");
+  const resetCodeInput = document.getElementById("resetCodeInput");
+  const newPassInput = document.getElementById("newPasswordInput");
+  const confirmPassInput = document.getElementById("confirmPasswordInput");
+  const toggleNewPassBtn = document.getElementById("toggleNewPassBtn");
+  const saveNewPassBtn = document.getElementById("saveNewPasswordBtn");
+
+  if (!adminBtn) return;
+
+  adminBtn.addEventListener("click", () => {
     if (isAdmin) {
-      isAdmin = false;
-      document.body.classList.remove("admin-mode");
-      btn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Mode`;
-      alert("Admin Mode Locked. You are now in Visitor View.");
-    } else {
-      const pin = prompt("Enter Project Head Passcode:");
-      if (pin === "1234") {
-        isAdmin = true;
-        document.body.classList.add("admin-mode");
-        btn.innerHTML = `<i class="fa-solid fa-lock-open" style="color: var(--accent-emerald);"></i> Admin Active`;
-        alert("Admin Mode Unlocked! Full CRUD controls are now enabled.");
-      } else if (pin !== null) {
-        alert("Incorrect Passcode. Access Denied.");
+      if (confirm("Are you sure you want to log out of Admin Mode?")) {
+        isAdmin = false;
+        document.body.classList.remove("admin-mode");
+        adminBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Portal`;
+        alert("Logged out successfully. You are now in Visitor View.");
       }
+    } else {
+      showLoginModal();
     }
   });
+
+  function showLoginModal() {
+    const creds = getAdminCredentials();
+    emailInput.value = creds.email;
+    passInput.value = "";
+    hideAlert(loginAlert);
+    if (loginModal) loginModal.classList.add("active");
+  }
+
+  function hideLoginModal() {
+    if (loginModal) loginModal.classList.remove("active");
+  }
+
+  function showForgotModal() {
+    hideLoginModal();
+    const creds = getAdminCredentials();
+    resetGmailInput.value = creds.email;
+    resetStep1.style.display = "block";
+    resetStep2.style.display = "none";
+    hideAlert(resetStatusAlert);
+    if (forgotModal) forgotModal.classList.add("active");
+  }
+
+  function hideForgotModal() {
+    if (forgotModal) forgotModal.classList.remove("active");
+  }
+
+  if (closeLoginBtn) closeLoginBtn.addEventListener("click", hideLoginModal);
+  if (cancelLoginBtn) cancelLoginBtn.addEventListener("click", hideLoginModal);
+  if (openForgotBtn) openForgotBtn.addEventListener("click", showForgotModal);
+
+  if (togglePassBtn) {
+    togglePassBtn.addEventListener("click", () => {
+      const type = passInput.getAttribute("type") === "password" ? "text" : "password";
+      passInput.setAttribute("type", type);
+      togglePassBtn.innerHTML = type === "password" ? `<i class="fa-solid fa-eye"></i>` : `<i class="fa-solid fa-eye-slash"></i>`;
+    });
+  }
+
+  if (toggleNewPassBtn) {
+    toggleNewPassBtn.addEventListener("click", () => {
+      const type = newPassInput.getAttribute("type") === "password" ? "text" : "password";
+      newPassInput.setAttribute("type", type);
+      toggleNewPassBtn.innerHTML = type === "password" ? `<i class="fa-solid fa-eye"></i>` : `<i class="fa-solid fa-eye-slash"></i>`;
+    });
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const enteredEmail = emailInput.value.trim().toLowerCase();
+      const enteredPass = passInput.value;
+      const creds = getAdminCredentials();
+
+      if (enteredEmail === creds.email.toLowerCase() && enteredPass === creds.pass) {
+        isAdmin = true;
+        document.body.classList.add("admin-mode");
+        adminBtn.innerHTML = `<i class="fa-solid fa-user-shield" style="color: var(--accent-emerald);"></i> Admin Active`;
+        showAlert(loginAlert, "success", `<i class="fa-solid fa-circle-check"></i> Login successful! Unlocking Admin Portal...`);
+        setTimeout(() => {
+          hideLoginModal();
+          alert("Welcome, Admin! Full CRUD controls and profile editor are now enabled.");
+        }, 500);
+      } else {
+        showAlert(loginAlert, "danger", `<i class="fa-solid fa-circle-exclamation"></i> Incorrect Gmail or password. Click "Forgot Password?" to reset.`);
+      }
+    });
+  }
+
+  if (sendResetCodeBtn) {
+    sendResetCodeBtn.addEventListener("click", () => {
+      const email = resetGmailInput.value.trim();
+      if (!email || !email.includes("@")) {
+        showAlert(resetStatusAlert, "danger", `<i class="fa-solid fa-circle-exclamation"></i> Please enter a valid Gmail address.`);
+        return;
+      }
+
+      activeResetCode = Math.floor(100000 + Math.random() * 900000).toString();
+      displayResetGmail.textContent = email;
+      generatedCodeDisplay.textContent = activeResetCode;
+
+      resetStep1.style.display = "none";
+      resetStep2.style.display = "block";
+      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Verification code generated & sent to ${email}!`);
+    });
+  }
+
+  if (openGmailResetBtn) {
+    openGmailResetBtn.addEventListener("click", () => {
+      const email = resetGmailInput.value.trim();
+      const subject = encodeURIComponent("Admin Password Reset Code");
+      const body = encodeURIComponent(`Your Admin Password Reset Code for Kashvi.dev is: ${activeResetCode}`);
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`, "_blank");
+    });
+  }
+
+  if (saveNewPassBtn) {
+    saveNewPassBtn.addEventListener("click", () => {
+      const code = resetCodeInput.value.trim();
+      const newPass = newPassInput.value;
+      const confirmPass = confirmPassInput.value;
+
+      if (code !== activeResetCode) {
+        showAlert(resetStatusAlert, "danger", `<i class="fa-solid fa-circle-xmark"></i> Invalid 6-digit verification code.`);
+        return;
+      }
+
+      if (!newPass || newPass.length < 4) {
+        showAlert(resetStatusAlert, "danger", `<i class="fa-solid fa-triangle-exclamation"></i> Password must be at least 4 characters long.`);
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        showAlert(resetStatusAlert, "danger", `<i class="fa-solid fa-triangle-exclamation"></i> New passwords do not match.`);
+        return;
+      }
+
+      const targetEmail = resetGmailInput.value.trim();
+      localStorage.setItem("admin_gmail", targetEmail);
+      localStorage.setItem("admin_pass", newPass);
+
+      showAlert(resetStatusAlert, "success", `<i class="fa-solid fa-check-double"></i> Password reset successfully! Redirecting to login...`);
+
+      setTimeout(() => {
+        hideForgotModal();
+        showLoginModal();
+        showAlert(loginAlert, "success", `<i class="fa-solid fa-circle-check"></i> Password reset complete. Please log in with your new password.`);
+      }, 1200);
+    });
+  }
+
+  if (closeForgotBtn) closeForgotBtn.addEventListener("click", hideForgotModal);
+  if (cancelResetBtn) cancelResetBtn.addEventListener("click", hideForgotModal);
+  if (backToLoginBtn) {
+    backToLoginBtn.addEventListener("click", () => {
+      hideForgotModal();
+      showLoginModal();
+    });
+  }
+}
+
+function showAlert(element, type, message) {
+  if (!element) return;
+  element.className = `auth-alert-box ${type}`;
+  element.innerHTML = message;
+  element.style.display = "flex";
+}
+
+function hideAlert(element) {
+  if (!element) return;
+  element.style.display = "none";
+  element.innerHTML = "";
 }
 
 // Theme Switcher

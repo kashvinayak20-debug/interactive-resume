@@ -459,6 +459,76 @@ body.admin-mode div.admin-only {
 .form-input { width: 100%; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.75rem 1rem; color: #FFFFFF; font-family: var(--font-sans); font-size: 0.95rem; outline: none; transition: var(--transition-smooth); }
 .form-input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
 
+/* ADMIN AUTH & LOGIN MODAL STYLES */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-input-wrapper .form-input {
+  padding-right: 2.8rem;
+}
+
+.pass-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  transition: var(--transition-smooth);
+}
+
+.pass-toggle-btn:hover {
+  color: var(--accent-cyan);
+}
+
+.auth-alert-box {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1.4;
+}
+
+.auth-alert-box.danger {
+  background: rgba(255, 0, 122, 0.15);
+  border: 1px solid rgba(255, 0, 122, 0.4);
+  color: #FF77B8;
+}
+
+.auth-alert-box.success {
+  background: rgba(0, 255, 133, 0.15);
+  border: 1px solid rgba(0, 255, 133, 0.4);
+  color: #00FF85;
+}
+
+.auth-alert-box.info {
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: #00F0FF;
+}
+
+.reset-code-badge {
+  background: rgba(0, 240, 255, 0.2);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  letter-spacing: 3px;
+}
+
+
 /* ==========================================================
    PERFECT RESPONSIVE ENGINE (DYNAMIC FOR BOTH LAPTOP & PHONE)
    ========================================================== */
