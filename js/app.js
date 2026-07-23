@@ -1400,15 +1400,46 @@ function loadStateFromLocalStorage() {
         codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
       });
     }
+
+    const miniLLM = projectList.find(p => p.id === 107 || (p.title && p.title.toLowerCase().includes("mini-llm")));
+    if (miniLLM) {
+      miniLLM.codeUrl = "https://github.com/kashvinayak20-debug/sentiment-analysis-from-scratch";
+      miniLLM.bannerSvg = INLINE_SVG_BANNERS.mini_llm;
+    } else {
+      projectList.push({
+        id: 107,
+        title: "Mini-LLM & LangChain Sentiment Engine (From Scratch)",
+        category: "fullstack python",
+        bannerSvg: INLINE_SVG_BANNERS.mini_llm,
+        desc: "Multi-class sentiment analysis engine built completely from scratch using PyTorch Scaled Dot-Product Self-Attention and wrapped in a LangChain Runnable pipeline.",
+        tags: ["Python", "PyTorch", "Self-Attention", "LangChain", "Streamlit"],
+        icon: "fa-brain",
+        codeUrl: "https://github.com/kashvinayak20-debug/sentiment-analysis-from-scratch"
+      });
+    }
+
+    const roberta = projectList.find(p => p.id === 108 || (p.title && p.title.toLowerCase().includes("roberta")));
+    if (roberta) {
+      roberta.codeUrl = "https://github.com/kashvinayak20-debug/sentiment-analysis-app";
+      roberta.bannerSvg = INLINE_SVG_BANNERS.roberta_llm;
+    } else {
+      projectList.push({
+        id: 108,
+        title: "LangChain & RoBERTa Pretrained Sentiment Engine",
+        category: "fullstack python",
+        bannerSvg: INLINE_SVG_BANNERS.roberta_llm,
+        desc: "Deep learning multi-class sentiment intelligence engine leveraging Hugging Face Twitter-RoBERTa transformers integrated into a LangChain prompt template pipeline.",
+        tags: ["Python", "LangChain", "Hugging Face", "RoBERTa", "Streamlit"],
+        icon: "fa-robot",
+        codeUrl: "https://github.com/kashvinayak20-debug/sentiment-analysis-app"
+      });
+    }
   }
+  localStorage.setItem("resume_projects", JSON.stringify(projectList));
+
   if (deployed) {
     deployedList = JSON.parse(deployed);
     const p = deployedList.find(item => item.id === 300 || (item.title && item.title.includes("Portfolio")));
-    if (p) p.demoUrl = "https://interactive-resume-theta-seven.vercel.app/";
-  }
-  if (projects) {
-    projectList = JSON.parse(projects);
-    const p = projectList.find(item => item.id === 105 || (item.title && item.title.includes("Portfolio")));
     if (p) p.demoUrl = "https://interactive-resume-theta-seven.vercel.app/";
   }
   if (certs) {
@@ -1468,22 +1499,27 @@ function loadStateFromLocalStorage() {
     }
   }
   localStorage.setItem("resume_certificates", JSON.stringify(certificateList));
+
   if (timeline) {
     timelineList = JSON.parse(timeline);
-    const item = timelineList.find(t => t.id === 198 || (t.title && t.title.includes("LLM")));
-    if (item) {
-      item.title = "LLM using Python Certification";
-      item.desc = "Completed certification course on Large Language Models (LLM) using Python at Silicon University.";
+    
+    // Ensure top role is AI / ML / LLM Engineering (Currently Working)
+    let topRole = timelineList.find(t => t.id === 199 || (t.date && t.date.includes("Currently Working") && !t.title.includes("DSA")));
+    if (topRole) {
+      topRole.title = "AI / ML / LLM Engineering";
+      topRole.subtitle = "AI / ML Systems & Large Language Model Architecture";
+      topRole.date = "2024 — Present (Currently Working)";
     } else {
       timelineList.unshift({
-        id: 198,
-        title: "LLM using Python Certification",
-        subtitle: "Silicon University, Bhubaneswar",
-        date: "2026",
-        desc: "Completed certification course on Large Language Models (LLM) using Python at Silicon University."
+        id: 199,
+        title: "AI / ML / LLM Engineering",
+        subtitle: "AI / ML Systems & Large Language Model Architecture",
+        date: "2024 — Present (Currently Working)",
+        desc: "Designing and architecting full-stack web applications, RESTful microservices, AI/ML pipelines, Neural Speech Synthesis models, and LLM systems."
       });
     }
   }
+  localStorage.setItem("resume_timeline", JSON.stringify(timelineList));
 
   if (profile) {
     const p = JSON.parse(profile);
