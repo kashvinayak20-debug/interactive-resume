@@ -64,14 +64,14 @@ const INLINE_SVG_BANNERS = {
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "Python 3.13 & DSA Logic Optimization", percent: 92, icon: "fa-brands fa-python" },
-  { id: 2, name: "Data Structures & Stacks (Valid Parentheses, Rainwater)", percent: 90, icon: "fa-solid fa-code" },
-  { id: 3, name: "Web Technologies (HTML5, CSS3, JavaScript ES6+)", percent: 88, icon: "fa-brands fa-js" },
-  { id: 4, name: "C & Java Software Development", percent: 85, icon: "fa-brands fa-java" },
-  { id: 5, name: "Relational DBMS (MySQL & PostgreSQL)", percent: 84, icon: "fa-solid fa-database" },
-  { id: 6, name: "FastAPI & RESTful Web Systems", percent: 82, icon: "fa-solid fa-bolt" },
-  { id: 7, name: "AI / ML & Generative AI Systems", percent: 80, icon: "fa-solid fa-brain" },
-  { id: 8, name: "Git & GitHub Version Control", percent: 88, icon: "fa-brands fa-git-alt" }
+  { id: 1, name: "Python 3.13 & DSA Logic Optimization", percent: 75, icon: "fa-brands fa-python" },
+  { id: 2, name: "Data Structures & Stacks (Valid Parentheses, Rainwater)", percent: 74, icon: "fa-solid fa-code" },
+  { id: 3, name: "Web Technologies (HTML5, CSS3, JavaScript ES6+)", percent: 72, icon: "fa-brands fa-js" },
+  { id: 4, name: "FastAPI & RESTful Web Systems", percent: 48, icon: "fa-solid fa-bolt" },
+  { id: 5, name: "Relational DBMS (MySQL & PostgreSQL)", percent: 46, icon: "fa-solid fa-database" },
+  { id: 6, name: "AI / ML & Generative AI Systems", percent: 45, icon: "fa-solid fa-brain" },
+  { id: 7, name: "C & Java Software Development", percent: 42, icon: "fa-brands fa-java" },
+  { id: 8, name: "Git & GitHub Version Control", percent: 50, icon: "fa-brands fa-git-alt" }
 ];
 
 let deployedList = [
