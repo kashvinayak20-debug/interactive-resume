@@ -100,6 +100,17 @@ let deployedList = [
 let projectList = [
   {
     id: 100,
+    title: "OmniCalc Pro Suite",
+    category: "fullstack python",
+    bannerSvg: INLINE_SVG_BANNERS.math,
+    desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
+    tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
+    icon: "fa-calculator",
+    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
+    demoUrl: "https://omnicalc-pro.onrender.com/"
+  },
+  {
+    id: 101,
     title: "DSA Stack Algorithm Optimization Suite",
     category: "python",
     bannerSvg: INLINE_SVG_BANNERS.algo,
@@ -109,7 +120,7 @@ let projectList = [
     codeUrl: ""
   },
   {
-    id: 101,
+    id: 102,
     title: "Med-Tech Vital Signals Monitor",
     category: "python",
     bannerSvg: INLINE_SVG_BANNERS.tts,
@@ -1233,7 +1244,22 @@ function loadStateFromLocalStorage() {
   const profile = localStorage.getItem("resume_profile");
 
   if (skills) skillList = JSON.parse(skills);
-  if (projects) projectList = JSON.parse(projects);
+  if (projects) {
+    projectList = JSON.parse(projects);
+    if (!projectList.some(p => p.title && p.title.includes("OmniCalc"))) {
+      projectList.unshift({
+        id: 100,
+        title: "OmniCalc Pro Suite",
+        category: "fullstack python",
+        bannerSvg: INLINE_SVG_BANNERS.math,
+        desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
+        tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
+        icon: "fa-calculator",
+        codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
+        demoUrl: "https://omnicalc-pro.onrender.com/"
+      });
+    }
+  }
   if (deployed) deployedList = JSON.parse(deployed);
   if (certs) certificateList = JSON.parse(certs);
   if (timeline) timelineList = JSON.parse(timeline);
