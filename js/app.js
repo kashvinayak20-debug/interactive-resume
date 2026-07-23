@@ -924,7 +924,7 @@ function renderProjects() {
       ${p.bannerSvg || ''}
       <div>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title} ${p.demoUrl ? '<span style="color: var(--accent-emerald); font-weight: 800; font-size: 0.85rem; margin-left: 0.4rem;">[DEPLOYED]</span>' : ''}</h3>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">${p.title}</h3>
           <i class="fa-solid ${p.icon || 'fa-rocket'}" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
         </div>
         <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">${p.desc}</p>
