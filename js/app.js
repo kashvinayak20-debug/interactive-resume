@@ -64,15 +64,14 @@ const INLINE_SVG_BANNERS = {
 
 // --- State Arrays for Full CRUD ---
 let skillList = [
-  { id: 1, name: "Python 3.13 & SymPy Engine (Currently Working)", percent: 50, icon: "fa-brands fa-python" },
-  { id: 2, name: "FastAPI & REST APIs (Currently Working)", percent: 45, icon: "fa-solid fa-bolt" },
-  { id: 3, name: "Java & Web Systems (Currently Working)", percent: 42, icon: "fa-brands fa-java" },
-  { id: 4, name: "C Programming Language (Currently Working)", percent: 40, icon: "fa-solid fa-code" },
-  { id: 5, name: "JavaScript ES6+ & HTML5/CSS3 (Currently Working)", percent: 48, icon: "fa-brands fa-js" },
-  { id: 6, name: "React & Vite Frontends (Currently Working)", percent: 38, icon: "fa-brands fa-react" },
-  { id: 7, name: "AI / ML & LLM Engineering (Currently Working)", percent: 35, icon: "fa-solid fa-brain" },
-  { id: 8, name: "Git & GitHub Version Control (Currently Working)", percent: 50, icon: "fa-brands fa-git-alt" },
-  { id: 9, name: "SQL & Relational Databases (Currently Working)", percent: 38, icon: "fa-solid fa-database" }
+  { id: 1, name: "Python 3.13 & DSA Logic Optimization", percent: 92, icon: "fa-brands fa-python" },
+  { id: 2, name: "Data Structures & Stacks (Valid Parentheses, Rainwater)", percent: 90, icon: "fa-solid fa-code" },
+  { id: 3, name: "Web Technologies (HTML5, CSS3, JavaScript ES6+)", percent: 88, icon: "fa-brands fa-js" },
+  { id: 4, name: "C & Java Software Development", percent: 85, icon: "fa-brands fa-java" },
+  { id: 5, name: "Relational DBMS (MySQL & PostgreSQL)", percent: 84, icon: "fa-solid fa-database" },
+  { id: 6, name: "FastAPI & RESTful Web Systems", percent: 82, icon: "fa-solid fa-bolt" },
+  { id: 7, name: "AI / ML & Generative AI Systems", percent: 80, icon: "fa-solid fa-brain" },
+  { id: 8, name: "Git & GitHub Version Control", percent: 88, icon: "fa-brands fa-git-alt" }
 ];
 
 let deployedList = [
@@ -80,7 +79,7 @@ let deployedList = [
     id: 300,
     title: "Kashvi.dev Interactive Portfolio Engine",
     bannerSvg: INLINE_SVG_BANNERS.portfolio,
-    desc: "Production Cloud-Deployed interactive developer portfolio featuring 3D tilt mascot cards, multi-directional infinite scroll reveal animations, Admin PIN-protected CRUD controls, and an embedded CLI terminal.",
+    desc: "Production Cloud-Deployed interactive developer portfolio featuring 3D tilt mascot cards, multi-directional infinite scroll reveal animations, Admin Portal Gmail authentication, and an embedded CLI terminal.",
     tags: ["Cloud Deployed (Vercel)", "HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
     icon: "fa-address-card",
     codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
@@ -101,38 +100,46 @@ let deployedList = [
 let projectList = [
   {
     id: 100,
+    title: "DSA Stack Algorithm Optimization Suite",
+    category: "python",
+    bannerSvg: INLINE_SVG_BANNERS.algo,
+    desc: "Silicon University Internship — Developed complex optimized algorithms using stacks for valid parentheses checking, next/previous greater element, and trapping rainwater problem in Python.",
+    tags: ["Python", "DSA", "Stacks", "Algorithm Optimization", "Silicon University"],
+    icon: "fa-code-branch",
+    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
+  },
+  {
+    id: 101,
+    title: "Med-Tech Vital Signals Monitor",
+    category: "python",
+    bannerSvg: INLINE_SVG_BANNERS.tts,
+    desc: "Sparkup Summit (2024) — Proposed an innovative med-tech prototype to develop a smart wearable that monitors vital signals.",
+    tags: ["Med-Tech", "Hardware Prototype", "Sensors", "Sparkup Summit"],
+    icon: "fa-heart-pulse",
+    codeUrl: "https://github.com/kashvinayak20-debug"
+  },
+  {
+    id: 102,
+    title: "Multi-Directional Robo Race Vehicle",
+    category: "python",
+    bannerSvg: INLINE_SVG_BANNERS.math,
+    desc: "Robo Race (2024, 2025) — Built an autonomous robot car that can maneuver in all directions and withstand extreme environmental conditions.",
+    tags: ["Robotics", "Robo Race", "Hardware", "Automation"],
+    icon: "fa-car",
+    codeUrl: "https://github.com/kashvinayak20-debug"
+  },
+  {
+    id: 103,
     title: "Text-to-Speech LLM Model",
     category: "python",
     bannerSvg: INLINE_SVG_BANNERS.tts,
-    desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, natural speech synthesis, and audio signal processing.",
-    tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech", "Deep Learning"],
+    desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, speech synthesis, and audio signal processing.",
+    tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech"],
     icon: "fa-robot",
     codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
   },
   {
-    id: 101,
-    title: "Kashvi.dev Portfolio Engine",
-    category: "fullstack web",
-    bannerSvg: INLINE_SVG_BANNERS.portfolio,
-    desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets, animated mascot avatar, Admin PIN-protected CRUD manager, and embedded CLI terminal.",
-    tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
-    icon: "fa-address-card",
-    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
-    demoUrl: "https://spotty-hornets-grow.loca.lt"
-  },
-  {
-    id: 102,
-    title: "OmniCalc Pro",
-    category: "fullstack python",
-    bannerSvg: INLINE_SVG_BANNERS.math,
-    desc: "Advanced Full-Stack Mathematical Suite combining SymPy, NumPy, and SciPy calculus engines with an interactive 2D function grapher, matrix linear algebra solver, and statistical analyzer.",
-    tags: ["Python", "FastAPI", "SymPy", "NumPy", "Canvas 2D"],
-    icon: "fa-calculator",
-    codeUrl: "https://github.com/kashvinayak20-debug/omnicalc-pro",
-    demoUrl: "https://omnicalc-pro.onrender.com/"
-  },
-  {
-    id: 103,
+    id: 104,
     title: "IWT Pet Adoption System",
     category: "web fullstack",
     bannerSvg: INLINE_SVG_BANNERS.java,
@@ -142,45 +149,67 @@ let projectList = [
     codeUrl: "https://github.com/kashvinayak20-debug/iwt-pet-adoption-system"
   },
   {
-    id: 104,
-    title: "DecodeLabs Tasks Suite",
-    category: "python",
-    bannerSvg: INLINE_SVG_BANNERS.algo,
-    desc: "Algorithmic software engineering solutions, data structure implementations, and automated Python processing tasks.",
-    tags: ["Python", "Algorithms", "Data Structures", "Problem Solving"],
-    icon: "fa-code-branch",
-    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
+    id: 105,
+    title: "Kashvi.dev Portfolio Engine",
+    category: "fullstack web",
+    bannerSvg: INLINE_SVG_BANNERS.portfolio,
+    desc: "Dynamic glassmorphic developer portfolio featuring 3D tilt mascot cards, Admin Portal Gmail authentication, and embedded CLI terminal.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Admin Security"],
+    icon: "fa-address-card",
+    codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
+    demoUrl: "https://spotty-hornets-grow.loca.lt"
   }
 ];
 
 let timelineList = [
   {
     id: 201,
-    title: "Full-Stack & AI/ML/LLM Engineer",
-    subtitle: "Software & Artificial Intelligence Systems",
-    date: "2024 — Present (Currently Working)",
-    desc: "Architecting full-stack web applications, RESTful microservices, Large Language Models (LLMs), RAG pipelines, and automated MLOps systems."
+    title: "Bachelor of Technology in Computer Science & Engineering",
+    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.53",
+    date: "September, 2024 — Present",
+    desc: "Achieved academic excellence with CGPA 9.53. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
   },
   {
     id: 202,
-    title: "B.Tech in Computer Science & Engineering",
+    title: "DSA & Algorithm Engineering Intern",
     subtitle: "Silicon University",
-    date: "2024 — 2028 (Present)",
-    desc: "Specializing in Computer Science, Artificial Intelligence, Data Structures, Algorithms, Systems Architecture, and Software Engineering."
+    date: "2024 — Present",
+    desc: "Solid foundation in DSA using Python. Developed complex optimized algorithms using stacks (Valid Parentheses, Next/Previous Greater Element, Trapping Rainwater)."
   },
   {
     id: 203,
-    title: "Senior Secondary High School (Class XI - XII)",
-    subtitle: "Freedom International School",
-    date: "2022 — 2024",
-    desc: "Completed Senior Secondary Education with focus on Physics, Chemistry, Mathematics, and Computer Science."
+    title: "Python for Data Science Internship & Certification",
+    subtitle: "NPTEL — IIT Madras (Funded by MoE, Govt. of India)",
+    date: "2024",
+    desc: "Completed online internship course on Python for Data Science conducted by Indian Institute of Technology (IIT) Madras."
   },
   {
     id: 204,
-    title: "Secondary High School Education (Class I - X)",
-    subtitle: "St. Joseph's Girls' High School",
-    date: "2010 — 2022",
-    desc: "Completed Primary and Secondary High Schooling with Academic Excellence and Computer Fundamentals."
+    title: "Sparkup Summit & Robo Race Hackathons",
+    subtitle: "Innovation & Robotics Competitions",
+    date: "2024 — 2025",
+    desc: "Sparkup Summit (2024): Proposed Med-Tech smart wearable vital monitoring prototype. Robo Race (2024, 2025): Built multi-directional robot car."
+  },
+  {
+    id: 205,
+    title: "Generative AI Workshop",
+    subtitle: "AI for Students by Abhinav Devaguptapu",
+    date: "2024",
+    desc: "Hands-on workshop on building Generative AI applications, custom models, and LLM application pipelines."
+  },
+  {
+    id: 206,
+    title: "Higher Secondary Certification (Class XII)",
+    subtitle: "Freedom International School, Cuttack, Odisha — Score: 70.2%",
+    date: "April, 2022 — March, 2024",
+    desc: "Completed Senior Secondary High School Education with 70.2% score."
+  },
+  {
+    id: 207,
+    title: "Senior Secondary Certification (Class X)",
+    subtitle: "St. Josephs Girls High School, Cuttack, Odisha — Score: 85.16%",
+    date: "April, 2012 — March, 2022",
+    desc: "Completed Primary and Secondary High Schooling with 85.16% score."
   }
 ];
 
