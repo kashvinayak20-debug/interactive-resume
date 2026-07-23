@@ -477,8 +477,7 @@ function initAdminAuthSystem() {
   }
 
   function showLoginModal() {
-    const creds = getAdminCredentials();
-    emailInput.value = creds.email;
+    emailInput.value = "";
     passInput.value = "";
     hideAlert(loginAlert);
     if (loginModal) loginModal.classList.add("active");
@@ -490,8 +489,7 @@ function initAdminAuthSystem() {
 
   function showForgotModal() {
     hideLoginModal();
-    const creds = getAdminCredentials();
-    resetGmailInput.value = creds.email;
+    resetGmailInput.value = "";
     resetStep1.style.display = "block";
     resetStep2.style.display = "none";
     hideAlert(resetStatusAlert);
