@@ -59,6 +59,23 @@ const INLINE_SVG_BANNERS = {
       <text x="100" y="110" font-family="Outfit, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">Neural Text-to-Speech LLM</text>
       <text x="100" y="160" font-family="Outfit, sans-serif" font-size="22" font-weight="600" fill="#FF007A">Speech Synthesis & Audio Generation Model</text>
     </svg>
+  </div>`,
+  mini_llm: `<div class="project-banner-box">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="800" height="400" fill="#0A0E1A"/>
+      <path d="M 100 200 C 250 80, 550 320, 700 200" fill="none" stroke="#00F0FF" stroke-width="6"/>
+      <circle cx="400" cy="200" r="16" fill="#7000FF"/>
+      <text x="80" y="110" font-family="Outfit, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">Mini-LLM Self-Attention Engine</text>
+      <text x="80" y="160" font-family="Outfit, sans-serif" font-size="22" font-weight="600" fill="#00F0FF">PyTorch Transformer & LangChain From Scratch</text>
+    </svg>
+  </div>`,
+  roberta_llm: `<div class="project-banner-box">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="800" height="400" fill="#060914"/>
+      <circle cx="400" cy="200" r="110" fill="none" stroke="#FF007A" stroke-width="5" stroke-dasharray="10,10"/>
+      <text x="120" y="180" font-family="Outfit, sans-serif" font-size="34" font-weight="900" fill="#00FF85">LangChain & RoBERTa LLM</text>
+      <text x="120" y="230" font-family="Outfit, sans-serif" font-size="22" font-weight="600" fill="#FFFFFF">Pretrained Sentiment Intelligence Engine</text>
+    </svg>
   </div>`
 };
 
@@ -179,6 +196,26 @@ let projectList = [
     tags: ["Python", "DSA", "Algorithms", "DecodeLab", "Data Structures"],
     icon: "fa-certificate",
     codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
+  },
+  {
+    id: 107,
+    title: "Mini-LLM & LangChain Sentiment Engine (From Scratch)",
+    category: "fullstack python",
+    bannerSvg: INLINE_SVG_BANNERS.mini_llm,
+    desc: "Multi-class sentiment analysis engine built completely from scratch using PyTorch Scaled Dot-Product Self-Attention and wrapped in a LangChain Runnable pipeline.",
+    tags: ["Python", "PyTorch", "Self-Attention", "LangChain", "Streamlit"],
+    icon: "fa-brain",
+    codeUrl: "https://github.com/kashvinayak20-debug/sentiment-analysis-from-scratch"
+  },
+  {
+    id: 108,
+    title: "LangChain & RoBERTa Pretrained Sentiment Engine",
+    category: "fullstack python",
+    bannerSvg: INLINE_SVG_BANNERS.roberta_llm,
+    desc: "Deep learning multi-class sentiment intelligence engine leveraging Hugging Face Twitter-RoBERTa transformers integrated into a LangChain prompt template pipeline.",
+    tags: ["Python", "LangChain", "Hugging Face", "RoBERTa", "Streamlit"],
+    icon: "fa-robot",
+    codeUrl: "https://github.com/kashvinayak20-debug/sentiment-analysis-app"
   }
 ];
 

@@ -1,174 +1,154 @@
-# Kashvi.dev Portfolio — Line-by-Line Code Breakdown & Tutorial
+# 📘 Kashvi.dev Interactive Portfolio & Resume — Complete Codebase & Line-by-Line Explanation Guide
 
-This guide provides an exhaustive, line-by-line breakdown of every script, styling engine, and interactive feature in the **Kashvi.dev** developer portfolio codebase.
-
----
-
-## 📑 Table of Contents
-1. [Main Application Controller (`js/app.js`)](#1-main-application-controller-jsappjs)
-2. [Particle Canvas Physics Engine (`js/particles.js`)](#2-particle-canvas-physics-engine-jsparticlesjs)
-3. [Movable Skill Playground (`js/draggable.js`)](#3-movable-skill-playground-jsdraggablejs)
-4. [Developer CLI Terminal (`js/terminal.js`)](#4-developer-cli-terminal-jsterminaljs)
-5. [Design System & Theme Engine (`css/styles.css`)](#5-design-system--theme-engine-cssstylescss)
+Welcome to the complete code explanation guide for **Kashvi.dev Interactive Portfolio & Resume Engine**. This document provides an exhaustive, line-by-line and section-by-section breakdown of every HTML structure, CSS styling rule, and JavaScript logic file in your repository.
 
 ---
 
-## 1. Main Application Controller (`js/app.js`)
+## 📂 Project Structure Overview
 
-### State Initialization & Data Schemas
-```javascript
- 1: let isAdmin = false;
- 2: 
- 3: let skillList = [
- 4:   { id: 1, name: "Python & SymPy Engine", percent: 95, icon: "fa-brands fa-python" },
- 5:   { id: 2, name: "FastAPI & REST APIs", percent: 92, icon: "fa-solid fa-bolt" },
- 6:   ...
-12: ];
 ```
-- **Line 1**: Declares `isAdmin` boolean state (default `false`). When `false`, all Edit, Delete, and "+ Add" controls are hidden from public visitors.
-- **Lines 3–12**: `skillList` array of objects storing technical skills, completion percentages (0–100%), and FontAwesome icon classes.
-
-```javascript
-14: let projectList = [
-15:   {
-16:     id: 100,
-17:     title: "Kashvi.dev Portfolio Engine",
-18:     category: "fullstack web",
-19:     desc: "Dynamic glassmorphic developer portfolio featuring movable interactive skill widgets...",
-20:     tags: ["HTML5", "Glassmorphism CSS", "ES6+ JavaScript", "Admin Security"],
-21:     icon: "fa-address-card",
-22:     codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume"
-23:   },
-24:   ...
-35: ];
+interactive-resume/
+├── index.html           # Main Semantic HTML5 Webpage Structure & Modals
+├── css/
+│   └── styles.css       # Complete Design System, Glassmorphism, Animations & Print CSS
+├── js/
+│   ├── app.js           # Core Application Logic, Admin Auth, State Persistence, PDF Generator
+│   ├── particles.js     # Animated Cyberpunk Particle Background Canvas Engine
+│   ├── draggable.js     # Touch & Pointer Interactive Skill Chips Playground
+│   └── terminal.js      # Interactive Developer Command Line Interface (CLI) Engine
+└── CODE_EXPLANATION.md  # Detailed Line-by-Line Architectural Guide
 ```
-- **Lines 14–35**: Array of featured project cards containing title, category filter tags, descriptions, technology stack arrays, and verified GitHub repository URLs.
 
 ---
 
-### DOM Initialization Lifecycle
-```javascript
-75: document.addEventListener("DOMContentLoaded", () => {
-76:   initThemePicker();
-77:   init3DTiltCard();
-78:   initProjectFilters();
-79:   initLiveEditorModal();
-80: 
-81:   renderSkillProgressBars();
-82:   renderProjects();
-83:   renderTimeline();
-84: 
-85:   initAddSkillModal();
-86:   initProjectModal();
-87:   initTimelineModal();
-88:   initAdminKeyToggle();
-89: });
-```
-- **Lines 75–89**: Waits for the browser HTML parsing to complete, then initializes theme switchers, 3D tilt tracking, CRUD renderers, and the Admin Passcode controller.
+## 📄 1. `index.html` — Webpage Layout & Component Breakdown
+
+### Head Section (Lines 1 — 43)
+- **Lines 1-6**: Declares `<!DOCTYPE html>` HTML5 standard with `<html lang="en">` and UTF-8 encoding.
+- **Lines 8-37**: SEO & Social Metadata tags. Includes Google Search Console Verification ID (`googled4ef04c392d898fc`), meta description, keywords, OpenGraph card meta tags for LinkedIn/Twitter previews, and JSON-LD structured schema markup (`Person` schema for Kashvi Nayak).
+- **Lines 40-42**: Imports FontAwesome v6.5.1 icons CDN for clean UI icons and links to `css/styles.css`.
+
+### Visual FX & Background Canvas (Lines 44 — 54)
+- **Line 47**: `<canvas id="particlesCanvas"></canvas>` — Renders the dynamic moving network node particle background driven by `js/particles.js`.
+- **Line 50**: `<div class="cursor-glow"></div>` — Ambient glow circle following mouse movements.
+- **Lines 53-54**: Glassmorphic ambient color blobs (`blob-1`, `blob-2`) generating cyan/purple background gradients.
+
+### Sticky Navigation Header (Lines 57 — 94)
+- **Lines 58-61**: Brand Logo (`Kashvi.dev`) with a pulsating cyan dot.
+- **Lines 63-71**: Navigation links (`#hero`, `#deployed`, `#skills-section`, `#projects`, `#certificates`, `#timeline`, `#terminal`) enabling smooth-scrolling page navigation.
+- **Lines 73-93**: Header Controls:
+  - Theme picker dropdown (`#themeSelect`) for switching between Cyberpunk Dark, Synthwave, Emerald, and Obsidian.
+  - Admin Portal toggle button (`#adminToggleBtn`).
+  - Profile Editor trigger (`#openEditorBtn`, visible in admin mode).
+  - Download PDF Resume button (`onclick="downloadPDF()"`).
+
+### Hero Section & Developer Mascot (Lines 100 — 179)
+- **Lines 101-125**: Headline, executive bio (`#dispBio`), location badge (`Bhubaneswar, Odisha`), education badge (`B.Tech Computer Science`), and language badge (`English, Hindi & Odia`).
+- **Lines 127-130**: Quick action call-to-action buttons linking to Cloud Apps and GitHub Projects.
+- **Lines 134-178**: Interactive 3D Developer Mascot Widget. Renders an animated SVG avatar card with floating tech badges (`<FullStack/>`, `AI / ML`) and direct contact buttons.
+
+### Page Content Sections (Lines 183 — 317)
+- **Lines 183-193**: `#deployed` — Grid container (`#deployedProjectsContainer`) rendering live cloud applications.
+- **Lines 197-207**: `#skills-section` — Container (`#skillsBarsContainer`) rendering technical skill progress bars with percentage values.
+- **Lines 211-233**: `#skills` — Movable Skill Playground canvas (`.draggable-playground`) containing draggable skill chips (`.skill-chip-movable`).
+- **Lines 237-255**: `#projects` — Category filters (All, Full-Stack, Python, Web) and Grid container (`#projectsContainer`) for GitHub repository cards.
+- **Lines 259-269**: `#certificates` — Verified credentials grid (`#certificatesContainer`) showing 8 engineering & internship certificates.
+- **Lines 273-283**: `#timeline` — Vertical experience timeline (`#timelineContainer`) prioritizing active working roles and academic credentials.
+- **Lines 287-315**: `#terminal` — Interactive CLI terminal card (`.terminal-card`) with output log screen (`#termOutput`) and command prompt input (`#termInput`).
+
+### Admin Dialog Modals (Lines 320 — 737)
+- Modals for adding/editing Skills (`#addSkillModal`), Projects (`#addProjectModal`), Deployed Apps (`#addDeployedModal`), Timeline Entries (`#addTimelineModal`), Certificates (`#addCertModal`), Profile Bio Editor (`#editModal`), Admin Login (`#loginModal`), and Forgot Password (`#forgotPasswordModal`).
 
 ---
 
-### Admin Passcode Access Control
-```javascript
-92: function initAdminKeyToggle() {
-93:   const btn = document.getElementById("adminToggleBtn");
-94:   if (!btn) return;
-95: 
-96:   btn.addEventListener("click", () => {
-97:     if (isAdmin) {
-98:       isAdmin = false;
-99:       document.body.classList.remove("admin-mode");
-100:      btn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Mode`;
-101:    } else {
-102:      const pin = prompt("Enter Project Head Passcode:");
-103:      if (pin === "1234") {
-104:        isAdmin = true;
-105:        document.body.classList.add("admin-mode");
-106:        btn.innerHTML = `<i class="fa-solid fa-lock-open" style="color: var(--accent-emerald);"></i> Admin Active`;
-107:      }
-108:    }
-109:  });
-110: }
-```
-- **Lines 92–110**: Listens to clicks on the Admin Mode lock button. Prompts for secret PIN (`1234`). When verified, adds `admin-mode` CSS class to `document.body`, revealing all `.admin-only` CRUD controls live.
+## 🎨 2. `css/styles.css` — Design System & Print CSS Explanation
+
+### CSS Custom Variables & Design System (Lines 1 — 35)
+- Defines design tokens for background colors (`--bg-primary`, `--bg-secondary`), glassmorphism borders (`--border-glass`, `--border-glow`), cyan/purple accents, typography fonts (`Inter`, `Fira Code`), and smooth transition timings (`0.3s ease`).
+
+### Theme Variations (Lines 36 — 75)
+- Class-based theme overrides:
+  - `body.theme-synthwave`: Warm neon pink/purple palette.
+  - `body.theme-emerald`: Deep forest glass green palette.
+  - `body.theme-obsidian`: Ultra-dark jet-black aesthetic.
+
+### Layout & Animations (Lines 76 — 350)
+- **Glassmorphism**: Backdrop blur filters (`backdrop-filter: blur(16px)`) applied to `.project-card`, `.modal-card`, and header navigation.
+- **3D Tilt Preservation**: `transform-style: preserve-3d` and `will-change: transform` prevent border vibration or text jittering during hover.
+- **Scroll Reveal Animations**: Classes `.reveal-item`, `.reveal-from-left`, `.reveal-from-right`, `.reveal-from-top`, `.reveal-from-bottom` control CSS entrance transitions.
+
+### Executive PDF Print CSS (Lines 625 — 745)
+- `@media print`: Hides interactive webpage UI elements (`header`, background particle canvas, buttons, modals) and reveals `#printableResumeArea`.
+- `@page { size: A4 portrait; margin: 1.2cm; }`: Formats printed PDF pages into standard A4 document layout with clean typography and custom section dividers.
 
 ---
 
-### Dynamic Projects Rendering & Delete/Edit Operations
-```javascript
-210: function renderProjects() {
-211:   const container = document.getElementById("projectsContainer");
-212:   container.innerHTML = projectList.map((p) => `
-213:     <div class="project-card" data-category="${p.category}">
-214:       <h3>${p.title}</h3>
-215:       <p>${p.desc}</p>
-216:       <a href="${p.codeUrl}" target="_blank" class="btn-primary">View GitHub Code</a>
-217:       <div class="crud-actions admin-only">
-218:         <button class="btn-edit" onclick="editProject(${p.id})">Edit Project</button>
-219:         <button class="btn-danger" onclick="deleteProject(${p.id})">Delete</button>
-220:       </div>
-221:     </div>
-222:   `).join("");
-223: }
-```
-- **Lines 210–223**: Dynamically generates project cards using ES6 template literals. Connects direct GitHub links and appends Admin-only Edit and Delete action triggers.
+## ⚡ 3. `js/app.js` — Core JavaScript Engine Line-by-Line Explanation
 
+### Data State Arrays (Lines 1 — 316)
+- **`skillList`**: Holds technical skill objects with `id`, `name`, `percent`, `icon`.
+- **`deployedList`**: Stores cloud-deployed live applications with `demoUrl`, `codeUrl`, `tags`, `desc`.
+- **`projectList`**: Stores GitHub repositories and software engineering projects with tags and category filters.
+- **`certificateList`**: Array of 8 verified certificates (DRDO, LLM Python, DecodeLabs, IIT Madras, Generative AI, NIRMAN 5.0, NIRMAN 4.0, SparkUp Summit).
+- **`timelineList`**: Array of career experience and education entries ordered with active roles at top and B.Tech entry directly above Class XI – XII.
+
+### Initialization & Event Listeners (Lines 318 — 345)
+- Listens for `DOMContentLoaded` to load saved state (`loadStateFromLocalStorage()`), initialize theme pickers, 3D tilt effects, project filters, CRUD modals, and render all UI components.
+
+### 60fps Scroll Reveal Engine (Lines 347 — 370)
 ```javascript
-225: function deleteProject(id) {
-226:   if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
-227:   projectList = projectList.filter(p => p.id !== id);
-228:   renderProjects();
-229: }
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target); // Prevents layout oscillation / card vibration
+      }
+    });
+  }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
 ```
-- **Lines 225–229**: Verifies admin authorization before filtering out target project by `id` and re-rendering the DOM.
+- Uses `IntersectionObserver` to trigger scroll entrance animations. Calling `observer.unobserve(entry.target)` locks revealed cards in place and prevents flickering during slow scrolling.
+
+### Admin Authentication & Password Reset (Lines 550 — 750)
+- **Default Credentials**: `kashvinayak20-debug` / `kashvinayak20@gmail.com` (password `admin123`).
+- **Forgot Password Dispatch**:
+  - `fetch("https://formsubmit.co/ajax/" + email, ...)` sends a real 6-digit verification code to `kashvinayak20@gmail.com` in the background.
+  - Verification code is hidden from the UI to protect security.
+  - User enters the 6-digit code received in their Gmail inbox to update their password.
+
+### Rendering Components (Lines 880 — 1280)
+- **`renderProjects()`**: Renders project cards with category filters, live demo links, and GitHub code buttons.
+- **`renderCertificates()`**: Renders all 8 verified credentials in a responsive grid layout.
+- **`renderTimeline()`**: Sorts items so `Currently Working` roles appear at the top, followed by certifications, B.Tech CSE, and school entries in Roman numerals (`Class XI – XII`, `Class I – X`).
+
+### State Persistence & PDF Generator (Lines 1298 — 1545)
+- **`saveStateToLocalStorage()`**: Saves skills, projects, deployed apps, certificates, timeline, and bio profile into `localStorage` so changes persist across page refreshes.
+- **`generatePrintableResumeHTML()`**: Populates `#printableResumeArea` with structured executive resume sections (Bio, Skills, Languages, Experience, Certifications, Deployed Projects with `[DEPLOYED]` indicators).
+- **`downloadPDF()`**: Invokes `generatePrintableResumeHTML()` and triggers `window.print()` for instant A4 PDF resume generation.
 
 ---
 
-## 2. Particle Canvas Physics Engine (`js/particles.js`)
+## 💻 4. `js/particles.js` — Particle Background Animation Engine
 
-```javascript
- 1: const canvas = document.getElementById("particlesCanvas");
- 2: const ctx = canvas.getContext("2d");
- 3: let particles = [];
- 4: 
- 5: class Particle {
- 6:   constructor() {
- 7:     this.x = Math.random() * canvas.width;
- 8:     this.y = Math.random() * canvas.height;
- 9:     this.vx = (Math.random() - 0.5) * 1.2;
-10:     this.vy = (Math.random() - 0.5) * 1.2;
-11:     this.radius = Math.random() * 2 + 1;
-12:   }
-13:   update() {
-14:     this.x += this.vx; this.y += this.vy;
-15:     if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-16:     if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-17:   }
-18: }
-```
-- **Lines 1–18**: Initializes an HTML5 Canvas 2D context. Spawns floating particles with random velocity vectors (`vx`, `vy`) and bounce physics on canvas boundaries.
+- **Canvas Context Initialization**: Obtains 2D rendering context of `#particlesCanvas` and dynamically resizes on window resize events.
+- **Particle Objects**: Spawns 70 network nodes moving at random velocities.
+- **Connecting Lines**: Calculates distance between particles using Pythagorean theorem (`dx*dx + dy*dy`). Draws connecting lines when distance is less than 120px, creating a glowing neural network effect.
 
 ---
 
-## 3. Movable Skill Playground (`js/draggable.js`)
+## 🖐️ 5. `js/draggable.js` — Interactive Drag & Drop Skill Chips
 
-```javascript
- 1: function initDraggablePlayground() {
- 2:   const chips = document.querySelectorAll(".skill-chip-movable");
- 3:   chips.forEach(chip => {
- 4:     let isDragging = false, offsetX = 0, offsetY = 0;
- 5:     chip.addEventListener("mousedown", (e) => {
- 6:       isDragging = true;
- 7:       offsetX = e.clientX - chip.getBoundingClientRect().left;
- 8:       offsetY = e.clientY - chip.getBoundingClientRect().top;
- 9:     });
-10:     window.addEventListener("mousemove", (e) => {
-11:       if (!isDragging) return;
-12:       chip.style.left = `${e.clientX - playgroundRect.left - offsetX}px`;
-13:       chip.style.top = `${e.clientY - playgroundRect.top - offsetY}px`;
-14:     });
-15:     window.addEventListener("mouseup", () => isDragging = false);
-16:   });
-17: }
-```
-- **Lines 1–17**: Attaches interactive mouse drag event listeners to skill chips, calculating cursor offset for smooth freeform drag-and-drop repositioning anywhere inside the playground container.
+- **Pointer & Touch Listeners**: Attaches `mousedown`, `mousemove`, `mouseup`, `touchstart`, `touchmove`, `touchend` event listeners to `.skill-chip-movable` elements.
+- **Position Tracking**: Computes relative offsets `e.clientX - initialX` and updates `element.style.left` / `element.style.top` in real-time, allowing free movement across the playground.
+
+---
+
+## 💻 6. `js/terminal.js` — Interactive Developer CLI Terminal Engine
+
+- **Command Processor**: Processes input commands (`help`, `skills`, `projects`, `contact`, `theme`, `clear`).
+- **Terminal Output**: Appends command responses to `#termOutput` and automatically scrolls down to the latest line.
+
+---
+
+## 💡 Summary
+This codebase is engineered to be **modular**, **performant (60fps)**, **fully persistent (`localStorage`)**, **SEO-optimized**, and **production-ready**. You can modify data arrays in `js/app.js` or use the built-in Admin Portal directly on your live website!
