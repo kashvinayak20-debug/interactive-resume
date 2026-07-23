@@ -165,9 +165,9 @@ let timelineList = [
   {
     id: 201,
     title: "Bachelor of Technology in Computer Science & Engineering",
-    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.53",
+    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.55",
     date: "September, 2024 — Present",
-    desc: "Achieved academic excellence with CGPA 9.53. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
+    desc: "Achieved academic excellence with CGPA 9.55. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
   },
   {
     id: 202,
