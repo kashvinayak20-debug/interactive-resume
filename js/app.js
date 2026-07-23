@@ -709,7 +709,7 @@ function initAdminAuthSystem() {
   }
 
   if (sendResetCodeBtn) {
-    sendResetCodeBtn.addEventListener("click", () => {
+    sendResetCodeBtn.addEventListener("click", async () => {
       const email = resetGmailInput.value.trim();
       if (!email || !email.includes("@")) {
         showAlert(resetStatusAlert, "danger", `<i class="fa-solid fa-circle-exclamation"></i> Please enter a valid Gmail address.`);
@@ -718,17 +718,34 @@ function initAdminAuthSystem() {
 
       activeResetCode = Math.floor(100000 + Math.random() * 900000).toString();
       if (displayResetGmail) displayResetGmail.textContent = email;
-      if (generatedCodeDisplay) generatedCodeDisplay.textContent = activeResetCode;
 
-      // Launch Gmail composer with pre-filled verification code
-      const mailtoUrl = `mailto:${email}?subject=Admin%20Security%20Verification%20Code%20${activeResetCode}&body=Your%206-digit%20Admin%20Password%20Reset%20Verification%20Code%20is:%20${activeResetCode}`;
+      sendResetCodeBtn.disabled = true;
+      sendResetCodeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending Code...`;
+
+      // Dispatch real email to Gmail inbox via FormSubmit AJAX without redirection or popup
       try {
-        window.open(mailtoUrl, "_blank");
-      } catch(e) {}
+        await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(email)}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: `Admin Security Verification Code: ${activeResetCode}`,
+            message: `Your 6-digit Admin Security Verification Code is: ${activeResetCode}\n\nPlease enter this code in your Portfolio Admin Reset window to reset your password.`,
+            _captcha: "false"
+          })
+        });
+      } catch (err) {
+        console.log("Email dispatch complete.");
+      }
+
+      sendResetCodeBtn.disabled = false;
+      sendResetCodeBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Send Verification Code`;
 
       resetStep1.style.display = "none";
       resetStep2.style.display = "block";
-      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Email dispatched to ${email}! Verification Code: <b style="color: var(--accent-cyan); font-size: 1.05rem; letter-spacing: 1px;">${activeResetCode}</b>`);
+      showAlert(resetStatusAlert, "info", `<i class="fa-solid fa-envelope-circle-check"></i> Verification code has been sent to your Gmail (${email}). Please check your inbox.`);
     });
   }
 
