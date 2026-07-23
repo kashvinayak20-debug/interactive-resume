@@ -644,6 +644,40 @@
     </div>
   </div>
 
+  <!-- MODAL 9: ADMIN LOGOUT & STATUS MODAL -->
+  <div id="adminLogoutModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px; text-align: center;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--accent-emerald);">
+          <i class="fa-solid fa-user-shield"></i> Admin Session Active
+        </h3>
+        <button id="closeAdminLogoutBtn" class="btn-secondary" style="padding: 0.4rem 0.8rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div style="background: rgba(0, 255, 133, 0.08); border: 1px solid rgba(0, 255, 133, 0.3); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
+        <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(0, 255, 133, 0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem auto;">
+          <i class="fa-solid fa-lock-open" style="font-size: 1.5rem; color: var(--accent-emerald);"></i>
+        </div>
+        <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Log Out of Admin Mode?</h4>
+        <p style="color: var(--text-sub); font-size: 0.88rem; line-height: 1.4;">
+          Logged in as: <b id="loggedInAdminEmail" style="color: var(--accent-cyan);">kashvinayak20@gmail.com</b>
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">
+          Logging out will hide all edit/delete buttons and lock CRUD controls.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button type="button" id="confirmLogoutBtn" class="btn-danger" style="flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.95rem; border-radius: 12px; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-right-from-bracket"></i> Log Out Now
+        </button>
+        <button type="button" id="cancelLogoutBtn" class="btn-secondary" style="flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.95rem; border-radius: 12px;">
+          Stay Logged In
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript Controllers -->
   <script src="js/particles.js"></script>
   <script src="js/draggable.js"></script>

@@ -437,20 +437,44 @@ function initAdminAuthSystem() {
   const toggleNewPassBtn = document.getElementById("toggleNewPassBtn");
   const saveNewPassBtn = document.getElementById("saveNewPasswordBtn");
 
+  const logoutModal = document.getElementById("adminLogoutModal");
+  const closeLogoutBtn = document.getElementById("closeAdminLogoutBtn");
+  const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+  const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+  const loggedInAdminEmail = document.getElementById("loggedInAdminEmail");
+
   if (!adminBtn) return;
 
   adminBtn.addEventListener("click", () => {
     if (isAdmin) {
-      if (confirm("Are you sure you want to log out of Admin Mode?")) {
-        isAdmin = false;
-        document.body.classList.remove("admin-mode");
-        adminBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Portal`;
-        alert("Logged out successfully. You are now in Visitor View.");
-      }
+      showLogoutModal();
     } else {
       showLoginModal();
     }
   });
+
+  function showLogoutModal() {
+    const creds = getAdminCredentials();
+    if (loggedInAdminEmail) loggedInAdminEmail.textContent = creds.email;
+    if (logoutModal) logoutModal.classList.add("active");
+  }
+
+  function hideLogoutModal() {
+    if (logoutModal) logoutModal.classList.remove("active");
+  }
+
+  if (closeLogoutBtn) closeLogoutBtn.addEventListener("click", hideLogoutModal);
+  if (cancelLogoutBtn) cancelLogoutBtn.addEventListener("click", hideLogoutModal);
+
+  if (confirmLogoutBtn) {
+    confirmLogoutBtn.addEventListener("click", () => {
+      isAdmin = false;
+      document.body.classList.remove("admin-mode");
+      adminBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Admin Portal`;
+      hideLogoutModal();
+      alert("Logged out successfully! You are now in Visitor View.");
+    });
+  }
 
   function showLoginModal() {
     const creds = getAdminCredentials();
