@@ -717,8 +717,8 @@ function initAdminAuthSystem() {
       }
 
       activeResetCode = Math.floor(100000 + Math.random() * 900000).toString();
-      displayResetGmail.textContent = email;
-      generatedCodeDisplay.textContent = activeResetCode;
+      if (displayResetGmail) displayResetGmail.textContent = email;
+      if (generatedCodeDisplay) generatedCodeDisplay.textContent = activeResetCode;
 
       resetStep1.style.display = "none";
       resetStep2.style.display = "block";
