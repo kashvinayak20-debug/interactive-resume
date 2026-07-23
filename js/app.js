@@ -1103,7 +1103,17 @@ function renderTimeline() {
   const container = document.getElementById("timelineContainer");
   if (!container) return;
 
-  container.innerHTML = timelineList.map((t, idx) => `
+  // Keep Currently Working items at top of career timeline (except B.Tech College)
+  const sortedTimeline = [...timelineList].sort((a, b) => {
+    const aIsWorking = a.date && a.date.includes("Currently Working") && !a.title.toLowerCase().includes("bachelor");
+    const bIsWorking = b.date && b.date.includes("Currently Working") && !b.title.toLowerCase().includes("bachelor");
+    
+    if (aIsWorking && !bIsWorking) return -1;
+    if (!aIsWorking && bIsWorking) return 1;
+    return 0;
+  });
+
+  container.innerHTML = sortedTimeline.map((t, idx) => `
     <div class="project-card reveal-item ${idx % 2 === 0 ? 'reveal-from-left' : 'reveal-from-right'}">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan);">${t.title}</h3>
