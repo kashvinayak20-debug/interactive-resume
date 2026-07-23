@@ -1501,9 +1501,9 @@ function generatePrintableResumeHTML() {
 
     <div class="print-section-title">Languages</div>
     <div class="print-skills-list">
-      <div><b>• English:</b> Proficient</div>
-      <div><b>• Hindi:</b> Native</div>
-      <div><b>• Odia:</b> Native</div>
+      <div><b>• English</b></div>
+      <div><b>• Hindi</b></div>
+      <div><b>• Odia</b></div>
     </div>
 
     <div class="print-section-title">Career & Technical Experience</div>
