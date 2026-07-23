@@ -185,11 +185,11 @@ let projectList = [
 let certificateList = [
   {
     id: 400,
-    title: "LLM Architecture & Engineering using Python Certificate",
+    title: "LLM using Python Certificate",
     issuer: "Silicon University, Bhubaneswar",
     date: "2026",
     badge: "LLM & Python Certification",
-    desc: "Official certification awarded by Silicon University for designing, fine-tuning, and deploying Large Language Model (LLM) architectures and neural systems using Python.",
+    desc: "Official certification awarded by Silicon University for Large Language Models (LLM) using Python.",
     icon: "fa-brain",
     color: "var(--accent-cyan)"
   },
@@ -238,10 +238,10 @@ let certificateList = [
 let timelineList = [
   {
     id: 198,
-    title: "LLM Systems & Python Engineering Certification",
+    title: "LLM using Python Certification",
     subtitle: "Silicon University, Bhubaneswar",
     date: "2026",
-    desc: "Certified in Large Language Models (LLMs), neural networks, and generative AI architecture using Python 3 at Silicon University."
+    desc: "Completed certification course on Large Language Models (LLM) using Python at Silicon University."
   },
   {
     id: 199,
@@ -1311,14 +1311,18 @@ function loadStateFromLocalStorage() {
   if (deployed) deployedList = JSON.parse(deployed);
   if (certs) {
     certificateList = JSON.parse(certs);
-    if (!certificateList.some(c => c.title && c.title.includes("LLM Architecture & Engineering using Python"))) {
+    const item = certificateList.find(c => c.id === 400 || (c.title && c.title.includes("LLM")));
+    if (item) {
+      item.title = "LLM using Python Certificate";
+      item.desc = "Official certification awarded by Silicon University for Large Language Models (LLM) using Python.";
+    } else {
       certificateList.unshift({
         id: 400,
-        title: "LLM Architecture & Engineering using Python Certificate",
+        title: "LLM using Python Certificate",
         issuer: "Silicon University, Bhubaneswar",
         date: "2026",
         badge: "LLM & Python Certification",
-        desc: "Official certification awarded by Silicon University for designing, fine-tuning, and deploying Large Language Model (LLM) architectures and neural systems using Python.",
+        desc: "Official certification awarded by Silicon University for Large Language Models (LLM) using Python.",
         icon: "fa-brain",
         color: "var(--accent-cyan)"
       });
@@ -1326,13 +1330,17 @@ function loadStateFromLocalStorage() {
   }
   if (timeline) {
     timelineList = JSON.parse(timeline);
-    if (!timelineList.some(t => t.title && t.title.includes("LLM Systems & Python"))) {
+    const item = timelineList.find(t => t.id === 198 || (t.title && t.title.includes("LLM")));
+    if (item) {
+      item.title = "LLM using Python Certification";
+      item.desc = "Completed certification course on Large Language Models (LLM) using Python at Silicon University.";
+    } else {
       timelineList.unshift({
         id: 198,
-        title: "LLM Systems & Python Engineering Certification",
+        title: "LLM using Python Certification",
         subtitle: "Silicon University, Bhubaneswar",
         date: "2026",
-        desc: "Certified in Large Language Models (LLMs), neural networks, and generative AI architecture using Python 3 at Silicon University."
+        desc: "Completed certification course on Large Language Models (LLM) using Python at Silicon University."
       });
     }
   }
