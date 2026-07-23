@@ -301,17 +301,17 @@ let timelineList = [
   },
   {
     id: 207,
-    title: "Higher Secondary Certification (Class XII)",
+    title: "Higher Secondary Certification (Class XI – XII)",
     subtitle: "Freedom International School, Cuttack, Odisha — Score: 70.2%",
     date: "April, 2022 — March, 2024",
-    desc: "Completed Senior Secondary High School Education with 70.2% score."
+    desc: "Completed Higher Secondary High School Education (Class XI – XII) with 70.2% score."
   },
   {
     id: 208,
-    title: "Senior Secondary Certification (Class X)",
+    title: "Senior Secondary Certification (Class I – X)",
     subtitle: "St. Josephs Girls High School, Cuttack, Odisha — Score: 85.16%",
     date: "April, 2012 — March, 2022",
-    desc: "Completed Primary and Secondary High Schooling with 85.16% score."
+    desc: "Completed Primary and Senior Secondary Schooling (Class I – X) with 85.16% score."
   }
 ];
 
