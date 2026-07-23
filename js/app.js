@@ -237,13 +237,6 @@ let certificateList = [
 
 let timelineList = [
   {
-    id: 198,
-    title: "LLM using Python Certification",
-    subtitle: "Silicon University, Bhubaneswar",
-    date: "2026",
-    desc: "Completed certification course on Large Language Models (LLM) using Python at Silicon University."
-  },
-  {
     id: 199,
     title: "Full-Stack, AI / ML & LLM Engineering",
     subtitle: "AI / ML Systems & Large Language Model Architecture",
@@ -265,11 +258,11 @@ let timelineList = [
     desc: "Completed research internship at Defense Research & Development Organization (DRDO) focusing on Large Language Models (LLMs), AI model architecture, technical documentation, and research publishing."
   },
   {
-    id: 202,
-    title: "Bachelor of Technology in Computer Science & Engineering",
-    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.55",
-    date: "September, 2024 — Present",
-    desc: "Achieved academic excellence with CGPA 9.55. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
+    id: 198,
+    title: "LLM using Python Certification",
+    subtitle: "Silicon University, Bhubaneswar",
+    date: "2026",
+    desc: "Completed certification course on Large Language Models (LLM) using Python at Silicon University."
   },
   {
     id: 203,
@@ -298,6 +291,13 @@ let timelineList = [
     subtitle: "AI for Students by Abhinav Devaguptapu",
     date: "2024",
     desc: "Hands-on workshop on building Generative AI applications, custom models, and LLM application pipelines."
+  },
+  {
+    id: 202,
+    title: "Bachelor of Technology in Computer Science & Engineering",
+    subtitle: "Silicon University, Bhubaneswar, Odisha — CGPA: 9.55",
+    date: "September, 2024 — Present",
+    desc: "Achieved academic excellence with CGPA 9.55. Specialized in Data Structures, Algorithms, Software Engineering, Web Systems, and Database Architectures."
   },
   {
     id: 207,
@@ -1103,15 +1103,10 @@ function renderTimeline() {
   const container = document.getElementById("timelineContainer");
   if (!container) return;
 
-  // Keep Currently Working items at top of career timeline (except B.Tech College)
-  const sortedTimeline = [...timelineList].sort((a, b) => {
-    const aIsWorking = a.date && a.date.includes("Currently Working") && !a.title.toLowerCase().includes("bachelor");
-    const bIsWorking = b.date && b.date.includes("Currently Working") && !b.title.toLowerCase().includes("bachelor");
-    
-    if (aIsWorking && !bIsWorking) return -1;
-    if (!aIsWorking && bIsWorking) return 1;
-    return 0;
-  });
+  // Keep Currently Working items at top, then render remaining items in array order (B.Tech directly above Class XII)
+  const workingRoles = timelineList.filter(t => t.date && t.date.includes("Currently Working"));
+  const nonWorkingRoles = timelineList.filter(t => !(t.date && t.date.includes("Currently Working")));
+  const sortedTimeline = [...workingRoles, ...nonWorkingRoles];
 
   container.innerHTML = sortedTimeline.map((t, idx) => `
     <div class="project-card reveal-item ${idx % 2 === 0 ? 'reveal-from-left' : 'reveal-from-right'}">
