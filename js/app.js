@@ -1499,6 +1499,13 @@ function generatePrintableResumeHTML() {
       ${skillList.map(s => `<div><b>• ${s.name}</b></div>`).join("")}
     </div>
 
+    <div class="print-section-title">Languages</div>
+    <div class="print-skills-list">
+      <div><b>• English:</b> Proficient</div>
+      <div><b>• Hindi:</b> Native</div>
+      <div><b>• Odia:</b> Native</div>
+    </div>
+
     <div class="print-section-title">Career & Technical Experience</div>
     ${sortedTimeline.map(t => `
       <div class="print-item">
