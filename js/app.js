@@ -214,6 +214,8 @@ let timelineList = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadStateFromLocalStorage();
+
   initThemePicker();
   init3DTiltCard();
   initProjectFilters();
@@ -325,13 +327,14 @@ function renderDeployedProjects() {
 }
 
 function deleteDeployedProject(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   deployedList = deployedList.filter(p => p.id !== id);
   renderDeployedProjects();
+  saveStateToLocalStorage();
 }
 
 function editDeployedProject(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   const p = deployedList.find(item => item.id === id);
   if (!p) return;
 
@@ -343,6 +346,7 @@ function editDeployedProject(id) {
     const newDemo = prompt("Edit Live Cloud Demo URL:", p.demoUrl);
     if (newDemo !== null && newDemo.trim() !== "") p.demoUrl = newDemo.trim();
     renderDeployedProjects();
+    saveStateToLocalStorage();
   }
 }
 
@@ -375,6 +379,7 @@ function initAddDeployedModal() {
         codeUrl: codeUrl || "https://github.com/kashvinayak20-debug"
       });
       renderDeployedProjects();
+      saveStateToLocalStorage();
       modal.classList.remove("active");
       document.getElementById("depTitle").value = "";
       document.getElementById("depDesc").value = "";
@@ -726,22 +731,28 @@ function renderSkillProgressBars() {
 }
 
 function deleteSkill(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   skillList = skillList.filter(s => s.id !== id);
   renderSkillProgressBars();
+  saveStateToLocalStorage();
 }
 
 function editSkill(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   const item = skillList.find(s => s.id === id);
   if (!item) return;
 
+  const newName = prompt(`Edit skill name:`, item.name);
+  if (newName !== null && newName.trim() !== "") {
+    item.name = newName.trim();
+  }
   const newPerc = prompt(`Edit percentage for "${item.name}" (0 - 100):`, item.percent);
   if (newPerc !== null) {
     const val = parseInt(newPerc);
     if (!isNaN(val)) {
       item.percent = Math.min(100, Math.max(0, val));
       renderSkillProgressBars();
+      saveStateToLocalStorage();
     }
   }
 }
@@ -763,11 +774,12 @@ function initAddSkillModal() {
     if (nameVal) {
       skillList.unshift({
         id: Date.now(),
-        name: nameVal.includes("Currently Working") ? nameVal : `${nameVal} (Currently Working)`,
+        name: nameVal,
         percent: Math.min(100, Math.max(0, percentVal)),
         icon: "fa-solid fa-star"
       });
       renderSkillProgressBars();
+      saveStateToLocalStorage();
       modal.classList.remove("active");
       document.getElementById("newSkillName").value = "";
     }
@@ -823,22 +835,29 @@ function renderProjects() {
 }
 
 function deleteProject(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   projectList = projectList.filter(p => p.id !== id);
   renderProjects();
+  saveStateToLocalStorage();
 }
 
 function editProject(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   const p = projectList.find(item => item.id === id);
   if (!p) return;
 
   const newTitle = prompt("Edit Project Title:", p.title);
   if (newTitle !== null && newTitle.trim() !== "") {
     p.title = newTitle.trim();
-    const newDesc = prompt("Edit Project Description:", p.desc);
+    const newDesc = prompt("Edit Description:", p.desc);
     if (newDesc !== null) p.desc = newDesc.trim();
+    const newCode = prompt("Edit GitHub Code URL:", p.codeUrl || "");
+    if (newCode !== null) p.codeUrl = newCode.trim();
+    const newDemo = prompt("Edit Live Demo URL (optional):", p.demoUrl || "");
+    if (newDemo !== null) p.demoUrl = newDemo.trim();
+
     renderProjects();
+    saveStateToLocalStorage();
   }
 }
 
@@ -873,6 +892,7 @@ function initProjectModal() {
         demoUrl: demoUrl || ""
       });
       renderProjects();
+      saveStateToLocalStorage();
       modal.classList.remove("active");
       document.getElementById("projTitle").value = "";
       document.getElementById("projDesc").value = "";
@@ -912,22 +932,29 @@ function renderTimeline() {
 }
 
 function deleteTimeline(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   timelineList = timelineList.filter(t => t.id !== id);
   renderTimeline();
+  saveStateToLocalStorage();
 }
 
 function editTimeline(id) {
-  if (!isAdmin) return alert("Only Project Head can perform CRUD operations.");
+  if (!isAdmin) return alert("Only Admin can perform CRUD operations.");
   const item = timelineList.find(t => t.id === id);
   if (!item) return;
 
-  const newTitle = prompt("Edit Title / Position:", item.title);
+  const newTitle = prompt("Edit Position / Degree Title:", item.title);
   if (newTitle !== null && newTitle.trim() !== "") {
     item.title = newTitle.trim();
+    const newSubtitle = prompt("Edit Subtitle / Institution / Score:", item.subtitle);
+    if (newSubtitle !== null) item.subtitle = newSubtitle.trim();
+    const newDate = prompt("Edit Date Range:", item.date);
+    if (newDate !== null) item.date = newDate.trim();
     const newDesc = prompt("Edit Description:", item.desc);
     if (newDesc !== null) item.desc = newDesc.trim();
+
     renderTimeline();
+    saveStateToLocalStorage();
   }
 }
 
@@ -956,6 +983,7 @@ function initTimelineModal() {
         desc: desc
       });
       renderTimeline();
+      saveStateToLocalStorage();
       modal.classList.remove("active");
       document.getElementById("timeTitle").value = "";
       document.getElementById("timeDesc").value = "";
@@ -1011,8 +1039,53 @@ function initLiveEditorModal() {
     }
     if (bioVal) document.getElementById("dispBio").textContent = bioVal;
 
+    saveStateToLocalStorage();
     modal.classList.remove("active");
   });
+}
+
+function saveStateToLocalStorage() {
+  localStorage.setItem("resume_skills", JSON.stringify(skillList));
+  localStorage.setItem("resume_projects", JSON.stringify(projectList));
+  localStorage.setItem("resume_deployed", JSON.stringify(deployedList));
+  localStorage.setItem("resume_timeline", JSON.stringify(timelineList));
+  const profile = {
+    name: document.getElementById("dispName") ? document.getElementById("dispName").textContent : "",
+    title: document.getElementById("dispTitle") ? document.getElementById("dispTitle").textContent : "",
+    bio: document.getElementById("dispBio") ? document.getElementById("dispBio").textContent : ""
+  };
+  localStorage.setItem("resume_profile", JSON.stringify(profile));
+}
+
+function loadStateFromLocalStorage() {
+  const skills = localStorage.getItem("resume_skills");
+  const projects = localStorage.getItem("resume_projects");
+  const deployed = localStorage.getItem("resume_deployed");
+  const timeline = localStorage.getItem("resume_timeline");
+  const profile = localStorage.getItem("resume_profile");
+
+  if (skills) skillList = JSON.parse(skills);
+  if (projects) projectList = JSON.parse(projects);
+  if (deployed) deployedList = JSON.parse(deployed);
+  if (timeline) timelineList = JSON.parse(timeline);
+
+  if (profile) {
+    const p = JSON.parse(profile);
+    if (p.name) {
+      if (document.getElementById("dispName")) document.getElementById("dispName").textContent = p.name;
+      if (document.getElementById("mascotName")) document.getElementById("mascotName").textContent = p.name;
+      if (document.getElementById("editName")) document.getElementById("editName").value = p.name;
+    }
+    if (p.title) {
+      if (document.getElementById("dispTitle")) document.getElementById("dispTitle").textContent = p.title;
+      if (document.getElementById("mascotRole")) document.getElementById("mascotRole").textContent = p.title;
+      if (document.getElementById("editTitle")) document.getElementById("editTitle").value = p.title;
+    }
+    if (p.bio) {
+      if (document.getElementById("dispBio")) document.getElementById("dispBio").textContent = p.bio;
+      if (document.getElementById("editBio")) document.getElementById("editBio").value = p.bio;
+    }
+  }
 }
 
 function downloadPDF() {
