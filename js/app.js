@@ -1367,6 +1367,76 @@ function loadStateFromLocalStorage() {
   }
 }
 
+function generatePrintableResumeHTML() {
+  const name = document.getElementById("dispName") ? document.getElementById("dispName").textContent : "Kashvi Nayak";
+  const title = document.getElementById("dispTitle") ? document.getElementById("dispTitle").textContent : "Full-Stack Software Engineer & AI/ML Systems Architect";
+  const bio = document.getElementById("dispBio") ? document.getElementById("dispBio").textContent : "";
+
+  const container = document.getElementById("printableResumeArea");
+  if (!container) return;
+
+  const workingRoles = timelineList.filter(t => t.date && t.date.includes("Currently Working"));
+  const nonWorkingRoles = timelineList.filter(t => !(t.date && t.date.includes("Currently Working")));
+  const sortedTimeline = [...workingRoles, ...nonWorkingRoles];
+
+  container.innerHTML = `
+    <div class="print-header">
+      <div>
+        <div class="print-name">${name}</div>
+        <div class="print-role">${title}</div>
+      </div>
+      <div class="print-contact">
+        <div>📍 Bhubaneswar, Odisha, India</div>
+        <div>📧 kashvinayak20@gmail.com</div>
+        <div>🌐 github.com/kashvinayak20-debug</div>
+      </div>
+    </div>
+
+    <div class="print-bio">${bio}</div>
+
+    <div class="print-section-title">Technical Skills & Expertise</div>
+    <div class="print-skills-list">
+      ${skillList.map(s => `<div><b>• ${s.name}</b> (${s.percent}%)</div>`).join("")}
+    </div>
+
+    <div class="print-section-title">Career & Technical Experience</div>
+    ${sortedTimeline.map(t => `
+      <div class="print-item">
+        <div class="print-item-header">
+          <span class="print-item-title">${t.title}</span>
+          <span class="print-item-date">${t.date}</span>
+        </div>
+        <div class="print-item-sub">${t.subtitle}</div>
+        <div class="print-item-desc">${t.desc}</div>
+      </div>
+    `).join("")}
+
+    <div class="print-section-title">Verified Certifications & Licenses</div>
+    ${certificateList.map(c => `
+      <div class="print-item">
+        <div class="print-item-header">
+          <span class="print-item-title">${c.title}</span>
+          <span class="print-item-date">${c.date}</span>
+        </div>
+        <div class="print-item-sub">${c.issuer} — ${c.badge}</div>
+        <div class="print-item-desc">${c.desc}</div>
+      </div>
+    `).join("")}
+
+    <div class="print-section-title">Featured Software Engineering Projects</div>
+    ${projectList.map(p => `
+      <div class="print-item">
+        <div class="print-item-header">
+          <span class="print-item-title">${p.title}</span>
+          <span class="print-item-date">${p.tags.join(" | ")}</span>
+        </div>
+        <div class="print-item-desc">${p.desc}</div>
+      </div>
+    `).join("")}
+  `;
+}
+
 function downloadPDF() {
+  generatePrintableResumeHTML();
   window.print();
 }
