@@ -169,6 +169,16 @@ let projectList = [
     icon: "fa-address-card",
     codeUrl: "https://github.com/kashvinayak20-debug/interactive-resume",
     demoUrl: "https://spotty-hornets-grow.loca.lt"
+  },
+  {
+    id: 106,
+    title: "DecodeLab Tasks Suite",
+    category: "python",
+    bannerSvg: INLINE_SVG_BANNERS.algo,
+    desc: "DecodeLabs Algorithmic Software Engineering & Python Tasks Suite — Implemented algorithmic problem solving, automated Python task execution, stack data structures, and optimized rainwater trapping logic.",
+    tags: ["Python", "DSA", "Algorithms", "DecodeLab", "Data Structures"],
+    icon: "fa-certificate",
+    codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
   }
 ];
 
@@ -1272,6 +1282,21 @@ function loadStateFromLocalStorage() {
         tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech"],
         icon: "fa-robot",
         codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
+      });
+    }
+    const decode = projectList.find(p => p.title && p.title.toLowerCase().includes("decodelab"));
+    if (decode) {
+      decode.codeUrl = "https://github.com/kashvinayak20-debug/decodelabs_tasks";
+    } else {
+      projectList.push({
+        id: 106,
+        title: "DecodeLab Tasks Suite",
+        category: "python",
+        bannerSvg: INLINE_SVG_BANNERS.algo,
+        desc: "DecodeLabs Algorithmic Software Engineering & Python Tasks Suite — Implemented algorithmic problem solving, automated Python task execution, stack data structures, and optimized rainwater trapping logic.",
+        tags: ["Python", "DSA", "Algorithms", "DecodeLab", "Data Structures"],
+        icon: "fa-certificate",
+        codeUrl: "https://github.com/kashvinayak20-debug/decodelabs_tasks"
       });
     }
   }
