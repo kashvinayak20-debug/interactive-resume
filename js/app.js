@@ -1350,6 +1350,7 @@ function loadStateFromLocalStorage() {
     projectList = JSON.parse(projects);
     const p = projectList.find(item => item.id === 105 || (item.title && item.title.includes("Portfolio")));
     if (p) p.demoUrl = "https://interactive-resume-theta-seven.vercel.app/";
+  }
   if (certs) {
     certificateList = JSON.parse(certs);
     const item = certificateList.find(c => c.id === 400 || (c.title && c.title.includes("LLM")));
