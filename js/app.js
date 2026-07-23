@@ -1259,6 +1259,21 @@ function loadStateFromLocalStorage() {
         demoUrl: "https://omnicalc-pro.onrender.com/"
       });
     }
+    const tts = projectList.find(p => p.title && p.title.toLowerCase().includes("text-to-speech"));
+    if (tts) {
+      tts.codeUrl = "https://github.com/kashvinayak20-debug/text-to-speech-llm";
+    } else {
+      projectList.push({
+        id: 103,
+        title: "Text-to-Speech LLM Model",
+        category: "python",
+        bannerSvg: INLINE_SVG_BANNERS.tts,
+        desc: "Deep learning-based Neural Text-to-Speech (TTS) Large Language Model architecture designed for voice generation, speech synthesis, and audio signal processing.",
+        tags: ["Python", "AI / ML", "LLMs", "TTS", "Neural Speech"],
+        icon: "fa-robot",
+        codeUrl: "https://github.com/kashvinayak20-debug/text-to-speech-llm"
+      });
+    }
   }
   if (deployed) deployedList = JSON.parse(deployed);
   if (certs) certificateList = JSON.parse(certs);
